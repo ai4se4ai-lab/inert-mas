@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "INERT-MAS: Model-Based Security Testing of Prompt-Injection Propagation in LLM Multi-Agent Systems"
+message: "If you use this software, please cite it as below."
+authors:
+  - name: "AI4SE4AI-Lab"
+version: 0.1.0
+date-released: 2026-11-22
+license: MIT
+repository-code: "https://github.com/ai4se4ai/inert-mas"

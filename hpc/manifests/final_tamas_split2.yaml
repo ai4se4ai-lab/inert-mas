@@ -1,0 +1,11 @@
+name: final-tamas-split2
+# Re-run of TAMAS DPI-split after fixing the provenance split (docs/open-questions.md item 12).
+suites:
+  - name: tamas-split2
+    kind: tamas
+    domains: [finance, healthcare, legal, news, education]
+    attack_types: [DPI]
+    dpi_variants: [split]
+    per_domain: 10
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]

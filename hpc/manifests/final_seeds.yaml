@@ -1,0 +1,13 @@
+name: final-seeds
+suites:
+  - name: seeds
+    kind: zoo
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [5]
+    families: [email, code]
+    tasks: 2
+    attacks: all
+    max_tests: 10
+    gen_seed: 3
+    defenses: [B0, B4, I2]
+    seeds: [0, 1, 2, 3, 4]

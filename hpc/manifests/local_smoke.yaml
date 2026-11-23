@@ -1,0 +1,20 @@
+name: local-smoke
+suites:
+  - name: ls-benign
+    kind: zoo
+    topologies: [chain, star]
+    sizes: [3]
+    families: [email, web, code, reply]
+    tasks: 2
+    attacks: benign
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]
+  - name: ls-bench
+    kind: zoo
+    topologies: [chain, star]
+    sizes: [3]
+    families: [email, web, code, reply]
+    tasks: 1
+    attacks: bench
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]

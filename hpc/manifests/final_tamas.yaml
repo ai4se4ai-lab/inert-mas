@@ -1,0 +1,9 @@
+name: final-tamas
+suites:
+  - name: tamas
+    kind: tamas
+    domains: [finance, healthcare, legal, news, education]
+    attack_types: [DPI, IPI, Impersonation, Colluding, Byzantine, Contradicting, Benign]
+    per_domain: 10
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]

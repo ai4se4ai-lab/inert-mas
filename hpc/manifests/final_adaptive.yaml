@@ -1,0 +1,11 @@
+name: final-adaptive
+suites:
+  - name: adaptive
+    kind: adaptive
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [5]
+    families: [email, code]
+    tasks: 2
+    budget: 10
+    defenses: [B1, B3, B4, I2]
+    seeds: [0]

@@ -1,0 +1,12 @@
+# Open-weight models used (Ollama tags; digests are recorded in every result record's meta).
+small:
+  - {name: llama3.1:8b, family: llama}
+  - {name: qwen2.5:7b, family: qwen}
+  - {name: gemma2:9b, family: gemma}
+medium:
+  - {name: mistral-small:24b, family: mistral}
+  - {name: gemma2:27b, family: gemma}
+large:
+  - {name: llama3.3:70b, family: llama}
+  - {name: qwen2.5:72b, family: qwen}
+decoding: {temperature: 0.0, top_p: 1.0, num_ctx: 8192, num_predict: 768}

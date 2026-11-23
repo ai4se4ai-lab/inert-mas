@@ -1,0 +1,54 @@
+[project]
+name = "inert-mas"
+version = "0.1.0"
+description = "INERT-MAS: model-based security testing of prompt-injection propagation in LLM multi-agent systems"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = ["pydantic>=2.6", "pyyaml>=6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.5", "mypy>=1.10", "types-PyYAML"]
+analysis = ["pandas>=2", "scipy>=1.11", "statsmodels>=0.14", "matplotlib>=3.8", "numpy>=1.26"]
+
+[project.scripts]
+inert = "inert.eval.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["inert*", "baselines*", "adapters*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/inert"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gpu: needs a live LLM backend (excluded from CI)"]
+addopts = "-m 'not gpu' -q"
+
+[[tool.mypy.overrides]]
+module = ["inert.runtime.kernel"]
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ["inert.runtime.controller", "inert.audit.replay"]
+disallow_untyped_calls = false
+
+[[tool.mypy.overrides]]
+module = ["baselines.*", "adapters.*"]
+follow_imports = "silent"
+ignore_errors = true

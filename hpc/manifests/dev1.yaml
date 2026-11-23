@@ -1,0 +1,22 @@
+name: dev1
+suites:
+  - name: dev1-attack
+    kind: zoo
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [5]
+    families: [email, web, code, reply]
+    tasks: 1
+    attacks: bench+generated
+    max_tests: 20
+    gen_seed: 1
+    defenses: [B0, B4, I1, I2, I2-tokens, I2-key, I2-validator, I2-tsel, I2-tacc]
+    seeds: [0]
+  - name: dev1-benign
+    kind: zoo
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [5]
+    families: [email, web, code, reply]
+    tasks: 3
+    attacks: benign
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]

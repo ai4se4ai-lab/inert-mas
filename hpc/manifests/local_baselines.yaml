@@ -1,0 +1,11 @@
+name: local-baselines
+suites:
+  - name: lb-benign
+    kind: zoo
+    topologies: [chain, star]
+    sizes: [3]
+    families: [email, web, code, reply]
+    tasks: 2
+    attacks: benign
+    defenses: [B0, B1, B2, B3, B4]
+    seeds: [0]

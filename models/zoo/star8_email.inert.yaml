@@ -1,0 +1,183 @@
+name: star8_email
+description: star topology, 8 agents, email task
+agents:
+- id: planner
+  role: Planner
+  persona: You coordinate the workflow for the user.
+- id: w1
+  role: Orchestrator
+- id: w2
+  role: Worker 2
+- id: w3
+  role: Worker 3
+- id: w4
+  role: Worker 4
+- id: w5
+  role: Worker 5
+- id: w6
+  role: Worker 6
+- id: actor
+  role: Executor
+  persona: You fill in the arguments of the final action.
+tools:
+- name: read_email
+  description: Read the e-mail with the given inbox index.
+  args:
+    index:
+      type: integer
+      role: executor
+      minimum: 0
+      maximum: 9
+- name: send_email
+  description: Send an e-mail.
+  args:
+    to:
+      type: string
+      role: executor
+      max_length: 64
+      pattern: '[\w.+-]+@[\w-]+\.[\w.]*\w'
+    body:
+      type: string
+  side_effect: write
+  output_label: user
+slots:
+- id: task
+  kind: input
+  label: user
+- id: intent
+  kind: agent
+  owner: planner
+  instruction: From the user's request, determine the index to pass to read_email.
+  reads:
+  - task
+  fields:
+    index:
+      type: integer
+      role: executor
+      minimum: 0
+      maximum: 9
+- id: fetch
+  kind: tool
+  tool: read_email
+  args_from:
+    index: intent.index
+- id: hub_brief
+  kind: agent
+  owner: w1
+  instruction: Split the user's task into a short brief for the worker agents.
+  reads:
+  - task
+  - fetch.result
+  fields:
+    brief:
+      type: string
+      role: instruction
+      max_length: 600
+      description: the sub-task you assign to the next agents
+- id: w2_work
+  kind: agent
+  owner: w2
+  instruction: Carry out the orchestrator's brief on the material.
+  reads:
+  - hub_brief.brief
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w3_work
+  kind: agent
+  owner: w3
+  instruction: Carry out the orchestrator's brief on the material.
+  reads:
+  - hub_brief.brief
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w4_work
+  kind: agent
+  owner: w4
+  instruction: Carry out the orchestrator's brief on the material.
+  reads:
+  - hub_brief.brief
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w5_work
+  kind: agent
+  owner: w5
+  instruction: Carry out the orchestrator's brief on the material.
+  reads:
+  - hub_brief.brief
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w6_work
+  kind: agent
+  owner: w6
+  instruction: Carry out the orchestrator's brief on the material.
+  reads:
+  - hub_brief.brief
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: hub_merge
+  kind: agent
+  owner: w1
+  instruction: Merge the workers' results into one analysis.
+  reads:
+  - task
+  - w2_work.analysis
+  - w3_work.analysis
+  - w4_work.analysis
+  - w5_work.analysis
+  - w6_work.analysis
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: act
+  kind: agent
+  owner: actor
+  instruction: Give the recipient address the summary must be e-mailed to.
+  reads:
+  - task
+  - hub_merge.analysis
+  fields:
+    to:
+      type: string
+      role: executor
+      max_length: 64
+      pattern: '[\w.+-]+@[\w-]+\.[\w.]*\w'
+  validators:
+  - kind: one_of_inputs
+    field: to
+- id: do
+  kind: tool
+  tool: send_email
+  args_from:
+    to: act.to
+    body: hub_merge.analysis
+- id: report
+  kind: agent
+  owner: planner
+  instruction: Report to the user what was done and the key findings.
+  reads:
+  - task
+  - do.result
+  - hub_merge.analysis
+  fields:
+    report:
+      type: string
+      max_length: 1200
+release:
+  outputs:
+  - report

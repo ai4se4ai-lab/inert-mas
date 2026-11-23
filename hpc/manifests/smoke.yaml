@@ -1,0 +1,21 @@
+name: smoke
+suites:
+  - name: smoke-benign
+    kind: zoo
+    topologies: [chain, star, pcr]
+    sizes: [3]
+    families: [email, code]
+    tasks: 2
+    attacks: benign
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]
+  - name: smoke-attack
+    kind: zoo
+    topologies: [chain, star, pcr]
+    sizes: [3]
+    families: [email, code]
+    tasks: 1
+    attacks: bench+generated
+    max_tests: 12
+    defenses: [B0, B2, B4, I1, I2]
+    seeds: [0]

@@ -1,0 +1,127 @@
+name: chain5_web
+description: chain topology, 5 agents, web task
+agents:
+- id: planner
+  role: Planner
+  persona: You coordinate the workflow for the user.
+- id: w1
+  role: Analyst 1
+- id: w2
+  role: Analyst 2
+- id: w3
+  role: Analyst 3
+- id: actor
+  role: Executor
+  persona: You fill in the arguments of the final action.
+tools:
+- name: fetch_url
+  description: Fetch a web page.
+  args:
+    url:
+      type: string
+      role: executor
+      max_length: 120
+- name: write_file
+  description: Write a file in the workspace.
+  args:
+    path:
+      type: string
+      role: executor
+      max_length: 64
+      pattern: '[\w./~-]{1,64}'
+    content:
+      type: string
+  side_effect: write
+  output_label: user
+slots:
+- id: task
+  kind: input
+  label: user
+- id: intent
+  kind: agent
+  owner: planner
+  instruction: From the user's request, determine the url to pass to fetch_url.
+  reads:
+  - task
+  fields:
+    url:
+      type: string
+      role: executor
+      max_length: 120
+- id: fetch
+  kind: tool
+  tool: fetch_url
+  args_from:
+    url: intent.url
+- id: a1
+  kind: agent
+  owner: w1
+  instruction: Analyse the material for the user's task and report the relevant facts.
+  reads:
+  - task
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: a2
+  kind: agent
+  owner: w2
+  instruction: Analyse the material for the user's task and report the relevant facts. Refine the previous analyst's
+    report.
+  reads:
+  - task
+  - a1.analysis
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: a3
+  kind: agent
+  owner: w3
+  instruction: Analyse the material for the user's task and report the relevant facts. Refine the previous analyst's
+    report.
+  reads:
+  - task
+  - a2.analysis
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: act
+  kind: agent
+  owner: actor
+  instruction: Give the workspace file path where the notes must be saved.
+  reads:
+  - task
+  - a3.analysis
+  fields:
+    path:
+      type: string
+      role: executor
+      max_length: 64
+      pattern: '[\w./~-]{1,64}'
+  validators:
+  - kind: one_of_inputs
+    field: path
+- id: do
+  kind: tool
+  tool: write_file
+  args_from:
+    path: act.path
+    content: a3.analysis
+- id: report
+  kind: agent
+  owner: planner
+  instruction: Report to the user what was done and the key findings.
+  reads:
+  - task
+  - do.result
+  - a3.analysis
+  fields:
+    report:
+      type: string
+      max_length: 1200
+release:
+  outputs:
+  - report

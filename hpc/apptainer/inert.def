@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: python:3.11-slim
+
+%files
+    pyproject.toml /opt/inert/pyproject.toml
+    src /opt/inert/src
+    baselines /opt/inert/baselines
+    adapters /opt/inert/adapters
+
+%post
+    pip install --no-cache-dir "pydantic>=2.6" "pyyaml>=6"
+    cd /opt/inert && pip install --no-cache-dir --no-deps -e .
+
+%environment
+    export PYTHONPATH=/opt/inert/src:/opt/inert
+
+%runscript
+    exec python -m inert.eval.cli "$@"

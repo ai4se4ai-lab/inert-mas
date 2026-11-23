@@ -1,0 +1,10 @@
+name: final-tamas-scope
+# Post-hoc variant I2S (task-scoped tool authority), added after the main TAMAS results; reported separately.
+suites:
+  - name: tamas-scope
+    kind: tamas
+    domains: [finance, healthcare, legal, news, education]
+    attack_types: [DPI, IPI, Impersonation, Colluding, Byzantine, Contradicting, Benign]
+    per_domain: 10
+    defenses: [I2S]
+    seeds: [0]

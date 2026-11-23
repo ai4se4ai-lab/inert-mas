@@ -1,0 +1,33 @@
+name: final-zoo
+suites:
+  - name: zoo-benign
+    kind: zoo
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [3, 5, 8]
+    families: [email, web, code, reply]
+    tasks: 5
+    attacks: benign
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]
+  - name: zoo-attack
+    kind: zoo
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [3, 5, 8]
+    families: [email, web, code, reply]
+    tasks: 2
+    attacks: bench+generated
+    max_tests: 15
+    gen_seed: 7
+    defenses: [B0, B1, B2, B3, B4, I1, I2]
+    seeds: [0]
+  - name: zoo-ablation
+    kind: zoo
+    topologies: [chain, star, hierarchical, debate, pcr]
+    sizes: [5]
+    families: [email, web, code, reply]
+    tasks: 1
+    attacks: generated
+    max_tests: 25
+    gen_seed: 11
+    defenses: [I1, I2, I2-tokens, I2-key, I2-validator, I2-tsel, I2-tacc]
+    seeds: [0]

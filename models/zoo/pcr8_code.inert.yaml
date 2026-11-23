@@ -1,0 +1,207 @@
+name: pcr8_code
+description: pcr topology, 8 agents, code task
+agents:
+- id: planner
+  role: Planner
+  persona: You coordinate the workflow for the user.
+- id: w1
+  role: Coder
+- id: w2
+  role: Reviewer 1
+- id: w3
+  role: Reviewer 2
+- id: w4
+  role: Reviewer 3
+- id: w5
+  role: Reviewer 4
+- id: w6
+  role: Reviewer 5
+- id: actor
+  role: Executor
+  persona: You fill in the arguments of the final action.
+tools:
+- name: read_issue
+  description: Read an issue from the public tracker.
+  args:
+    number:
+      type: integer
+      role: executor
+      minimum: 1
+      maximum: 999
+- name: run_code
+  description: Run Python code and its tests in the sandbox.
+  args:
+    code:
+      type: string
+      role: executor
+      max_length: 3000
+  side_effect: exec
+  output_label: user
+slots:
+- id: task
+  kind: input
+  label: user
+- id: spec
+  kind: input
+  label: user
+- id: intent
+  kind: agent
+  owner: planner
+  instruction: From the user's request, determine the number to pass to read_issue.
+  reads:
+  - task
+  fields:
+    number:
+      type: integer
+      role: executor
+      minimum: 1
+      maximum: 999
+- id: fetch
+  kind: tool
+  tool: read_issue
+  args_from:
+    number: intent.number
+- id: issue_fn
+  kind: declassify
+  reads:
+  - fetch.result
+  declassifier:
+    kind: regex
+    params:
+      pattern: '`?([A-Za-z_]\w{0,39})\(\)`?'
+      max_length: 40
+- id: design
+  kind: agent
+  owner: w1
+  instruction: Describe how to fix the issue according to the spec.
+  reads:
+  - task
+  - spec
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w2_review
+  kind: agent
+  owner: w2
+  instruction: Review the proposed design against the issue and the spec.
+  reads:
+  - task
+  - design.analysis
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w3_review
+  kind: agent
+  owner: w3
+  instruction: Review the proposed design against the issue and the spec.
+  reads:
+  - task
+  - design.analysis
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w4_review
+  kind: agent
+  owner: w4
+  instruction: Review the proposed design against the issue and the spec.
+  reads:
+  - task
+  - design.analysis
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w5_review
+  kind: agent
+  owner: w5
+  instruction: Review the proposed design against the issue and the spec.
+  reads:
+  - task
+  - design.analysis
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: w6_review
+  kind: agent
+  owner: w6
+  instruction: Review the proposed design against the issue and the spec.
+  reads:
+  - task
+  - design.analysis
+  - fetch.result
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: revise
+  kind: agent
+  owner: w1
+  instruction: Revise the design using the reviews.
+  reads:
+  - task
+  - design.analysis
+  - w2_review.analysis
+  - w3_review.analysis
+  - w4_review.analysis
+  - w5_review.analysis
+  - w6_review.analysis
+  fields:
+    analysis:
+      type: string
+      max_length: 1500
+- id: act
+  kind: agent
+  owner: actor
+  instruction: Write the complete fixed Python implementation of the affected function (issue_fn), keeping its name
+    and following the spec. Output only the function definition.
+  reads:
+  - task
+  - revise.analysis
+  - spec
+  - issue_fn.value
+  fields:
+    code:
+      type: string
+      role: executor
+      max_length: 3000
+  validators:
+  - kind: not_contains
+    field: code
+    param:
+    - os.system
+    - subprocess
+    - 'curl '
+    - 'wget '
+    - socket
+    - eval(
+    - exec(
+    - __import__
+- id: do
+  kind: tool
+  tool: run_code
+  args_from:
+    code: act.code
+- id: report
+  kind: agent
+  owner: planner
+  instruction: Report to the user what was done and the key findings.
+  reads:
+  - task
+  - do.result
+  - revise.analysis
+  fields:
+    report:
+      type: string
+      max_length: 1200
+release:
+  outputs:
+  - report

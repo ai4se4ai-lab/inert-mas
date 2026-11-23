@@ -1,0 +1,16 @@
+{
+  "project": "inert-mas",
+  "username": "mbabaei",
+  "clusters": {
+    "rorqual": {"host": "rorqual.alliancecan.ca", "gpu_account": "def-mbabaei_gpu", "cpu_account": "def-mbabaei_cpu",
+                "gres": "gpu:h100:1", "work": "/scratch/mbabaei/inert-mas"},
+    "narval":  {"host": "narval.alliancecan.ca",  "gpu_account": "def-mbabaei_gpu", "cpu_account": "def-mbabaei_cpu",
+                "gres": "gpu:a100:1", "work": "/scratch/mbabaei/inert-mas"},
+    "fir":     {"host": "fir.alliancecan.ca",     "gpu_account": "def-mbabaei_gpu", "cpu_account": "def-mbabaei_cpu",
+                "gres": "gpu:h100:1", "work": "/scratch/mbabaei/inert-mas"}
+  },
+  "_comment": "Everything this project runs lives under <work>. Ollama runtimes and model blobs found elsewhere are only COPIED into <work>/ollama by 'fleet.py setup'; nothing outside <work> is written.",
+  "ollama_runtime_candidates": ["/scratch/mbabaei/vgc/ollama/runtime", "/scratch/mbabaei/heartness-work/ollama", "/scratch/mbabaei/ssevoh/ollama"],
+  "model_store_candidates": ["/scratch/mbabaei/vgc/ollama/models", "/scratch/mbabaei/ssevoh/models", "/scratch/mbabaei/heartness-work/ollama-models"],
+  "models": ["qwen2.5:7b", "llama3.1:8b", "gemma2:9b", "qwen2.5:72b", "llama3.3:70b", "gemma2:27b", "mistral-small:24b"]
+}

@@ -1,0 +1,9 @@
+name: tamas-smoke
+suites:
+  - name: tamas-smoke
+    kind: tamas
+    domains: [finance]
+    attack_types: [DPI, IPI, Impersonation, Colluding, Byzantine, Benign]
+    per_domain: 2
+    defenses: [B0, B3, B4, I1, I2]
+    seeds: [0]
