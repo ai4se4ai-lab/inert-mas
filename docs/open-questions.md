@@ -54,3 +54,8 @@ Each entry: the question, the choice taken (most conservative), and where it mat
     the server up to four times until the model is GPU resident. The 70B-class jobs also exceeded the
     64 GB host-memory request while loading (OUT_OF_MEMORY). They now request 128 GB. All failed shards
     were resubmitted. Finished cases and shards are skipped, and no failed case was dropped.
+15. **Fir to narval (2026-11-23).** The GPU-discovery fault persisted on some fir nodes (fc10612 failed
+    four restarts), and the resubmitted fir jobs waited on fair-share priority. The remaining work moved
+    to narval. Partial results were copied in and finished cases and shards are skipped. Narval runs the
+    7B model on one A100 and the 70B-class models on two A100 (40 GB each) with 128 GB host memory.
+    The residency guard still refuses any CPU fallback. Each record stores the host and GPU of its job.

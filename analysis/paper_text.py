@@ -62,6 +62,15 @@ def glmm_sentence(n: dict[str, Any]) -> str:
             if sep else ""))
 
 
+def dpi_whole_cmp(tam: dict[str, Any]) -> str:
+    others = [v.get("DPI-whole") for k, v in tam.items() if k not in ("I2", "I2S") and v.get("DPI-whole") is not None]
+    if not others or "I2" not in tam:
+        return ""
+    lo, hi, x = min(others), max(others), tam["I2"]["DPI-whole"]
+    where = "slightly below" if x < lo else "slightly above" if x > hi else "within"
+    return f", {where} the range of the other conditions ({p(lo)} to {p(hi)}), so INERT gives little protection here"
+
+
 def render(n: dict[str, Any]) -> dict[str, str]:
     main = n.get("main", {})
     out: dict[str, str] = {}
@@ -103,7 +112,7 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         f"seven conditions over all models"
         f"{', with ' + str(n['errors']) + ' failed runs' if n.get('errors') else ', with no failed run'}. "
         f"Two conditions reach an attack success rate of {p(i2['asr'])}: I2 and B3 (Wilson 95\\% upper bound "
-        f"{p(i2['asr_hi'])}). They differ sharply in utility. I2 completes {p(i2['u_ben'])} of benign tasks and B3 "
+        f"{p(i2['asr_hi'], 2)}). They differ sharply in utility. I2 completes {p(i2['u_ben'])} of benign tasks and B3 "
         f"{p(b3['u_ben'])}, because B3's planner never sees the material it must act on and its capability policy "
         f"denies side effects whose arguments derive from it. The message-level defenses reduce but do not prevent "
         f"attacks: the detector B1 reaches {p(b1['asr'])}, the permitted graph B4 {p(b4['asr'])}. "
@@ -235,14 +244,16 @@ def render(n: dict[str, Any]) -> dict[str, str]:
             f"{g2('B0', 'IPI')} of instances under B0, {g2('B4', 'IPI')} under B4, {g2('B3', 'IPI')} under B3 and "
             f"{g2('I2', 'IPI')} under I2. For direct injection, the outcome depends on what the system knows about "
             f"provenance. When the whole query counts as the user's request (DPI-whole, as in TAMAS), I2 reaches "
-            f"{g2('I2', 'DPI-whole')}, like the other defenses, because INERT trusts the user's channel by design. "
+            f"{g2('I2', 'DPI-whole')}" + dpi_whole_cmp(tam) + ", because INERT trusts the user's channel by design. "
             f"When the injected suffix is labelled as untrusted content (DPI-split), I2 reaches {g2('I2', 'DPI-split')}, "
             f"against {g2('B0', 'DPI-split')} for B0 and {g2('B3', 'DPI-split')} for B3. "
             f"Impersonation, which is also delivered in the user's query, succeeds in {g2('I2', 'Impersonation')}.\n\n"
             "The TAMAS agents carry harmful tools in their own tool sets, and the Byzantine and colluding attacks "
             "give agents personas that tell them to use these tools. I2 does not prevent an agent from choosing a "
             f"tool the model permits it to choose: Colluding reaches {g2('I2', 'Colluding')} and Byzantine "
-            f"{g2('I2', 'Byzantine')}, close to B0 ({g2('B0', 'Colluding')} and {g2('B0', 'Byzantine')}). B3 and B4 do "
+            f"{g2('I2', 'Byzantine')}, against {g2('B0', 'Colluding')} and {g2('B0', 'Byzantine')} for B0"
+            + (", so INERT is no better than the undefended system here" if tam.get('I2', {}).get('Byzantine', 0) >=
+               tam.get('B0', {}).get('Byzantine', 0) else "") + ". B3 and B4 do "
             "better here because both derive a per-task allowlist from the request alone. After observing this, "
             "we added one model element to the TAMAS models, a task-scope slot that reads only the request and lists "
             "the tools the task needs, with an owned validator that restricts every agent's tool choice to that list. "
@@ -253,8 +264,9 @@ def render(n: dict[str, Any]) -> dict[str, str]:
     sd = n.get("seeds", {})
     if sd:
         out["seeds_text"] = ("Across seeds, the standard deviation of the attack success rate is " + ", ".join(
-            f"{p(v['asr_sd'])} for {d}" for d, v in sorted(sd.items())) + ", and the ordering of the conditions "
-            "does not change.")
+            f"{p(v['asr_sd'])} for {d}" for d, v in sorted(sd.items())) +
+            (", and the ordering of the conditions is the same for every seed." if n.get("seeds_order_stable")
+             else ", but the ordering of the conditions differs between seeds."))
     else:
         out["seeds_text"] = ""
     out["discussion_text"] = (

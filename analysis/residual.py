@@ -63,9 +63,12 @@ def main() -> int:
     if a.kappa:
         print(f"Cohen's kappa = {kappa(a.kappa):.3f}")
         return 0
-    rows = []
-    for p in a.files:
-        rows += [json.loads(x) for x in Path(p).read_text().splitlines() if x.strip()]
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from make_assets import load  # same de-duplication by (case, model) as the paper's numbers
+    rows = load(a.files)
+    fixed = {r.get("llm") for r in rows if r.get("suite") == "tamas-split2"}
+    rows = [r for r in rows if not (r.get("suite") == "tamas" and r.get("variant") == "split" and r.get("llm") in fixed)]
     succ = [r for r in rows if not r.get("error") and r.get("defense") == "I2" and r.get("asr")]
     by = defaultdict(list)
     for r in succ:

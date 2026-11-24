@@ -1,0 +1,9 @@
+{
+ "total": 390,
+ "by_category": {
+  "user-input": 219,
+  "plausible": 45,
+  "tool-owned": 126
+ },
+ "sampled": 99
+}

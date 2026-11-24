@@ -388,6 +388,10 @@ def main() -> int:
         key = "u" if r.get("criterion") == "BENIGN" else "a"
         sv[r["defense"]][key][r["seed"]].append(r["utility"] if key == "u" else r["asr"])
     numbers["seeds"] = {}
+    orders = set()
+    for sd in {s for d in sv for s in sv[d]["a"]}:
+        orders.add(tuple(sorted((d for d in sv if sd in sv[d]["a"]), key=lambda d: mean(sv[d]["a"][sd]))))
+    numbers["seeds_order_stable"] = len(orders) == 1
     lines = [r"\begin{tabular}{@{}lrrrr@{}}", r"\toprule",
              r"Defense & ASR mean (\%) & ASR sd across seeds & Utility mean (\%) & Utility sd \\", r"\midrule"]
     for d in ORDER:

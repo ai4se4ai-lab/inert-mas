@@ -11,3 +11,11 @@
 - M5 coverage criteria (EDGE, SLOT, SEL, TAINT, RECONF, COLL), payload library, mutators, adaptive attacker (tests/test_attacks.py: 100% feasible obligations covered, tests execute on INERT and B0).
 - M6 hash-chained log, LLM-free replay, P1-P6 checkers (tests/test_audit.py: tamper detection, ablation surfaces violations).
 - M7 harness, manifests, CLI; baselines B0-B4; TAMAS adapter; HPC fleet scripts.
+
+## 0.2.0 (2026-11-24)
+- Final study complete: 106,382 runs on six open-weight models (zoo, TAMAS, DPI-split re-run, I2S, seed and adaptive studies), 0 failed cases; archived read-only in `results/final/`.
+- M3: capability key from a CSPRNG, only its commitment logged; `member_of` validator (task scope, I2S).
+- TAMAS adapter: DPI provenance split at the injection marker (49/50 instances); I2S variant.
+- HPC: GPU-residency retry, `--mem`, `--gres`, `--indices`; code snapshots per deployment.
+- Analysis: one-command regeneration (`analysis/run_all.sh`), de-duplication of resumed shards, data-driven results prose, residual-risk categorization and coding sheet.
+- M7 publication checks: 133 offline tests pass; Ruff, strict mypy, changed Python script parsing and analysis shell syntax checks pass.

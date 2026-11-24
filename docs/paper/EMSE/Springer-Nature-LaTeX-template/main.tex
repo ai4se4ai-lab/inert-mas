@@ -48,7 +48,7 @@
 \affil*[1]{\orgname{AI4SE4AI Lab}}
 
 \abstract{Multi-agent systems built on large language models (LLMs) pass text between agents, tools and the environment, so a single prompt injection can travel through the whole workflow and end in a harmful action. Existing defenses filter or tag messages, or constrain the control flow of a single agent, and existing security tests replay a fixed set of benchmark attacks. We present INERT, a model-driven approach that addresses both sides of the problem. A designer describes the multi-agent system as a typed model. A compiler turns it into a content-hashed plan that a small deterministic controller executes: agents only propose typed values, and the controller accepts a value only if it answers the current question of the slot, comes from the authorized agent and satisfies the slot's contract and a taint policy that keeps untrusted-derived content away from instruction, control and executor fields. The same compiled model drives a test generator that derives prompt-injection attacks from six coverage criteria over the model, and every run leaves a hash-chained log from which the security properties are checked without re-running any LLM. We evaluate INERT against five baselines on a zoo of 51 workflows over five topologies and on the TAMAS benchmark, with open-weight models served on the Alliance clusters. %<<abstract_results>>
-Over 63{,}558 runs, INERT lowered the attack success rate from 80.0\% without defense to 0.0\%, matching the strongest baseline, a CaMeL-style planner with quarantined data, while completing 76.6\% of benign tasks against that baseline's 43.4\%. An adaptive attacker did not succeed against INERT. On TAMAS, INERT reduced indirect injection from 55.3\% to 8.0\% but did not stop agents that misuse tools they legitimately own. Attack suites generated from the model violated 740 distinct model elements of the undefended systems, against 153 for benchmark-style attacks.
+Over 106{,}382 runs, INERT lowered the attack success rate from 82.4\% without defense to 0.0\%, matching the strongest baseline, a CaMeL-style planner with quarantined data, while completing 82.2\% of benign tasks against that baseline's 44.0\%. An adaptive attacker did not succeed against INERT. On TAMAS, INERT reduced indirect injection from 51.7\% to 8.0\% but did not stop agents that misuse tools they legitimately own. Attack suites generated from the model violated 761 distinct model elements of the undefended systems, against 153 for benchmark-style attacks.
 %<</abstract_results>>
 All code, models, attack suites, logs and analysis scripts are available for replication.}
 
@@ -75,7 +75,7 @@ We make five contributions.
 \end{enumerate}
 
 %<<intro_findings>>
-Our study covers three open-weight models, 51 workflows, the TAMAS benchmark and 63{,}558 runs. INERT reduced the attack success rate on the topology zoo from 80.0\% to 0.0\% and kept 76.6\% benign utility, more than the undefended system (68.8\%). The strongest baseline, a CaMeL-style planner, also blocked every attack but completed only 43.4\% of benign tasks. Ablations show that each INERT mechanism closes a distinct channel, and that the taint policy is the only defense against semantic propagation. Attack suites generated from the model found more successful attacks per unit of cost than benchmark-style suites. On TAMAS, INERT did not stop agents that misuse tools the model allows them to use, which we report as residual risk together with a post-hoc mitigation.
+Our study covers six open-weight models, 51 workflows, the TAMAS benchmark and 106{,}382 runs. INERT reduced the attack success rate on the topology zoo from 82.4\% to 0.0\% and kept 82.2\% benign utility, more than the undefended system (71.4\%). The strongest baseline, a CaMeL-style planner, also blocked every attack but completed only 44.0\% of benign tasks. Ablations show that each INERT mechanism closes a distinct channel, and that the taint policy is the only defense against semantic propagation. Attack suites generated from the model found more successful attacks per unit of cost than benchmark-style suites. On TAMAS, INERT did not stop agents that misuse tools the model allows them to use, which we report as residual risk together with a post-hoc mitigation.
 %<</intro_findings>>
 
 The claim of this paper is deliberately bounded. INERT does not make LLMs immune to prompt injection. A schema-valid value can still be wrong. What INERT provides is that an injected instruction stays \emph{inert}: it cannot change what executes, who may author a value, or which slots may be steered by untrusted content, and whatever effect remains is bounded by the authority that the model grants to the affected slot. We measure that residual effect explicitly.
@@ -602,7 +602,7 @@ I2-$x$ & I2 without one mechanism: tokens, key match, validators, taint at selec
 \subsection{Models and infrastructure}
 
 %<<models_text>>
-We use three open-weight instruction-tuned models from four families and three size classes: \texttt{gemma2:9b}, \texttt{llama3.1:8b}, \texttt{mistral-small:24b} \citep{grattafiori2024llama3,qwen2025qwen25,gemma2024gemma2}. The 7--9B and 24B models run the full grid. The 70B-class models run a reduced grid (two benign tasks and one attacked task per workflow, ten generated tests per workflow) because they are about four times slower.
+We use six open-weight instruction-tuned models from four families and three size classes: \texttt{gemma2:9b}, \texttt{llama3.1:8b}, \texttt{llama3.3:70b}, \texttt{mistral-small:24b}, \texttt{qwen2.5:72b}, \texttt{qwen2.5:7b} \citep{grattafiori2024llama3,qwen2025qwen25,gemma2024gemma2}. The 7--9B and 24B models run the full grid. The 70B-class models run a reduced grid (two benign tasks and one attacked task per workflow, ten generated tests per workflow) because they are about four times slower.
 %<</models_text>>
 
 All models are open-weight instruction-tuned checkpoints served offline by Ollama \citep{ollama} on node-local storage of the Alliance clusters (H100 and A100 GPUs), with JSON-schema constrained decoding, temperature 0, top-$p$ 1 and a context of 8,192 tokens. Every record stores the code version, the model digest, the decoding configuration, the seed and the benchmark version. Because decoding at temperature 0 makes repeated seeds nearly identical, the main grid runs one seed per cell and varies models and tasks instead. A separate sub-study repeats a subset of the grid with five seeds at temperature 0.7 and top-$p$ 0.9 to quantify run-to-run variation. Smoke and development runs that we used to debug the harness and the approach are excluded from all reported results. Experiments are expressed as manifests that expand deterministically into cases, sharded into SLURM array jobs that resume after preemption.
@@ -621,7 +621,7 @@ For paired binary outcomes we use exact McNemar tests \citep{mcnemar1947note} ag
 \section{Results}\label{sec:results}
 
 %<<results_overview>>
-Table~\ref{tab:main} summarizes the topology zoo: 38{,}556 attacked runs and the benign runs of all seven conditions over all models, with no failed run. Two conditions reach an attack success rate of 0.0\%: I2 and B3 (Wilson 95\% upper bound 0.1\%). They differ sharply in utility. I2 completes 76.6\% of benign tasks and B3 43.4\%, because B3's planner never sees the material it must act on and its capability policy denies side effects whose arguments derive from it. The message-level defenses reduce but do not prevent attacks: the detector B1 reaches 60.6\%, the permitted graph B4 56.6\%. Figure~\ref{fig:tradeoff} places every condition in the security--utility plane and Table~\ref{tab:llm} breaks the main conditions down by model. The logistic mixed-effects model with defense and model as fixed effects and task as a random intercept gives log-odds of attack success relative to B0 (posterior mean and standard deviation) of B1 -1.00 (0.03), B2 -0.35 (0.03), B4 -1.18 (0.03), I1 -3.27 (0.04). The coefficients of B3 and I2 are not identifiable because these conditions have no successful attack (complete separation), so we rely on the paired tests for them.
+Table~\ref{tab:main} summarizes the topology zoo: 60{,}690 attacked runs and the benign runs of all seven conditions over all models, with no failed run. Two conditions reach an attack success rate of 0.0\%: I2 and B3 (Wilson 95\% upper bound 0.04\%). They differ sharply in utility. I2 completes 82.2\% of benign tasks and B3 44.0\%, because B3's planner never sees the material it must act on and its capability policy denies side effects whose arguments derive from it. The message-level defenses reduce but do not prevent attacks: the detector B1 reaches 63.9\%, the permitted graph B4 58.8\%. Figure~\ref{fig:tradeoff} places every condition in the security--utility plane and Table~\ref{tab:llm} breaks the main conditions down by model. The logistic mixed-effects model with defense and model as fixed effects and task as a random intercept gives log-odds of attack success relative to B0 (posterior mean and standard deviation) of B1 -1.02 (0.02), B2 -0.32 (0.03), B4 -1.25 (0.02), I1 -3.34 (0.03). The coefficients of B3 and I2 are not identifiable because these conditions have no successful attack (complete separation), so we rely on the paired tests for them.
 %<</results_overview>>
 
 \begin{table}[t]
@@ -632,13 +632,13 @@ Table~\ref{tab:main} summarizes the topology zoo: 38{,}556 attacked runs and the
 \toprule
 Def. & $n_{att}$ & ASR & 95\% CI & Goal & $U_{ben}$ & $U_{att}$ & FRR & Calls \\
 \midrule
-B0 & 5508 & 80.0 & [79.0, 81.1] & 56.7 & 68.8 & 21.1 & -- & 10.1 \\
-B1 & 5508 & 60.6 & [59.3, 61.8] & 12.5 & 68.5 & 49.5 & 1.6 & 22.2 \\
-B2 & 5508 & 74.0 & [72.9, 75.2] & 48.2 & 63.3 & 21.2 & -- & 10.1 \\
-B3 & 5508 & 0.0 & [0.0, 0.1] & 0.0 & 43.4 & 44.4 & 24.4 & 7.5 \\
-B4 & 5508 & 56.6 & [55.3, 57.9] & 44.1 & 56.2 & 15.5 & 57.4 & 9.8 \\
-I1 & 5508 & 15.1 & [14.2, 16.1] & 5.7 & 87.6 & 61.8 & 1.9 & 8.2 \\
-I2 & 5508 & 0.0 & [0.0, 0.1] & 0.0 & 76.6 & 56.9 & 1.7 & 8.2 \\
+B0 & 8670 & 82.4 & [81.6, 83.2] & 56.3 & 71.4 & 24.9 & -- & 10.0 \\
+B1 & 8670 & 63.9 & [62.9, 64.9] & 11.8 & 71.1 & 51.9 & 2.0 & 22.1 \\
+B2 & 8670 & 77.5 & [76.6, 78.3] & 47.6 & 68.5 & 27.5 & -- & 10.1 \\
+B3 & 8670 & 0.0 & [0.0, 0.0] & 0.0 & 44.0 & 45.4 & 25.2 & 7.6 \\
+B4 & 8670 & 58.8 & [57.8, 59.8] & 46.2 & 61.1 & 19.4 & 54.0 & 9.8 \\
+I1 & 8670 & 16.6 & [15.8, 17.4] & 7.1 & 91.9 & 63.6 & 1.2 & 8.2 \\
+I2 & 8670 & 0.0 & [0.0, 0.0] & 0.0 & 82.2 & 61.4 & 1.1 & 8.2 \\
 \botrule
 \end{tabular}
 %<</tab_main>>
@@ -655,7 +655,10 @@ Model & ASR & $U$ & ASR & $U$ & ASR & $U$ & ASR & $U$ & ASR & $U$ \\
 \midrule
 \texttt{gemma2:9b} & 82.0 & 60.0 & 0.0 & 36.1 & 56.8 & 40.8 & 21.7 & 97.6 & 0.0 & 98.0 \\
 \texttt{llama3.1:8b} & 71.2 & 48.6 & 0.0 & 47.1 & 47.9 & 36.9 & 12.0 & 68.6 & 0.0 & 52.2 \\
+\texttt{llama3.3:70b} & 85.1 & 84.3 & 0.0 & 37.3 & 59.9 & 67.6 & 8.0 & 97.1 & 0.0 & 70.6 \\
 \texttt{mistral:24b} & 86.9 & 97.6 & 0.0 & 47.1 & 65.0 & 91.0 & 11.5 & 96.5 & 0.0 & 79.6 \\
+\texttt{qwen2.5:72b} & 77.1 & 80.4 & 0.0 & 47.1 & 49.3 & 77.5 & 8.9 & 100.0 & 0.0 & 100.0 \\
+\texttt{qwen2.5:7b} & 90.5 & 70.6 & 0.0 & 47.1 & 68.6 & 66.7 & 26.9 & 99.6 & 0.0 & 96.5 \\
 \botrule
 \end{tabular}
 %<</tab_llm>>
@@ -664,7 +667,7 @@ Model & ASR & $U$ & ASR & $U$ & ASR & $U$ & ASR & $U$ & ASR & $U$ \\
 \subsection{RQ1: Propagation without a controller}
 
 %<<rq1_text>>
-Without a controller, an injection rarely stays with the agent that reads it. Table~\ref{tab:rq1} reports B0 by topology and size. The number of infected agents grows with the number of agents in 5 of 5 topologies (chain from 1.7 to 3.4, debate from 2.1 to 4.0, hierarchical from 1.9 to 3.0, pcr from 0.9 to 1.1, star from 1.9 to 2.8). The blast radius, the share of all agent outputs that carry attacker content, falls with size in 5 of 5 topologies, because added agents dilute the transcript rather than escape it. The longest infected chains occur in debate8 (mean depth 3.84). Attack success is highest for star5 (97.2\%) and lowest for pcr3 (58.3\%). The planner--coder--reviewer workflow propagates least because only the coder writes the artifact that reaches the executor.
+Without a controller, an injection rarely stays with the agent that reads it. Table~\ref{tab:rq1} reports B0 by topology and size. The number of infected agents grows with the number of agents in 5 of 5 topologies (chain from 1.7 to 3.3, debate from 2.0 to 4.3, hierarchical from 1.9 to 3.3, pcr from 0.9 to 1.1, star from 1.9 to 3.2). The blast radius, the share of all agent outputs that carry attacker content, falls with size in 5 of 5 topologies, because added agents dilute the transcript rather than escape it. The longest infected chains occur in debate8 (mean depth 4.14). Attack success is highest for star5 (98.1\%) and lowest for pcr3 (62.4\%). The planner--coder--reviewer workflow propagates least because only the coder writes the artifact that reaches the executor.
 
 \textbf{Answer to RQ1.} Injections propagate to several agents in every topology, and the absolute number of infected agents grows with team size. Hypothesis H1 holds for the count of infected agents but not for the share of outputs, which decreases with size.
 %<</rq1_text>>
@@ -677,21 +680,21 @@ Without a controller, an injection rarely stays with the agent that reads it. Ta
 \toprule
 Topology & Agents & $n$ & ASR (\%) & Infected agents & Blast radius & Depth \\
 \midrule
-chain & 3 & 432 & 79.6 & 1.70 & 0.45 & 1.70 \\
-chain & 5 & 432 & 71.5 & 2.53 & 0.43 & 2.47 \\
-chain & 8 & 432 & 80.6 & 3.39 & 0.38 & 3.22 \\
-debate & 3 & 432 & 82.6 & 2.06 & 0.56 & 2.06 \\
-debate & 5 & 432 & 95.8 & 2.81 & 0.42 & 2.67 \\
-debate & 8 & 432 & 83.1 & 3.98 & 0.39 & 3.84 \\
-hierarchical & 3 & 432 & 76.4 & 1.89 & 0.48 & 1.89 \\
-hierarchical & 5 & 432 & 81.2 & 2.98 & 0.45 & 2.35 \\
-hierarchical & 8 & 432 & 60.6 & 3.00 & 0.31 & 2.25 \\
-pcr & 3 & 108 & 58.3 & 0.90 & 0.27 & 0.90 \\
-pcr & 5 & 108 & 75.0 & 1.03 & 0.18 & 0.91 \\
-pcr & 8 & 108 & 64.8 & 1.13 & 0.14 & 0.85 \\
-star & 3 & 432 & 76.6 & 1.91 & 0.49 & 1.91 \\
-star & 5 & 432 & 97.2 & 2.19 & 0.35 & 1.93 \\
-star & 8 & 432 & 85.4 & 2.75 & 0.31 & 1.91 \\
+chain & 3 & 680 & 80.0 & 1.70 & 0.45 & 1.70 \\
+chain & 5 & 680 & 73.5 & 2.44 & 0.41 & 2.37 \\
+chain & 8 & 680 & 81.5 & 3.33 & 0.38 & 3.17 \\
+debate & 3 & 680 & 81.2 & 2.01 & 0.54 & 2.01 \\
+debate & 5 & 680 & 96.3 & 2.88 & 0.44 & 2.77 \\
+debate & 8 & 680 & 87.1 & 4.25 & 0.42 & 4.14 \\
+hierarchical & 3 & 680 & 77.4 & 1.89 & 0.48 & 1.89 \\
+hierarchical & 5 & 680 & 87.8 & 2.93 & 0.45 & 2.34 \\
+hierarchical & 8 & 680 & 67.1 & 3.27 & 0.34 & 2.37 \\
+pcr & 3 & 170 & 62.4 & 0.85 & 0.25 & 0.85 \\
+pcr & 5 & 170 & 81.2 & 0.96 & 0.17 & 0.85 \\
+pcr & 8 & 170 & 73.5 & 1.06 & 0.14 & 0.79 \\
+star & 3 & 680 & 77.1 & 1.94 & 0.50 & 1.94 \\
+star & 5 & 680 & 98.1 & 2.36 & 0.38 & 2.06 \\
+star & 8 & 680 & 89.6 & 3.23 & 0.36 & 2.07 \\
 \botrule
 \end{tabular}
 %<</tab_rq1>>
@@ -700,9 +703,9 @@ star & 8 & 432 & 85.4 & 2.75 & 0.31 & 1.91 \\
 \subsection{RQ2: Which mechanism blocks which attack}
 
 %<<rq2_text>>
-Table~\ref{tab:rq2} reports the ablation suite, in which every INERT condition faces the same generated tests. I2 blocks every attacker model (A1 0.0\%, A2 0.0\%, A3 0.0\%, A4 0.0\%, A5 0.0\%). Each ablation reopens precisely the channel that the taxonomy of Section~\ref{sec:taxonomy} assigns to it. Without tokens, compromised agents (100.0\%) and message tampering (91.9\%) succeed, because forged and altered proposals are accepted. Without key matching, replayed proposals succeed (81.6\% of A5 tests). Without validators, colluding agents reach 100.0\% and a compromised executor agent 17.3\%. Without any taint (I1), indirect injection succeeds in 15.5\% of the tests, which is the semantic propagation that structural mechanisms cannot see. Removing only one of the two taint checks keeps the attack success rate at zero, because selection and acceptance back each other up. They are not interchangeable, however. Without selection the executor agent sees tainted context, its proposals are rejected at acceptance, and the task fails: utility under attack is 0.0\% without selection against 53.2\% for I2. Acceptance alone is the safety net if selection is misconfigured.
+Table~\ref{tab:rq2} reports the ablation suite, in which every INERT condition faces the same generated tests. I2 blocks every attacker model (A1 0.0\%, A2 0.0\%, A3 0.0\%, A4 0.0\%, A5 0.0\%). Each ablation reopens precisely the channel that the taxonomy of Section~\ref{sec:taxonomy} assigns to it. Without tokens, compromised agents (100.0\%) and message tampering (91.9\%) succeed, because forged and altered proposals are accepted. Without key matching, replayed proposals succeed (73.4\% of A5 tests). Without validators, colluding agents reach 100.0\% and a compromised executor agent 17.3\%. Without any taint (I1), indirect injection succeeds in 20.4\% of the tests, which is the semantic propagation that structural mechanisms cannot see. Removing only one of the two taint checks keeps the attack success rate at zero, because selection and acceptance back each other up. They are not interchangeable, however. Without selection the executor agent sees tainted context, its proposals are rejected at acceptance, and the task fails: utility under attack is 0.0\% without selection against 56.4\% for I2. Acceptance alone is the safety net if selection is misconfigured.
 
-The first rejecting mechanism confirms the mapping: for A1 it is mostly \textsc{TaintViolation} (62\%), for A2 \textsc{TokenInvalid} (86\%), for A3 \textsc{TokenInvalid} (95\%), for A4 \textsc{TokenInvalid} (86\%) and for A5 \textsc{KeyStale} (65\%).
+The first rejecting mechanism confirms the mapping: for A1 it is mostly \textsc{TaintViolation} (62\%), for A2 \textsc{TokenInvalid} (86\%), for A3 \textsc{TokenInvalid} (95\%), for A4 \textsc{TokenInvalid} (86\%) and for A5 \textsc{KeyStale} (58\%).
 
 \textbf{Answer to RQ2.} Tokens stop authorship attacks, key matching stops replay, validators bound the authority of compromised agents, and the taint policy is the only mechanism that stops semantic propagation into executor fields. H2 is supported.
 %<</rq2_text>>
@@ -715,10 +718,10 @@ The first rejecting mechanism confirms the mapping: for A1 it is mostly \textsc{
 \toprule
 Condition & A1 (\%) & A2 (\%) & A3 (\%) & A4 (\%) & A5 (\%) \\
 \midrule
-I1 INERT structural & 15.5 & 18.9 & 0.0 & 50.0 & 0.0 \\
+I1 INERT structural & 20.4 & 22.7 & 0.0 & 50.0 & 0.0 \\
 I2 INERT full & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
 I2 $-$ tokens & 0.0 & 100.0 & 91.9 & 100.0 & 5.3 \\
-I2 $-$ key match & 0.0 & 0.0 & 0.0 & 0.0 & 81.6 \\
+I2 $-$ key match & 0.0 & 0.0 & 0.0 & 0.0 & 73.4 \\
 I2 $-$ validators & 0.0 & 17.3 & 0.0 & 100.0 & 0.0 \\
 I2 $-$ taint at selection & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
 I2 $-$ taint at acceptance & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
@@ -730,7 +733,7 @@ I2 $-$ taint at acceptance & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
 \subsection{RQ3: Model-based versus benchmark-style attack suites}
 
 %<<rq3_text>>
-The benchmark-style suites inject one payload into the primary untrusted resource, as AgentDojo and InjecAgent do. The generated suites cover the six criteria of Section~\ref{sec:generation} and were sampled to at most 15 tests per workflow and task. Against B0 the generated suites yielded 86.2 successful attacks per 1{,}000 LLM calls against 70.1 for the benchmark-style suites, and violated 740 distinct obligations against 153. Against B4 the generated suites yielded 63.4 successful attacks per 1{,}000 LLM calls against 54.6 for the benchmark-style suites, and violated 688 distinct obligations against 139. Per criterion, the attack success rate against B0 is COLL 100.0\%, SLOT 90.4\%, SEL 80.1\%, EDGE 79.8\%, BENCH 71.4\%, RECONF 70.0\%, TAINT 69.3\%. The criteria that benchmarks do not cover, such as compromised and colluding agents, tampering and replay, are among the most effective. Neither suite found a successful attack against I2, so the generated tests also act as a regression suite for the defense.
+The benchmark-style suites inject one payload into the primary untrusted resource, as AgentDojo and InjecAgent do. The generated suites cover the six criteria of Section~\ref{sec:generation} and were sampled to at most 15 tests per workflow and task. Against B0 the generated suites yielded 88.6 successful attacks per 1{,}000 LLM calls against 77.8 for the benchmark-style suites, and violated 761 distinct obligations against 153. Against B4 the generated suites yielded 64.9 successful attacks per 1{,}000 LLM calls against 61.4 for the benchmark-style suites, and violated 712 distinct obligations against 147. Per criterion, the attack success rate against B0 is COLL 100.0\%, SLOT 89.6\%, SEL 82.4\%, EDGE 81.3\%, BENCH 78.3\%, TAINT 75.7\%, RECONF 72.1\%. The criteria that benchmarks do not cover, such as compromised and colluding agents, tampering and replay, are among the most effective. Neither suite found a successful attack against I2, so the generated tests also act as a regression suite for the defense.
 
 \textbf{Answer to RQ3.} At equal cost, model-coverage suites find more successful attacks and reach several times more distinct model elements than benchmark-style suites. H3 is supported.
 %<</rq3_text>>
@@ -743,12 +746,12 @@ The benchmark-style suites inject one payload into the primary untrusted resourc
 \toprule
 Target & Suite & Tests & Succ. & Calls & Succ./1k & Distinct \\
 \midrule
-B0 & bench & 918 & 655 & 9346 & 70.08 & 153 \\
-B0 & generated & 4590 & 3753 & 43559 & 86.16 & 740 \\
-B4 & bench & 918 & 489 & 8961 & 54.57 & 139 \\
-B4 & generated & 4590 & 2627 & 41424 & 63.42 & 688 \\
-I2 & bench & 918 & 0 & 7506 & 0.00 & 0 \\
-I2 & generated & 4590 & 0 & 30421 & 0.00 & 0 \\
+B0 & bench & 1530 & 1198 & 15392 & 77.83 & 153 \\
+B0 & generated & 7140 & 5947 & 67156 & 88.56 & 761 \\
+B4 & bench & 1530 & 917 & 14927 & 61.43 & 147 \\
+B4 & generated & 7140 & 4182 & 64484 & 64.85 & 712 \\
+I2 & bench & 1530 & 0 & 12510 & 0.00 & 0 \\
+I2 & generated & 7140 & 0 & 47290 & 0.00 & 0 \\
 \botrule
 \end{tabular}
 %<</tab_rq3>>
@@ -757,9 +760,9 @@ I2 & generated & 4590 & 0 & 30421 & 0.00 & 0 \\
 \subsection{RQ4: Cost}
 
 %<<rq4_text>>
-Table~\ref{tab:rq4} reports benign tasks. I2 completes 76.6\% of them, which is more than B0 (68.8\%). The paired comparison gives an odds ratio of 1.94 for I2 succeeding where B0 fails versus the opposite (Holm-adjusted $p$ $<0.001$). Typed slots with one question each appear to help models of this size more than a free-form group chat does. I1 is higher still (87.6\%). The gap between I1 and I2 is the utility cost of the taint policy, concentrated in tasks whose executor needs information from untrusted material. I2 rejects 1.7\% of honest proposals. B1 flags 1.6\% of benign messages, B3's policy blocks 24.4\% of attempted actions and B4's generated graph 57.4\%. I2 uses 8.2 LLM calls and 2943 tokens per task against 10.1 and 5642 for B0 (Cliff's $\delta$ for tokens -0.45, for latency -0.33), because agents see only selected slot values instead of the whole transcript.
+Table~\ref{tab:rq4} reports benign tasks. I2 completes 82.2\% of them, which is more than B0 (71.4\%). The paired comparison gives an odds ratio of 2.43 for I2 succeeding where B0 fails versus the opposite (Holm-adjusted $p$ $<0.001$). Typed slots with one question each appear to help models of this size more than a free-form group chat does. I1 is higher still (91.9\%). The gap between I1 and I2 is the utility cost of the taint policy, concentrated in tasks whose executor needs information from untrusted material. I2 rejects 1.1\% of honest proposals. B1 flags 2.0\% of benign messages, B3's policy blocks 25.2\% of attempted actions and B4's generated graph 54.0\%. I2 uses 8.2 LLM calls and 2946 tokens per task against 10.0 and 5424 for B0 (Cliff's $\delta$ for tokens -0.45, for latency -0.29), because agents see only selected slot values instead of the whole transcript.
 
-Under attack, I2 keeps 56.9\% utility against 21.1\% for B0. The losses come from attacks against which INERT deliberately fails closed. A tampered proposal or a tool whose metadata changed is refused rather than used, which turns an integrity attack into an availability loss.
+Under attack, I2 keeps 61.4\% utility against 24.9\% for B0. The losses come from attacks against which INERT deliberately fails closed. A tampered proposal or a tool whose metadata changed is refused rather than used, which turns an integrity attack into an availability loss.
 
 \textbf{Answer to RQ4.} INERT's utility cost is negative relative to the undefended system on our tasks, much lower than B3's, and its false-rejection rate is the lowest of all defenses. H4 is supported.
 %<</rq4_text>>
@@ -772,13 +775,13 @@ Under attack, I2 keeps 56.9\% utility against 21.1\% for B0. The losses come fro
 \toprule
 Defense & Util.\ benign (\%) & FRR (\%) & LLM calls & Tokens & Seconds \\
 \midrule
-B0 native & 68.8 & -- & 10.1 & 5642 & 106.4 \\
-B1 detector & 68.5 & 1.6 & 22.2 & 7257 & 132.2 \\
-B2 tagging & 63.3 & -- & 10.1 & 6379 & 97.4 \\
-B3 plan+quarantine & 43.4 & 24.4 & 7.5 & 2405 & 127.6 \\
-B4 permitted graph & 56.2 & 57.4 & 9.8 & 4838 & 101.7 \\
-I1 INERT structural & 87.6 & 1.9 & 8.2 & 3060 & 69.4 \\
-I2 INERT full & 76.6 & 1.7 & 8.2 & 2943 & 69.9 \\
+B0 native & 71.4 & -- & 10.0 & 5424 & 106.3 \\
+B1 detector & 71.1 & 2.0 & 22.1 & 7027 & 130.1 \\
+B2 tagging & 68.5 & -- & 10.1 & 6381 & 101.4 \\
+B3 plan+quarantine & 44.0 & 25.2 & 7.6 & 2530 & 139.3 \\
+B4 permitted graph & 61.1 & 54.0 & 9.8 & 4737 & 105.6 \\
+I1 INERT structural & 91.9 & 1.2 & 8.2 & 3072 & 74.5 \\
+I2 INERT full & 82.2 & 1.1 & 8.2 & 2946 & 73.7 \\
 \botrule
 \end{tabular}
 %<</tab_rq4>>
@@ -792,18 +795,18 @@ I2 INERT full & 76.6 & 1.7 & 8.2 & 2943 & 69.9 \\
 \toprule
 Comparison & Pairs & $b$ & $c$ & OR [95\% CI] & $p_{Holm}$ \\
 \midrule
-B1 detector vs B0 & 5508 & 297 & 1369 & 0.22 [0.19, 0.25] & $5.8\cdot 10^{-164}$ \\
-B2 tagging vs B0 & 5508 & 325 & 655 & 0.50 [0.44, 0.57] & $2.6\cdot 10^{-26}$ \\
-B3 plan+quarantine vs B0 & 5508 & 0 & 4408 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
-B4 permitted graph vs B0 & 5508 & 233 & 1525 & 0.15 [0.13, 0.17] & $5.6\cdot 10^{-232}$ \\
-I1 INERT structural vs B0 & 5508 & 128 & 3704 & 0.03 [0.03, 0.04] & $<10^{-300}$ \\
-I2 INERT full vs B0 & 5508 & 0 & 4408 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
-B0 native vs B4 & 5508 & 1525 & 233 & 6.53 [5.73, 7.56] & $5.6\cdot 10^{-232}$ \\
-B1 detector vs B4 & 5508 & 1305 & 1085 & 1.20 [1.11, 1.30] & $7.4\cdot 10^{-6}$ \\
-B2 tagging vs B4 & 5508 & 1403 & 441 & 3.18 [2.86, 3.55] & $3.5\cdot 10^{-116}$ \\
-B3 plan+quarantine vs B4 & 5508 & 0 & 3116 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
-I1 INERT structural vs B4 & 5508 & 259 & 2543 & 0.10 [0.09, 0.12] & $<10^{-300}$ \\
-I2 INERT full vs B4 & 5508 & 0 & 3116 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
+B1 detector vs B0 & 8670 & 399 & 2002 & 0.20 [0.18, 0.22] & $1.9\cdot 10^{-255}$ \\
+B2 tagging vs B0 & 8670 & 470 & 898 & 0.52 [0.47, 0.58] & $2.5\cdot 10^{-31}$ \\
+B3 plan+quarantine vs B0 & 8670 & 0 & 7145 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
+B4 permitted graph vs B0 & 8670 & 309 & 2355 & 0.13 [0.12, 0.15] & $<10^{-300}$ \\
+I1 INERT structural vs B0 & 8670 & 198 & 5905 & 0.03 [0.03, 0.04] & $<10^{-300}$ \\
+I2 INERT full vs B0 & 8670 & 0 & 7145 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
+B0 native vs B4 & 8670 & 2355 & 309 & 7.61 [6.80, 8.60] & $<10^{-300}$ \\
+B1 detector vs B4 & 8670 & 2031 & 1588 & 1.28 [1.20, 1.37] & $1.9\cdot 10^{-13}$ \\
+B2 tagging vs B4 & 8670 & 2216 & 598 & 3.70 [3.39, 4.06] & $1.1\cdot 10^{-216}$ \\
+B3 plan+quarantine vs B4 & 8670 & 0 & 5099 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
+I1 INERT structural vs B4 & 8670 & 408 & 4069 & 0.10 [0.09, 0.11] & $<10^{-300}$ \\
+I2 INERT full vs B4 & 8670 & 0 & 5099 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
 \botrule
 \end{tabular}
 %<</tab_tests>>
@@ -812,7 +815,7 @@ I2 INERT full vs B4 & 5508 & 0 & 3116 & 0.00 [0.00, 0.00] & $<10^{-300}$ \\
 \subsection{RQ5: Adaptive attacker}
 
 %<<rq5_text>>
-The adaptive attacker had ten attempts per case, the model description, the policy text and, after each attempt, the tools that were called and, for INERT, the controller's rejection reasons. Against B1 it succeeded in 83.3\% of 18 cases after 3.2 attempts on average. Against B3 it succeeded in 0.0\% of 18 cases, exhausting its budget. Against B4 it succeeded in 61.1\% of 18 cases after 4.8 attempts on average. Against I2 it succeeded in 0.0\% of 18 cases, exhausting its budget. Feedback helped the attacker against the message-level defenses, which it learned to evade within a few attempts. Against I2 the rejection reasons only told the attacker that untrusted content never reaches the executor, which no payload can change.
+The adaptive attacker had ten attempts per case, the model description, the policy text and, after each attempt, the tools that were called and, for INERT, the controller's rejection reasons. Against B1 it succeeded in 88.9\% of 36 cases after 2.4 attempts on average. Against B3 it succeeded in 0.0\% of 36 cases, exhausting its budget. Against B4 it succeeded in 75.0\% of 36 cases after 3.6 attempts on average. Against I2 it succeeded in 0.0\% of 36 cases, exhausting its budget. Feedback helped the attacker against the message-level defenses, which it learned to evade within a few attempts. Against I2 the rejection reasons only told the attacker that untrusted content never reaches the executor, which no payload can change.
 
 \textbf{Answer to RQ5.} The structural and taint guarantees held under adaptive attack. H5 is supported for the zoo. The residual successes we observed on TAMAS (next subsection) come from authority that the model grants to agents.
 %<</rq5_text>>
@@ -825,10 +828,10 @@ The adaptive attacker had ten attempts per case, the model description, the poli
 \toprule
 Defense & Cases & ASR (\%) & Mean attempts \\
 \midrule
-B1 detector & 18 & 83.3 & 3.2 \\
-B3 plan+quarantine & 18 & 0.0 & 10.0 \\
-B4 permitted graph & 18 & 61.1 & 4.8 \\
-I2 INERT full & 18 & 0.0 & 10.0 \\
+B1 detector & 36 & 88.9 & 2.4 \\
+B3 plan+quarantine & 36 & 0.0 & 10.0 \\
+B4 permitted graph & 36 & 75.0 & 3.6 \\
+I2 INERT full & 36 & 0.0 & 10.0 \\
 \botrule
 \end{tabular}
 %<</tab_rq5>>
@@ -837,9 +840,9 @@ I2 INERT full & 18 & 0.0 & 10.0 \\
 \subsection{TAMAS}
 
 %<<tamas_text>>
-Table~\ref{tab:tamas} reports TAMAS. Indirect injection (IPI) succeeds in 55.3\% of instances under B0, 14.7\% under B4, 2.0\% under B3 and 8.0\% under I2. For direct injection, the outcome depends on what the system knows about provenance. When the whole query counts as the user's request (DPI-whole, as in TAMAS), I2 reaches 58.0\%, like the other defenses, because INERT trusts the user's channel by design. When the injected suffix is labelled as untrusted content (DPI-split), I2 reaches 6.7\%, against 60.7\% for B0 and 50.0\% for B3. Impersonation, which is also delivered in the user's query, succeeds in 36.0\%.
+Table~\ref{tab:tamas} reports TAMAS. Indirect injection (IPI) succeeds in 51.7\% of instances under B0, 15.0\% under B4, 2.3\% under B3 and 8.0\% under I2. For direct injection, the outcome depends on what the system knows about provenance. When the whole query counts as the user's request (DPI-whole, as in TAMAS), I2 reaches 44.3\%, slightly below the range of the other conditions (45.7\% to 55.3\%), so INERT gives little protection here, because INERT trusts the user's channel by design. When the injected suffix is labelled as untrusted content (DPI-split), I2 reaches 7.0\%, against 55.0\% for B0 and 55.0\% for B3. Impersonation, which is also delivered in the user's query, succeeds in 28.7\%.
 
-The TAMAS agents carry harmful tools in their own tool sets, and the Byzantine and colluding attacks give agents personas that tell them to use these tools. I2 does not prevent an agent from choosing a tool the model permits it to choose: Colluding reaches 14.0\% and Byzantine 25.3\%, close to B0 (14.0\% and 20.0\%). B3 and B4 do better here because both derive a per-task allowlist from the request alone. After observing this, we added one model element to the TAMAS models, a task-scope slot that reads only the request and lists the tools the task needs, with an owned validator that restricts every agent's tool choice to that list. This post-hoc variant (I2S) brings Colluding to 0.0\% and Byzantine to 0.7\%, at a benign utility of 48.0\% against 72.7\% for I2, because the scope sometimes omits a tool the task needs. We report I2S separately because it was designed after seeing the results.
+The TAMAS agents carry harmful tools in their own tool sets, and the Byzantine and colluding attacks give agents personas that tell them to use these tools. I2 does not prevent an agent from choosing a tool the model permits it to choose: Colluding reaches 10.3\% and Byzantine 29.0\%, against 9.7\% and 21.0\% for B0, so INERT is no better than the undefended system here. B3 and B4 do better here because both derive a per-task allowlist from the request alone. After observing this, we added one model element to the TAMAS models, a task-scope slot that reads only the request and lists the tools the task needs, with an owned validator that restricts every agent's tool choice to that list. This post-hoc variant (I2S) brings Colluding to 0.0\% and Byzantine to 1.3\%, at a benign utility of 54.7\% against 73.0\% for I2, because the scope sometimes omits a tool the task needs. We report I2S separately because it was designed after seeing the results.
 %<</tamas_text>>
 
 \begin{table}[t]
@@ -850,14 +853,14 @@ The TAMAS agents carry harmful tools in their own tool sets, and the Byzantine a
 \toprule
 Def. & DPI-w & DPI-s & IPI & Coll. & Imp. & Byz. & Contr. & $U_{ben}$ \\
 \midrule
-B0 & 60.7 & 60.7 & 55.3 & 14.0 & 31.3 & 20.0 & 10.0 & 77.3 \\
-B1 & 62.0 & 60.7 & 10.0 & 11.3 & 30.7 & 16.7 & 10.7 & 76.7 \\
-B2 & 60.7 & 62.0 & 56.7 & 8.7 & 29.3 & 14.7 & 9.3 & 76.0 \\
-B3 & 48.7 & 50.0 & 2.0 & 0.0 & 26.7 & 0.0 & 0.0 & 68.7 \\
-B4 & 47.3 & 48.0 & 14.7 & 0.0 & 21.3 & 0.7 & 0.0 & 62.7 \\
-I1 & 59.3 & 50.0 & 35.3 & 16.7 & 36.0 & 26.0 & 2.7 & 73.3 \\
-I2 & 58.0 & 6.7 & 8.0 & 14.0 & 36.0 & 25.3 & 4.0 & 72.7 \\
-I2S & 40.7 & 2.7 & 2.0 & 0.0 & 26.7 & 0.7 & 0.0 & 48.0 \\
+B0 & 55.0 & 55.0 & 51.7 & 9.7 & 32.3 & 21.0 & 10.0 & 76.7 \\
+B1 & 55.3 & 53.7 & 10.7 & 8.0 & 30.3 & 18.7 & 11.0 & 76.3 \\
+B2 & 54.3 & 55.0 & 48.7 & 6.7 & 28.3 & 19.0 & 10.0 & 75.3 \\
+B3 & 54.7 & 55.0 & 2.3 & 0.0 & 31.3 & 0.0 & 0.3 & 76.3 \\
+B4 & 48.0 & 47.7 & 15.0 & 0.0 & 21.3 & 0.3 & 0.3 & 65.7 \\
+I1 & 45.7 & 37.0 & 29.7 & 11.7 & 27.0 & 29.3 & 2.7 & 73.0 \\
+I2 & 44.3 & 7.0 & 8.0 & 10.3 & 28.7 & 29.0 & 2.7 & 73.0 \\
+I2S & 34.3 & 3.0 & 3.0 & 0.0 & 19.3 & 1.3 & 0.7 & 54.7 \\
 \botrule
 \end{tabular}
 %<</tab_tamas>>
@@ -877,7 +880,7 @@ I2S & 40.7 & 2.7 & 2.0 & 0.0 & 26.7 & 0.7 & 0.0 & 48.0 \\
 
 \paragraph{Where INERT does not help.} The residual risk sits in authority that the model itself grants. A compromised agent that owns an executor field can misuse it within its validators, and an injection that arrives as the user's own request is trusted. TAMAS makes the first case visible because its agents carry harmful tools. Least privilege at the level of the model, for example the task-scope slot of I2S, narrows this risk but moves the problem to the component that decides the scope and costs utility when the scope is wrong.
 
-A rule-based categorization of all 228 successful attacks against I2, derived from the run records, shows where the residual risk lies: 141 (62\%) arrived in the user's own request, 65 (29\%) were harmful tools in a compromised agent's own tool set, 22 (10\%) called a target tool that agents also call on benign runs of the same task.
+A rule-based categorization of all 390 successful attacks against I2, derived from the run records, shows where the residual risk lies: 219 (56\%) arrived in the user's own request, 126 (32\%) were harmful tools in a compromised agent's own tool set, 45 (12\%) called a target tool that agents also call on benign runs of the same task.
 
 \paragraph{Availability.} INERT fails closed. Tampering and tool-metadata changes become refusals, which is the right default for integrity but an attack surface for denial of service. An authenticated channel between agents and controller removes the tampering case in deployment.
 
@@ -899,7 +902,7 @@ A rule-based categorization of all 228 successful attacks against I2, derived fr
 
 \paragraph{Conclusion validity.} LLM outputs vary across seeds and hardware even at temperature 0. We use paired tests, mixed-effects models, bootstrap intervals and Holm correction, and we archive every result record so that each number can be recomputed. The seed sub-study (Table~\ref{tab:seeds}) repeats a subset of the grid with five seeds at temperature 0.7.
 %<<seeds_text>>
-
+Across seeds, the standard deviation of the attack success rate is 0.6\% for B0, 2.9\% for B4, 0.0\% for I2, and the ordering of the conditions is the same for every seed.
 %<</seeds_text>>
 
 \begin{table}[t]
@@ -910,6 +913,9 @@ A rule-based categorization of all 228 successful attacks against I2, derived fr
 \toprule
 Defense & ASR mean (\%) & ASR sd across seeds & Utility mean (\%) & Utility sd \\
 \midrule
+B0 native & 94.8 & 0.6 & 50.0 & 3.9 \\
+B4 permitted graph & 65.0 & 2.9 & 45.6 & 7.2 \\
+I2 INERT full & 0.0 & 0.0 & 100.0 & 0.0 \\
 \botrule
 \end{tabular}
 %<</tab_seeds>>
@@ -930,7 +936,7 @@ Defense & ASR mean (\%) & ASR sd across seeds & Utility mean (\%) & Utility sd \
 \section{Conclusion}\label{sec:conclusion}
 
 %<<conclusion_text>>
-INERT treats an LLM multi-agent system as a model-driven artifact. One compiled model is enforced by a deterministic controller, tested by generated attacks and audited from logs without re-running any model. In our study the full configuration reduced the attack success rate on the topology zoo to 0.0\% while completing 76.6\% of benign tasks, more than the undefended system and far more than the strongest design-level baseline. Every mechanism mattered for a specific channel, and test suites derived from the model exposed more distinct weaknesses than benchmark-style attacks. The remaining risk lies in authority that the model grants to agents and in content that arrives as the user's own request. Future work will study how developers write INERT models, derive task scopes with guarantees, and extend the approach to long-running and self-modifying agent systems.
+INERT treats an LLM multi-agent system as a model-driven artifact. One compiled model is enforced by a deterministic controller, tested by generated attacks and audited from logs without re-running any model. In our study the full configuration reduced the attack success rate on the topology zoo to 0.0\% while completing 82.2\% of benign tasks, more than the undefended system and far more than the strongest design-level baseline. Every mechanism mattered for a specific channel, and test suites derived from the model exposed more distinct weaknesses than benchmark-style attacks. The remaining risk lies in authority that the model grants to agents and in content that arrives as the user's own request. Future work will study how developers write INERT models, derive task scopes with guarantees, and extend the approach to long-running and self-modifying agent systems.
 %<</conclusion_text>>
 
 \backmatter
