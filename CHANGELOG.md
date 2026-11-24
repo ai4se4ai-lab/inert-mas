@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased (2026-11-24)
+- M7 manuscript: use numeric math/physics citations, shorten the abstract and update the PDF; acceptance checks: PDF metadata parses and Git whitespace validation passes.
+
 ## Unreleased (2026-11-23)
 - M7 manuscript documentation: update author details and declarations, and rename the bibliography to `references.bib`; acceptance checks: bibliography target and citation keys resolve, Git whitespace validation.
 - M3 documentation: remove the controller-kernel attribution paragraph from the README introduction; acceptance check: Git whitespace validation.
