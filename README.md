@@ -10,9 +10,7 @@ INERT is a toolchain that protects teams of LLM agents against **prompt injectio
 4. **generates attack tests** from the same model, covering every place an injection could enter, and
 5. **audits** every run from a tamper-evident log, without re-running any LLM.
 
-The controller kernel is vendored from
-[safe-coordination-of-untrusted-ai-agents](https://github.com/ai4se4ai-lab/safe-coordination-of-untrusted-ai-agents)
-(see [docs/vendored.md](docs/vendored.md)). A plain-language summary of the project, the experiments and the results is in [docs/summary.md](docs/summary.md).
+A plain-language summary of the project, the experiments and the results is in [docs/summary.md](docs/summary.md).
 
 ---
 

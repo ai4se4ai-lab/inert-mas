@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased (2026-11-23)
+- M3 documentation: remove the controller-kernel attribution paragraph from the README introduction; acceptance check: Git whitespace validation.
 - M1-M7 repository publication: include implementation, tests, documentation, paper assets and HPC configuration; acceptance checks: Ruff, strict mypy, the offline pytest suite and the mock smoke manifest. Exclude generated Python package metadata from version control.
 - M1-M7 README: expand the architecture, security mechanisms, results, usage and reproduction guides; acceptance checks: offline pytest suite and Git whitespace validation.
 
