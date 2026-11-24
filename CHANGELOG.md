@@ -2,6 +2,7 @@
 
 ## Unreleased (2026-11-23)
 - M1-M7 repository publication: include implementation, tests, documentation, paper assets and HPC configuration; acceptance checks: Ruff, strict mypy, the offline pytest suite and the mock smoke manifest. Exclude generated Python package metadata from version control.
+- M1-M7 README: expand the architecture, security mechanisms, results, usage and reproduction guides; acceptance checks: offline pytest suite and Git whitespace validation.
 
 ## 0.1.0 (2026-11-22)
 - M1 metamodel, YAML DSL, Mermaid importer, lint L1-L6 (tests/test_model.py: round trip, one pass/fail fixture per rule).
