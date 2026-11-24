@@ -43,9 +43,9 @@
 
 \title[Injected but Inert]{Injected but Inert: Model-Based Security Testing of Prompt-Injection Propagation in LLM Multi-Agent Systems}
 
-\author*[1]{\fnm{Majid} \sur{Babaei}}\email{ai4se4ai@gmail.com}
+\author*[1]{\fnm{Majid} \sur{Babaei}}\email{majid.babaei@ufv.ca}
+\affil*[1]{\orgdiv{School of Computing}, \orgname{University of the Fraser Valley}, \orgaddress{\state{BC}, \country{Canada}}}
 
-\affil*[1]{\orgname{AI4SE4AI Lab}}
 
 \abstract{Multi-agent systems built on large language models (LLMs) pass text between agents, tools and the environment, so a single prompt injection can travel through the whole workflow and end in a harmful action. Existing defenses filter or tag messages, or constrain the control flow of a single agent, and existing security tests replay a fixed set of benchmark attacks. We present INERT, a model-driven approach that addresses both sides of the problem. A designer describes the multi-agent system as a typed model. A compiler turns it into a content-hashed plan that a small deterministic controller executes: agents only propose typed values, and the controller accepts a value only if it answers the current question of the slot, comes from the authorized agent and satisfies the slot's contract and a taint policy that keeps untrusted-derived content away from instruction, control and executor fields. The same compiled model drives a test generator that derives prompt-injection attacks from six coverage criteria over the model, and every run leaves a hash-chained log from which the security properties are checked without re-running any LLM. We evaluate INERT against five baselines on a zoo of 51 workflows over five topologies and on the TAMAS benchmark, with open-weight models served on the Alliance clusters. %<<abstract_results>>
 Over 106{,}382 runs, INERT lowered the attack success rate from 82.4\% without defense to 0.0\%, matching the strongest baseline, a CaMeL-style planner with quarantined data, while completing 82.2\% of benign tasks against that baseline's 44.0\%. An adaptive attacker did not succeed against INERT. On TAMAS, INERT reduced indirect injection from 51.7\% to 8.0\% but did not stop agents that misuse tools they legitimately own. Attack suites generated from the model violated 761 distinct model elements of the undefended systems, against 153 for benchmark-style attacks.
@@ -941,8 +941,8 @@ INERT treats an LLM multi-agent system as a model-driven artifact. One compiled 
 
 \backmatter
 
-\bmhead{Acknowledgements}
-This research was enabled in part by support provided by the Digital Research Alliance of Canada (alliancecan.ca).
+\section*{Declaration of generative AI}
+During the preparation of this work the author used \texttt{Claude Opus 5.5} in order to assist with organizing the repository code, drafting experiment scripts, and checking the manuscript for grammatical errors. After using these tools, the author reviewed and edited the content as needed and takes full responsibility for the accuracy and integrity of all claims, references and the content of the published article.
 
 \section*{Declarations}
 
@@ -965,6 +965,6 @@ This research was enabled in part by support provided by the Digital Research Al
 
 \end{appendices}
 
-\bibliography{sn-bibliography}
+\bibliography{references}
 
 \end{document}
