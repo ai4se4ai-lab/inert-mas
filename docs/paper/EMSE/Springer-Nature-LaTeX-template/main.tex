@@ -24,7 +24,7 @@
 \usepackage{url}%
 \usepackage{pifont}%
 \usepackage{tikz}%
-\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc,shapes.symbols}%
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc,shapes.symbols,decorations.pathreplacing}%
 
 \theoremstyle{thmstyleone}%
 \newtheorem{theorem}{Theorem}%
@@ -270,7 +270,7 @@ In a native framework the analyst frequently repeats the embedded ``instruction'
 %=====================================================================================
 \section{A Taxonomy of Injection Channels in Agent Collaboration}\label{sec:taxonomy}
 
-To decide where a defence must intervene, we need to know through which interfaces injected content arrives and which decisions it can reach. This section first describes how we collected and classified the literature (Section~\ref{sec:tax-collection}), then derives from it the unit of analysis and the seven channels (Section~\ref{sec:tax-unit}), their attack forms and mechanisms (Section~\ref{sec:tax-tree}) and the cross-cutting dimensions (Section~\ref{sec:tax-dims}), and ends with the requirements and gaps that INERT addresses (Section~\ref{sec:tax-req}).
+To decide where a defence must intervene, we need to know through which interfaces injected content arrives and which decisions it can reach. This section first describes how we collected and classified the literature (Section~\ref{sec:tax-collection}), then derives from it the unit of analysis and the seven channels (Section~\ref{sec:tax-unit}), their attack forms and mechanisms (Section~\ref{sec:tax-tree}) and the cross-cutting dimensions (Section~\ref{sec:tax-dims}), the requirements and gaps that INERT addresses (Section~\ref{sec:tax-req}), and ends with the threat model and the security properties that make the requirements checkable (Section~\ref{sec:threat}).
 
 \subsection{Study collection and classification}\label{sec:tax-collection}
 
@@ -652,14 +652,13 @@ Table~\ref{tab:gaps} groups existing work into families and marks, for each fami
 \item \textbf{G5:} No family mediates cross-session shared state (C6) in a workflow policy. AgentSafe partitions agent memory by security level \citep{Mao2025AgentSafeSLY}, but outside a model of the workflow, and INERT does not model long-lived memory.
 \end{itemize}
 
-%=====================================================================================
-\section{Threat Model and Security Properties}\label{sec:threat}
+\subsection{Threat model and security properties}\label{sec:threat}
 
-The trusted computing base (TCB) consists of the compiler, the controller, the validators and declassifiers, the policy engine, the tool executors and the per-agent signing wrappers, which hold an agent's capability and sign the value its LLM returns (Section~\ref{sec:controller}). Every LLM, tool output and inter-agent message is untrusted, and no LLM runs inside the TCB; in our implementation the wrappers run in the controller's process, and only the prompt and the returned text cross to the LLM endpoint.
+The requirements become checkable guarantees only relative to an attacker model. The trusted computing base (TCB) consists of the compiler, the controller with its validators, declassifiers and policy engine, the tool executors and the per-agent signing wrappers, which hold an agent's capability and sign the value its LLM returns (Section~\ref{sec:controller}). Everything else is untrusted: every LLM, every tool output and every message between agents. No LLM runs inside the TCB.
 
-We consider six attackers: indirect injection through tool or environment content (A1, channels C2 and C3); a compromised agent (A2), a tamperer of messages between agents and controller (A3) and two colluding agents (A4), which all use channels C4 and C5; reconfiguration by registering agents, altering tool metadata or replaying messages (A5, C5 and C7); and an adaptive attacker that knows the model and policies and iterates on feedback within a budget (A6). Direct injection through the user's own request (C1) is not an attacker of the workflow in this model: the request carries the label \emph{user}, which INERT trusts by design. INERT can mediate C1 only when the provenance of the request's parts is known, for instance when an attachment arrives in its own input slot labelled untrusted; Section~\ref{sec:results} evaluates both settings on TAMAS. Attacks on the controller host, model-weight poisoning, side channels and attacks on the human operator are out of scope.
+We consider six attackers. A1 injects through tool or environment content (C2, C3). A2 compromises an agent, A3 tampers with messages between agents and controller, and A4 makes two agents collude, all through C4 and C5. A5 reconfigures the system by registering agents, altering tool metadata or replaying messages (C5, C7). A6 is an adaptive attacker who knows the model and policy and refines its payloads from feedback within a budget. The user's own request (C1) is trusted by design; INERT can mediate it only when the injected part arrives separately, for instance as an attachment labelled untrusted, and we evaluate both settings on TAMAS. Attacks on the controller host, model-weight poisoning, side channels and attacks on the human operator are out of scope.
 
-Against these attackers, INERT checks six properties on every run from the replay log (Table~\ref{tab:props}), each realizing one of R1 to R6, while the audit that checks them realizes R7. P1 to P4 and P6 hold by construction of the controller. P5 holds by construction relative to the correctness of the declassifiers, which are deterministic but can be fooled within their declared bounds. Under the default policy, high-integrity sinks accept agent output (\emph{agent\_untrusted}) but not environment and tool content (\emph{external\_untrusted}). P5 therefore keeps external content out of these sinks, but it does not limit what a compromised or colluding agent (A2, A4) writes into a sink it may influence; that authority is bounded by owned validators (P4) or by a stricter per-slot policy. We do not claim immunity to prompt injection, correctness of declassifiers or protection against attacks whose goal the model itself permits: a compromised agent that may choose a recipient can choose a wrong one unless a validator constrains it. We count such outcomes as residual risk, as the channel tree does.
+Against these attackers, INERT must guarantee the six security properties of Table~\ref{tab:props}, one for each of R1 to R6. Section~\ref{sec:controller} shows how the controller enforces them and where their guarantees end.
 
 \begin{table}[tbp]
 \caption{Security properties checked from the log of every run.}\label{tab:props}
@@ -677,6 +676,64 @@ P6 & Release integrity: only snapshots with nothing stale, pending or failed and
 \botrule
 \end{tabular*}
 \end{table}
+
+Figure~\ref{fig:tax-summary} condenses this section into one picture. Read from left to right, it gives the design rationale of INERT: every channel that INERT mediates motivates at least one requirement, and every requirement is met by one mechanism of Section~\ref{sec:approach} and checked as one security property (Section~\ref{sec:threat}). Read from right to left, it tells a tester which channels must be attacked to exercise a given mechanism.
+
+\begin{figure}[tbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[x=1cm, y=1cm, every node/.style={font=\fontsize{6.6}{7.8}\selectfont},
+  ch/.style={draw, rounded corners=2pt, align=center, minimum width=33mm, minimum height=5.5mm, inner sep=2pt},
+  rq/.style={draw, rounded corners=2pt, align=center, minimum width=41mm, minimum height=5.5mm, inner sep=2pt, fill=black!4},
+  mc/.style={draw, thick, rounded corners=2pt, align=center, minimum width=38mm, minimum height=5.5mm, inner sep=2pt, fill=black!10},
+  hd/.style={font=\fontsize{6.6}{7.6}\selectfont\bfseries, text=black!65, anchor=south, align=center},
+  ar/.style={-{Stealth[length=1.4mm]}, semithick, black!55},
+  gp/.style={anchor=west, align=left, text width=22mm}]
+% column headers
+\node[hd] at (1.75,0.4) {Injection channel};
+\node[hd] at (6.3,0.4) {Requirement};
+\node[hd] at (10.75,0.4) {INERT mechanism};
+\node[hd] at (13.9,0.4) {Existing gap};
+% channels, coloured by interface class as in the channel tree
+\node[ch, draw=tier0, fill=tier0!8] (c1) at (1.75,0)     {\textbf{C1} User request};
+\node[ch, draw=tier0, fill=tier0!8] (c2) at (1.75,-0.73) {\textbf{C2} External content};
+\node[ch, draw=tier0, fill=tier0!8] (c3) at (1.75,-1.47) {\textbf{C3} Tool response};
+\node[ch, draw=tier1, fill=tier1!8] (c4) at (1.75,-2.2)  {\textbf{C4} Peer message};
+\node[ch, draw=tier1, fill=tier1!8] (c5) at (1.75,-2.93) {\textbf{C5} Coordination signal};
+\node[ch, draw=tier2!60, dashed, text=black!55] (c6) at (1.75,-3.67) {\textbf{C6} Shared state\\ not mediated (G5)};
+\node[ch, draw=tier2, fill=tier2!8] (c7) at (1.75,-4.4)  {\textbf{C7} Discovery metadata};
+\node[ch, draw=black!50, fill=black!3] (xs) at (1.75,-5.6) {Attack stages and\\ testing gap (all channels)};
+% requirements
+\node[rq] (r1) at (6.3,0)    {\textbf{R1} Structural mediation};
+\node[rq] (r2) at (6.3,-0.8) {\textbf{R2} Request-bound authorship};
+\node[rq] (r3) at (6.3,-1.6) {\textbf{R3} Freshness};
+\node[rq] (r4) at (6.3,-2.4) {\textbf{R4} Configuration integrity};
+\node[rq] (r5) at (6.3,-3.2) {\textbf{R5} Provenance-bounded flow};
+\node[rq] (r6) at (6.3,-4.0) {\textbf{R6} Consistent release};
+\node[rq] (r7) at (6.3,-5.2) {\textbf{R7} Verifiable evidence};
+\node[rq] (r8) at (6.3,-6.0) {\textbf{R8} Channel coverage};
+% mechanisms
+\node[mc] (m1) at (10.75,0)    {Fixed compiled plan (P1)};
+\node[mc] (m2) at (10.75,-0.8) {Capability tokens (P2)};
+\node[mc] (m3) at (10.75,-1.6) {Dependency-key match (P3)};
+\node[mc] (m4) at (10.75,-2.4) {Pinned hashes (P4)};
+\node[mc] (m5) at (10.75,-3.2) {Two taint checks (P5)};
+\node[mc] (m6) at (10.75,-4.0) {Publication barrier (P6)};
+\node[mc] (m7) at (10.75,-5.2) {LLM-free replay audit};
+\node[mc] (m8) at (10.75,-6.0) {Attack generator};
+% channels -> requirements
+\foreach \c/\r in {c1/r5, c2/r5, c3/r1, c3/r5, c4/r2, c4/r5, c5/r1, c5/r2, c5/r3, c5/r6, c7/r2, c7/r4, xs/r7, xs/r8}
+  \draw[ar] (\c.east) -- (\r.west);
+% requirements -> mechanisms
+\foreach \i in {1,...,8} \draw[ar] (r\i.east) -- (m\i.west);
+% gaps
+\draw[decorate, decoration={brace, amplitude=4pt}, semithick, black!60] (12.75,0.3) -- (12.75,-4.3);
+\node[gp] at (12.9,-2.0) {\textbf{G1--G3}\\ existing defences meet these only in part, for a single agent or with learned checks};
+\draw[decorate, decoration={brace, amplitude=4pt}, semithick, black!60] (12.75,-4.9) -- (12.75,-6.3);
+\node[gp] at (12.9,-5.6) {\textbf{G4}\\ benchmarks fix the injection points and rely on LLM judges};
+\end{tikzpicture}}
+\caption{What the taxonomy contributes to INERT. Each injection channel (left, coloured by interface class as in Figure~\ref{fig:channel-tree}) points to the requirements it motivates; each requirement is met by one INERT mechanism and checked as one security property (Table~\ref{tab:props}); the braces name the gaps in existing work that the requirements expose (Table~\ref{tab:gaps}). Shared state across sessions (C6) is the only channel that INERT does not mediate.}\label{fig:tax-summary}
+\end{figure}
 
 %=====================================================================================
 \section{The INERT Approach}\label{sec:approach}
@@ -698,9 +755,9 @@ Figure~\ref{fig:overview} arranges INERT in three lanes that match the following
   ar/.style={-{Stealth[length=1.6mm]}, semithick},
   lab/.style={font=\fontsize{5.6}{6.4}\selectfont\itshape, fill=white, inner sep=0.8pt, align=center}]
 % lanes
-\draw[lane] (-0.75,0.75) rectangle (13.15,-1.0);   \node[lanelab] at (-0.5,-0.12) {Design\\ (5.2)};
-\draw[lane] (-0.75,-1.25) rectangle (13.15,-6.0);  \node[lanelab] at (-0.5,-3.62) {Run time (5.3)};
-\draw[lane] (-0.75,-6.25) rectangle (13.15,-8.65); \node[lanelab] at (-0.5,-7.45) {Evidence,\\ tests (5.4, 5.5)};
+\draw[lane] (-0.75,0.75) rectangle (13.15,-1.0);   \node[lanelab] at (-0.5,-0.12) {Design\\ (\ref{sec:model})};
+\draw[lane] (-0.75,-1.25) rectangle (13.15,-6.0);  \node[lanelab] at (-0.5,-3.62) {Run time (\ref{sec:controller})};
+\draw[lane] (-0.75,-6.25) rectangle (13.15,-8.65); \node[lanelab] at (-0.5,-7.45) {Evidence,\\ tests (\ref{sec:audit}, \ref{sec:generation})};
 % design time
 \node[art, thick, rounded corners=2pt, text width=13mm] (des) at (0.85,-0.15) {Designer};
 \node[art] (model) at (3.25,-0.15) {\textbf{MAS model} (DSL)\\ slots, owners, sink\\ roles $\rho$, policy $\mu$};
@@ -721,7 +778,7 @@ Figure~\ref{fig:overview} arranges INERT in three lanes that match the following
 \node[pred] at (7.1,-3.7) {$\mathit{Flow}$ P5};
 \node[sub, text width=19mm] (mp3) at (9.65,-3.05) {\textbf{MP3} tool executor\\ $\mathit{Exec}(q)$, pinned $h_t$,\\ fail closed (P4, P5)};
 \node[draw, rounded corners=2pt, fill=white, align=center, text width=56mm, minimum height=7mm, inner sep=1.5pt] (ker) at (4.75,-4.95)
-  {\textbf{Coordination kernel} (Sec.~2.6): requests $q$, keys $\kappa_q = H(o_q)$ with labels inside, fixed plan (P1)};
+  {\textbf{Coordination kernel} (Sec.~\ref{sec:bg-kernel}): requests $q$, keys $\kappa_q = H(o_q)$ with labels inside, fixed plan (P1)};
 \node[sub, text width=17mm, minimum height=7mm] (bar) at (9.65,-4.95) {\textbf{Publication}\\ \textbf{barrier} (P6)};
 \draw[ar] (mp1) -- node[lab, above=1pt] {$C_q$, $\ell_q$} (mp2);
 \draw[ar] (mp2) -- node[lab, above=1pt] {commit} (mp3);
@@ -856,6 +913,8 @@ In any run of a compiled model with all mechanisms enabled, every value that cou
 \begin{proof}[Proof sketch]
 Proposals depend only on $C_q$, whose labels are at most $m_s \sqsubseteq \mu(\rho(f))$, and $\mathit{Flow}$ recomputes $\ell_q$ from $o_q$, whose labels are fixed by $\kappa_q$. $\mathit{Exec}$ checks tool arguments, and $\ell_{\mathit{out}}$ dominates non-data arguments. By induction over the topological order, labels only decrease at declassify slots.
 \end{proof}
+
+\paragraph{Guarantees and their limits.} The controller now enforces the six properties that the threat model requires (Section~\ref{sec:threat}, Table~\ref{tab:props}), and the replay audit that checks them on every run realizes R7 (Section~\ref{sec:audit}). P1 to P4 and P6 hold by construction of the controller. P5, stated as Proposition~\ref{prop:ni}, holds as long as the declassifiers are correct, which can be fooled within their declared bounds. P5 keeps environment and tool content out of instruction, control and executor fields, but it does not stop a compromised or colluding agent (A2, A4) from misusing a field it legitimately fills; owned validators (P4) or a stricter per-slot policy narrow that authority. We therefore do not claim immunity to prompt injection: attacks whose goal the model itself permits remain residual risk, as in the channel tree.
 
 \paragraph{Running example.} The analyst's slot has only a data field, so it sees the injected e-mail and its analysis is committed at \textit{external\_untrusted}. For the executor's slot $m_s = \textit{agent\_untrusted}$, so the analysis is not in $C_q$, the executor proposes \texttt{bob@corp.example} from the request alone, and the analysis travels only as the data body: exposure without effect. Without taint (I1) the executor sees the analysis, and the validator cannot help because \texttt{attacker@evil.example} is then grounded in its inputs. A rewritten proposal (A3) fails $\mathit{Cap}$, and so does a compromised analyst answering the executor's request (A2).
 
