@@ -1,0 +1,519 @@
+openalex_id,title,decision,reason_if_excluded,leaf
+W4379919478,Multi-Agent Collaboration: Harnessing the Power of Intelligent LLM Agents,exclude,"E1 general multi-agent collaboration, no security focus",
+W4380353722,Prompt Injection attack against LLM-integrated Applications,include,,Content and interpretation
+W4387806231,Survey of Vulnerabilities in Large Language Models Revealed by Adversarial Attacks,exclude,E1 general LLM-vulnerability survey without agent focus,
+W4388926538,Assessing Prompt Injection Risks in 200+ Custom GPTs,include,,Prompt and model evaluation
+W4389523893,Ignore This Title and HackAPrompt: Exposing Systemic Vulnerabilities of LLMs Through a Global Prompt Hacking Competition,include,,Prompt and model evaluation
+W4390833651,Combating Adversarial Attacks with Multi-Agent Debate,include,,Collaborative defenses
+W4392181809,The Wolf Within: Covert Injection of Malice into MLLM Societies via an MLLM Operative,include,,Peer influence and composition
+W4392538361,Here Comes The AI Worm: Unleashing Zero-click Worms that Target GenAI-Powered Applications,include,,Peer influence and composition
+W4392678053,Automatic and Universal Prompt Injection Attacks against Large Language Models,include,,Content and interpretation
+W4392737398,Can LLMs Separate Instructions From Data? And What Do We Even Mean By That?,include,,Prompt and model evaluation
+W4393177810,Defending Against Indirect Prompt Injection Attacks With Spotlighting,include,,Prompt and model defenses
+W4394002987,A Novel Evaluation Framework for Assessing Resilience Against Prompt Injection Attacks in Large Language Models,include,,Prompt and model evaluation
+W4395064792,The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions,include,,Prompt and model defenses
+W4400438284,Soft Begging: Modular and Efficient Shielding of LLMs against Prompt Injection and Jailbreaking based on Prompt Tuning,include,,Prompt and model defenses
+W4400601239,Flooding spread of manipulated knowledge in LLM-based multi-agent communities,include,,Peer influence and composition
+W4401105851,BlockAgents: Towards Byzantine-Robust LLM-Based Multi-Agent Coordination via Blockchain,include,,Collaborative defenses
+W4403808675,On the Resilience of LLM-Based Multi-Agent Collaboration with Faulty Agents,include,,Topology and propagation
+W4404088904,NetSafe: Exploring the Topological Safety of Multi-agent Networks,include,,Topology and propagation
+W4404314596,Hacking Back the AI Hacker: Prompt Injection as a Defense Against LLM-driven Cyberattacks,include,,Prompt and model defenses
+W4404340760,FATH: Authentication-based Test-time Defense against Indirect Prompt Injection Attacks,include,,Prompt and model defenses
+W4404341789,Embedding-based classifiers can detect prompt injection attacks,include,,Signals and monitoring
+W4404781826,MultiAgent Collaboration Attack: Investigating Adversarial Attacks in Large Language Model Collaborations via Debate,include,,Peer influence and composition
+W4404783401,Evaluating the Instruction-Following Robustness of Large Language Models to Prompt Injection,include,,Prompt and model evaluation
+W4404953733,A Study on Prompt Injection Attack Against LLM-Integrated Mobile Robotic Systems,include,,Execution and disclosure
+W4405183113,Optimization-based Prompt Injection Attack to LLM-as-a-Judge,include,,Content and interpretation
+W4405267222,Signed-prompt: A new approach to prevent prompt injection attacks against LLM-Integrated applications,include,,Prompt and model defenses
+W4405468585,Towards Action Hijacking of Large Language Model-based Agent,include,,Execution and disclosure
+W4407184972,Firewalls to Secure Dynamic LLM Agentic Networks,include,,Tool and execution boundaries
+W4407247839,Applying Pre-trained Multilingual BERT in Embeddings for Improved Malicious Prompt Injection Attacks Detection,include,,Signals and monitoring
+W4407310643,MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents,include,,Signals and monitoring
+W4407371092,Safety at Scale: A Comprehensive Survey of Large Model and Agent Safety,include,,Agent architectures and security
+W4407571410,RTBAS: Defending LLM Agents Against Prompt Injection and Privacy Leakage,include,,Planning and information flow
+W4407806359,Multi-Agent Risks from Advanced AI,include,,Agent architectures and security
+W4407806725,Beyond Self-Talk: A Communication-Centric Survey of LLM-Based Multi-Agent Systems,include,,Agent architectures and security
+W4407806913,CORBA: Contagious Recursive Blocking Attacks on Multi-Agent Systems Based on Large Language Models,include,,Peer influence and composition
+W4407945631,Comprehensive Analysis of Machine Learning and Deep Learning models on Prompt Injection Classification using Natural Language Processing techniques,include,,Signals and monitoring
+W4409316940,"Advances and Challenges in Foundation Agents: From Brain-Inspired Intelligence to Evolutionary, Collaborative, and Safe Systems",include,,Agent architectures and security
+W4410609227,Get My Drift? Catching LLM Task Drift with Activation Deltas,include,,Signals and monitoring
+W4410985905,"Large Model-Based Agents: State-of-the-Art, Cooperation Paradigms, Security and Privacy, and Future Trends",include,,Agent architectures and security
+W4411010518,PromptShield: Deployable Detection for Prompt Injection Attacks,include,,Signals and monitoring
+W4411012886,Review: Safety at Scale: Comprehensive Survey of Large Model Safety,exclude,E5 duplicate record of W4407371092,
+W4411113002,Attention Tracker: Detecting Prompt Injection Attacks in LLMs,include,,Signals and monitoring
+W4411119880,Adaptive Attacks Break Defenses Against Indirect Prompt Injection Attacks on LLM Agents,include,,Content and interpretation
+W4411120176,Breaking ReAct Agents: Foot-in-the-Door Attack Will Get You In,include,,Content and interpretation
+W4411337880,DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks,include,,Signals and monitoring
+W4412130138,To Protect the LLM Agent Against the Prompt Injection Attack with Polymorphic Prompt,include,,Prompt and model defenses
+W4412889677,The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents,include,,Prompt and model defenses
+W4412944992,Can Indirect Prompt Injection Attacks Be Detected and Removed?,include,,Signals and monitoring
+W4412945051,A Troublemaker with Contagious Jailbreak Makes Chaos in Honest Towns,include,,Peer influence and composition
+W4414133540,"Trustworthy agentic AI systems: a cross-layer review of architectures, threat models, and governance strategies for real-world deployment",include,,Agent architectures and security
+W4414205813,Safety at Scale: A Comprehensive Survey of Large Model and Agent Safety,exclude,E5 duplicate record of W4407371092,
+W4414691272,Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment,include,,Agent tasks and competitions
+W4414769424,OET: Optimization-based prompt injection Evaluation Toolkit,include,,Prompt and model evaluation
+W4414855906,LLM Agents Should Employ Security Principles,include,,Agent architectures and security
+W4414856367,SentinelAgent: Graph-based Anomaly Detection in Multi-Agent Systems,include,,Collaborative defenses
+W4414887407,RedTeamCUA: Realistic Adversarial Testing of Computer-Use Agents in Hybrid Web-OS Environments,include,,Agent tasks and competitions
+W4414890983,Goal-Aware Identification and Rectification of Misinformation in Multi-Agent Systems,include,,Collaborative defenses
+W4414894549,Simple Prompt Injection Attacks Can Leak Personal Data Observed by LLM Agents During Task Execution,include,,Execution and disclosure
+W4414974075,"Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?",include,,Tool and execution boundaries
+W4414975314,Benchmarking the Robustness of Agentic Systems to Adversarially-Induced Harms,include,,Agent tasks and competitions
+W4415011827,Enhancing Security in Large Language Models: A Comprehensive Review of Prompt Injection Attacks and Defenses,include,,Injection and protocol taxonomies
+W4415024070,Lessons from Defending Gemini Against Indirect Prompt Injections,include,,Shared and deployed workflows
+W4415036412,MedSentry: Understanding and Mitigating Safety Risks in Medical LLM Multi-Agent Systems,include,,Multi-agent evaluation
+W4415065867,Amplified Vulnerabilities: Structured Jailbreak Attacks on LLM-based Multi-Agent Debate,include,,Peer influence and composition
+W4415110275,AgentVigil: Generic Black-Box Red-teaming for Indirect Prompt Injection against LLM Agents,include,,Content and interpretation
+W4415133608,To trust or not to trust: Attention-based Trust Management for LLM Multi-Agent Systems,include,,Collaborative defenses
+W4415248419,LlamaFirewall: An open source guardrail system for building secure AI agents,include,,Tool and execution boundaries
+W4415310136,MAD-Spear: A Conformity-Driven Prompt Injection Attack on Multi-Agent Debate Systems,include,,Peer influence and composition
+W4415331423,ChatInject: Abusing Chat Templates for Prompt Injection in LLM Agents,include,,Content and interpretation
+W4415333036,OS-Harm: A Benchmark for Measuring Safety of Computer Use Agents,include,,Agent tasks and competitions
+W4415540040,Manipulating Multimodal Agents via Cross-Modal Prompt Injection,include,,Content and interpretation
+W4415796822,AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents,include,,Agent tasks and competitions
+W4415796991,Secret Collusion among AI Agents: Multi-Agent Deception via Steganography,include,,Peer influence and composition
+W4415854769,PIShield: Detecting Prompt Injection Attacks via Intrinsic LLM Features,include,,Signals and monitoring
+W4415872204,MAGPIE: A benchmark for Multi-AGent contextual PrIvacy Evaluation,include,,Multi-agent evaluation
+W4415898242,SentinelNet: Safeguarding Multi-Agent Collaboration Through Credit-Based Dynamic Threat Detection,include,,Collaborative defenses
+W4415986067,SAGA: A Security Architecture for Governing AI Agentic Systems,include,,Identity and access control
+W4416034461,AGENTVIGIL: Automatic Black-Box Red-teaming for Indirect Prompt Injection against LLM Agents,exclude,E5 duplicate record of W4415110275,
+W4416035167,Breaking Agents: Compromising Autonomous LLM Agents Through Malfunction Amplification,include,,Execution and disclosure
+W4416036954,TopicAttack: An Indirect Prompt Injection Attack via Topic Transition,include,,Content and interpretation
+W4416037087,WebInject: Prompt Injection Attack to Web Agents,include,,Content and interpretation
+W4416056210,The Trust Paradox in LLM-Based Multi-Agent Systems: When Collaboration Becomes a Security Vulnerability,include,,Roles and trust boundaries
+W4416097304,Red Teaming the Mind of the Machine: A Systematic Evaluation of Prompt Injection and Jailbreak Vulnerabilities in LLMs,include,,Prompt and model evaluation
+W4416132430,Demonstrations of Integrity Attacks in Multi-Agent Systems,include,,Peer influence and composition
+W4416246522,Defending Against Prompt Injection with DataFilter,include,,Prompt and model defenses
+W4416247017,Securing Multi-Agent Systems Against Corruptions via Node Contribution Backpropagation,include,,Collaborative defenses
+W4416341374,Exposing Weak Links in Multi-Agent Systems under Adversarial Prompting,include,,Peer influence and composition
+W4416525356,"A Survey of LLM-Driven AI Agent Communication: Protocols, Security Risks, and Defense Countermeasures",include,,Injection and protocol taxonomies
+W4416541023,Progent: Securing AI Agents with Privilege Control,include,,Identity and access control
+W4416689662,Web Fraud Attacks Against LLM-Driven Multi-Agent Systems,include,,Peer influence and composition
+W4416712242,Securing AI Agents with Information-Flow Control,include,,Planning and information flow
+W4416774529,BrowseSafe: Understanding and Preventing Prompt Injection Within AI Browser Agents,include,,Signals and monitoring
+W4416840250,PromptArmor: Simple yet Effective Prompt Injection Defenses,include,,Signals and monitoring
+W4416905838,Extending the OWASP Multi-Agentic System Threat Modeling Guide: Insights from Multi-Agent Security Research,include,,Injection and protocol taxonomies
+W4416959534,Systems Security Foundations for Agentic Computing,include,,Agent architectures and security
+W4417097995,Comprehensive Vulnerability Analysis is Necessary for Trustworthy LLM-MAS,include,,Agent architectures and security
+W4417098577,AgentArmor: Enforcing Program Analysis on Agent Runtime Trace to Defend Against Prompt Injection,include,,Planning and information flow
+W4417116237,CommandSans: Securing AI Agents with Surgical Precision Prompt Sanitization,include,,Prompt and model defenses
+W4417172952,ACE: A Security Architecture for LLM-Integrated App Systems,include,,Planning and information flow
+W4417290305,ObliInjection: Order-Oblivious Prompt Injection Attack to LLM Agents with Multi-source Data,include,,Content and interpretation
+W4417293467,Attention is All You Need to Defend Against Indirect Prompt Injection Attacks in LLMs,include,,Signals and monitoring
+W4417307818,Design Patterns for Securing LLM Agents against Prompt Injections,include,,Planning and information flow
+W4417434097,Byzantine-Robust Decentralized Coordination of LLM Agents,include,,Collaborative defenses
+W4417512482,System Prompt Poisoning: Persistent Attacks on Large Language Models Beyond User Injection,include,,State and discovery
+W7106314756,"Taxonomy, Evaluation and Exploitation of IPI-Centric LLM Agent Defense Frameworks",include,,Injection and protocol taxonomies
+W7108932562,Don't Trust Your Upstream: Exploiting LLM Multi-Agent System via Topology-Guided Adversarial Propagation,include,,Topology and propagation
+W7110815244,SoK: Trust-Authorization Mismatch in LLM Agent Interactions,include,,Roles and trust boundaries
+W7111206418,SIEVE: Selective Integrity Verification and Escalation for Defending LLM Agents against Indirect Prompt Injection,include,,Planning and information flow
+W7117587198,How Not to Detect Prompt Injections with an LLM,include,,Signals and monitoring
+W7125217513,Zero-Shot Embedding Drift Detection: A Lightweight Defense Against Prompt Injections in LLMs,include,,Signals and monitoring
+W7125433747,INFA-Guard: Mitigating Malicious Propagation via Infection-Aware Safeguarding in LLM-Based Multi-Agent Systems,include,,Collaborative defenses
+W7125800382,"Prompt Injection Attacks on Agentic Coding Assistants: A Systematic Analysis of Vulnerabilities in Skills, Tools, and Protocol Ecosystems",include,,State and discovery
+W7127131839,"Security of Large Model-based Agents: A Survey on Adversarial, Poisoning, and Backdoor Attacks",include,,Agent architectures and security
+W7127632747,AgentDyn: Are Your Agent Security Defenses Deployable in Real-World Dynamic Environments?,include,,Agent tasks and competitions
+W7128035463,Learning to Inject: Automated Prompt Injection via Reinforcement Learning,include,,Content and interpretation
+W7128378279,AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents,exclude,E5 duplicate record of W4415796822,
+W7128476070,Extended to Reality: Prompt Injection in 3D Environments,include,,Content and interpretation
+W7128496244,AgentSys: Secure and Dynamic LLM Agents Through Explicit Hierarchical Memory Management,include,,Planning and information flow
+W7128622687,MUZZLE: Adaptive Agentic Red-Teaming of Web Agents Against Indirect Prompt Injection Attacks,include,,Content and interpretation
+W7131074364,PromptFuzz: Harnessing Fuzzing Techniques for Robust Testing of Prompt Injection in LLMs,include,,Prompt and model evaluation
+W7131420072,Skill-Inject: Measuring Agent Vulnerability to Skill File Attacks,include,,State and discovery
+W7131825230,AgentSentry: Mitigating Indirect Prompt Injection in LLM Agents via Temporal Causal Diagnostics and Context Purification,include,,Signals and monitoring
+W7131849563,"A Survey on the Unique Security of Autonomous and Collaborative LLM Agents: Threats, Defenses, and Futures",include,,Agent architectures and security
+W7133236347,"TRiSM for Agentic AI: A review of Trust, Risk, and Security Management in LLM-based Agentic Multi-Agent Systems",include,,Agent architectures and security
+W7133331190,"From Secure Agentic AI to Secure Agentic Web: Challenges, Threats, and Future Directions",include,,Agent architectures and security
+W7133339389,Thought Virus: Viral Misalignment via Subliminal Prompting in Multi-Agent Systems,include,,Peer influence and composition
+W7134832076,From Thinker to Society: Security in Hierarchical Autonomy Evolution of AI Agents,include,,Agent architectures and security
+W7134909854,Security Considerations for Multi-agent Systems,include,,Agent architectures and security
+W7135025888,Securing LLM agents: From prompt sanitization to autonomous red teaming and beyond,include,,Agent architectures and security
+W7135043996,AttriGuard: Defeating Indirect Prompt Injection in LLM Agents via Causal Attribution of Tool Invocations,include,,Signals and monitoring
+W7135170705,WebWeaver: Breaking Topology Confidentiality in LLM Multi-Agent Systems with Stealthy Context-Based Inference,include,,Topology and propagation
+W7135231294,Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats,include,,Shared and deployed workflows
+W7136188901,PISmith: Reinforcement Learning-based Red Teaming for Prompt Injection Defenses,include,,Content and interpretation
+W7137828285,GroupGuard: A Framework for Modeling and Defending Collusive Attacks in Multi-Agent Systems,include,,Collaborative defenses
+W7138906025,AgentWorm: Self-Propagating Attacks Across LLM Agent Ecosystems,include,,Peer influence and composition
+W7138909016,ResMAS: Resilience Optimization in LLM-based Multi-agent Systems,include,,Topology and propagation
+W7140118138,A Framework for Formalizing LLM Agent Security,include,,Planning and information flow
+W7140119618,PEAR: Planner-Executor Agent Robustness Benchmark,include,,Multi-agent evaluation
+W7140138845,Trojan's Whisper: Stealthy Manipulation of OpenClaw through Injected Bootstrapped Guidance,include,,State and discovery
+W7140300304,SoK: The Attack Surface of Agentic AI - Tools and Autonomy,include,,Injection and protocol taxonomies
+W7148317788,AgentWatcher: A Rule-based Prompt Injection Monitor,include,,Signals and monitoring
+W7148798976,"ClawSafety: ""Safe"" LLMs, Unsafe Agents",include,,Shared and deployed workflows
+W7148998456,Topology Linearization for Multi-Agent Systems Security: Mitigating Malicious Propagation via Path Decomposition,include,,Collaborative defenses
+W7151341725,Your Agent is More Brittle Than You Think: Uncovering Indirect Injection Vulnerabilities in Agentic LLMs,include,,Agent tasks and competitions
+W7151909507,SkillAttack: Automated Red Teaming of Agent Skills through Attack Path Refinement,include,,State and discovery
+W7153144013,TRUSTDESC: Preventing Tool Poisoning in LLM Applications via Trusted Description Generation,include,,Identity and access control
+W7154974166,SoK: Security of Autonomous LLM Agents in Agentic Commerce,include,,Injection and protocol taxonomies
+W7155077488,SafeAgent: A Runtime Protection Architecture for Agentic Systems,include,,Tool and execution boundaries
+W7155094955,Not Just Detection: Aligned-Driven Purification of Indirect Prompt Injection for Reliable Agent Interaction,include,,Prompt and model defenses
+W7155170357,An AI Agent Execution Environment to Safeguard User Data,include,,Tool and execution boundaries
+W7157103096,A Systematic Survey of Security Threats and Defenses in LLM-Based AI Agents: A Layered Attack Surface Framework,include,,Injection and protocol taxonomies
+W7160013094,Semia: Auditing Agent Skills via Constraint-Guided Representation Synthesis,include,,Identity and access control
+W7160053090,Securing Tool-Using AI Agents Against Injection and Authority Misuse,include,,Planning and information flow
+W7160287363,When Embedding-Based Defenses Fail: Rethinking Safety in LLM-Based Multi-Agent Systems,include,,Multi-agent evaluation
+W7160448311,ARGUS: Defending LLM Agents Against Context-Aware Prompt Injection,include,,Signals and monitoring
+W7160522594,Securing LLM-based agents against cyberattacks: a comprehensive survey on attack techniques and defense strategies,include,,Agent architectures and security
+W7160926244,When Child Inherits: Modeling and Exploiting Subagent Spawn in Multi-Agent Networks,include,,Roles and trust boundaries
+W7160935534,When Agents Overtrust Environmental Evidence: An Extensible Agentic Framework for Benchmarking Evidence-Grounding Defects in LLM Agents,include,,Agent tasks and competitions
+W7160999798,The Granularity Mismatch in Agent Security: Argument-Level Provenance Solves Enforcement and Isolates the LLM Reasoning Bottleneck,include,,Planning and information flow
+W7161015843,FlowSteer: Prompt-Only Workflow Steering Exposes Planning-Time Vulnerabilities in Multi-Agent LLM Systems,include,,Peer influence and composition
+W7161112753,Sleeper Channels and Provenance Gates: Persistent Prompt Injection in Always-on Autonomous AI Agents,include,,State and discovery
+W7161146271,No Attack Required: Semantic Fuzzing for Specification Violations in Agent Skills,include,,State and discovery
+W7161256527,Web Agents Should Adopt the Compile-and-Execute Paradigm,include,,Planning and information flow
+W7161547260,Hidden in Memory: Sleeper Memory Poisoning in LLM Agents,include,,State and discovery
+W7161679589,LivePI: More Realistic Benchmarking of Agents Against Indirect Prompt Injection,include,,Agent tasks and competitions
+W7161696824,An Empirical Study of Privacy Leakage Chains via Prompt Injection in Black-Box Chatbot Environments,include,,Execution and disclosure
+W7161843191,CASPIAN: Online Detection and Attribution of Cascade Attacks in LLM Multi-Agent Systems via Cross-Channel Causal Monitoring,include,,Signals and monitoring
+W7162245676,MAStitch: Unifying Local and Global Perspectives for Anomaly Detection in Multi-Agent Systems,include,,Signals and monitoring
+W7162392784,"Security of OpenClaw Agents: Fundamentals, Attacks, and Countermeasures",include,,Shared and deployed workflows
+W7162542657,Aligning Provenance with Authorization: A Dual-Graph Defense for LLM Agents,include,,Planning and information flow
+W7163057773,Send a SCOUT First: Pre-hoc Reasoning for Adaptive Detector Allocation in Prompt-Injection Defense,include,,Signals and monitoring
+W7163749658,"SECURITY THREATS TO AI AGENTS: REVIEW ON THREATS, DEFENSE STRATEGIES AND THREAT MODELLING",include,,Agent architectures and security
+W7164000790,"One Skill, Two Masters: Serving Users and Attackers through Skill Injection",include,,State and discovery
+W7164149296,Assessing Automated Prompt Injection Attacks in Agentic Environments,include,,Agent tasks and competitions
+W7164525138,Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents,include,,Agent tasks and competitions
+W7164877522,Defending against Adaptive Prompt Injection Attacks via Reasoning-enabled Task Alignment,include,,Prompt and model defenses
+W7164881174,AutoDojo: A Generative Benchmark for Evaluating Prompt Injection Defenses in LLM Agents,include,,Agent tasks and competitions
+W7164992788,AgentLeak: A Benchmark for Internal-Channel Privacy Leakage in Multi-Agent LLM Systems,include,,Multi-agent evaluation
+W7165508222,Analysis of Prompt Injection Risks in LLM-Augmented Applications,include,,Prompt and model evaluation
+W7165654688,Think Twice Before You Act: Protecting LLM Agents Against Tool Description Poisoning via Isolated Planning,include,,Planning and information flow
+W7165685400,Semantic Intent Fragmentation: A Single-Shot Compositional Attack on Multi-Agent AI Pipelines,include,,Peer influence and composition
+W7165736730,A Critical Evaluation of Defenses against Prompt Injection Attacks: [Dataset/Tool Paper],include,,Prompt and model evaluation
+W7166065244,Agents That Know Too Much: A Data-Centric Survey of Privacy in LLM Agents,include,,Agent architectures and security
+W7166194161,Adaptive Evaluation of Out-of-Band Defenses Against Prompt Injection in LLM Agents,include,,Agent tasks and competitions
+W7166808069,CIA: Inferring the Communication Topology from LLM-based Multi-Agent Systems,include,,Topology and propagation
+W7166830027,Among Us: Measuring and Mitigating Malicious Contributions in Model Collaboration Systems,include,,Collaborative defenses
+W7166844655,PIArena: A Platform for Prompt Injection Evaluation,include,,Prompt and model evaluation
+W7166852403,Explainable and Fine-Grained Safeguarding of LLM Multi-Agent Systems via Bi-Level Graph Anomaly Detection,include,,Collaborative defenses
+W7166886473,ToolSafe: Enhancing Tool Invocation Safety of LLM-based agents via Proactive Step-level Guardrail and Feedback,include,,Tool and execution boundaries
+W7167232475,OpenClaw in the Wild: Security Analysis of Autonomous Agents,include,,Shared and deployed workflows
+W7167575517,Operator-Blind Secret Mediation for AI Agents: A Formal Model and FHE Construction for Credential Derivation on Untrusted Infrastructure,include,,Identity and access control
+W7167582190,DualView: Preventing Indirect Prompt Injection in Personal AI Agents,include,,Planning and information flow
+W7167610683,Agent Data Injection Attacks are Realistic Threats to AI Agents,include,,Content and interpretation
+W7167917360,Prismata: Confining Cross-Site Prompt Injection in Web Agents,include,,Tool and execution boundaries
+W7168066883,PROMPT INJECTION RESISTANCE IN TOOL-USING LLM APPLICATIONS: ARCHITECTURAL PATTERNS AND FAILURE MODES,include,,Planning and information flow
+W7168250952,NetInjectBench: Benchmarking Indirect Prompt Injection in Tool-Using Large Language Model Agents for Network Operations,include,,Agent tasks and competitions
+W7169473621,"Isolation as a First-Class Principle for LLM-Agent System Safety: Concepts, Taxonomy, Challenges and Future Directions",include,,Injection and protocol taxonomies
+W7169754295,PromptSentinel-X: A Leakage-Aware and Context-Aware Framework for Prompt-Injection Detection in Large Language Model-Powered Web Agents,include,,Signals and monitoring
+W7169754319,From Neural Intent to Cryptographic Authorization: Securing AI-Driven Enterprise Workflows,include,,Identity and access control
+W7169867955,PlanFlip: Attacking Multi-Agent LLM Systems via Planning-Phase Prompt Injection,include,,Peer influence and composition
+W7170178200,Know Your Agent: Reconnaissance-Driven Pentesting of AI Agents,include,,Agent tasks and competitions
+W7171791784,Even More Deception: Objective Misalignment in Mixed-Motive LLM Multi-Agent Systems,exclude,"E1 mixed-motive deception, no attack or injection",
+W7171858227,"THREAT MODELING OF AUTONOMOUS CODING AGENTS IN CORPORATE MOBILE DEVELOPMENT. PART 1: SYSTEM MODEL, ASSETS, TRUST BOUNDARIES, AND ATTACK SURFACES",include,,Roles and trust boundaries
+W7172000952,Continual Red-Teaming and Guardrail Distillation for Tool-Using LLM Agents: Prompt-Injection Resistance with Utility Preservation,include,,Prompt and model defenses
+W7172250210,"Balancing Security and Performance in LLM Agents: Spotlight-Guard, a Layered Defense Against Indirect Prompt Injection",include,,Prompt and model defenses
+W7172389183,When Collaboration Becomes a Trigger: Collective Evidence-Threshold Backdoors in Multi-Agent Systems,include,,Peer influence and composition
+W7172398737,Adversarial Attacks in Multi-Agent LLM Pipelines: Unveiling Structural Vulnerabilities in Agentic AI Architectures,include,,Topology and propagation
+W7172436675,MAPLE-Guard: Memory-Aware Link Enforcement Against Memory-Link Poisoning in Multi-Agent Systems,include,,Collaborative defenses
+W7196939704,Agent Against Agent: An Agentic System for Automatic Prompt Injection Red Teaming,include,,Content and interpretation
+W7196941018,WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks,include,,Agent tasks and competitions
+W7196948743,Memory Injection Attacks on LLM Agents via Query-Only Interaction,include,,State and discovery
+W7196951119,AgentAntibody: An Adaptive Immune System for Defending LLM Agents against Prompt Injection,include,,Prompt and model defenses
+W7201879782,Robust Context-Aware Detection of Malicious Instructions in Text,include,,Signals and monitoring
+W7202207616,ARES: Securing Agents for Computer Use Through Endpoint Resource Mediation and Behavioral Guardrails,include,,Tool and execution boundaries
+W7202351711,"Delegation-Aware Runtime Contracts for Open LLM Multi-Agent Systems: Constraint Preservation, Capability Revocation, and State Recovery",include,,Identity and access control
+W7202388788,Rethinking Agent Security as a Networking Problem,include,,Agent architectures and security
+W7203670561,BRA-Audit: Budgeted Runtime Auditing for LLM Multi-Agent Systems via Cumulative-Exposure Audit-Point Placement,include,,Signals and monitoring
+W7203687529,Security Assessment of DeepSeek Harness with A.I.G: Evaluating Resistance to Indirect Prompt Injection,include,,Agent tasks and competitions
+W7203693685,Guarding the Gateway: Securing MCP-Mediated RAG Pipelines Against Injection with the Guru Framework,include,,Tool and execution boundaries
+W7204096847,TrustTrace: Provenance-Aware Tracing of Indirect Prompt Injection Propagation in LLM-Assisted Learning Workflows,include,,Signals and monitoring
+W7204122721,Utility Under Attack: Agent Memory Poisoning and the Limits of Content Screening and Provenance Ranking,include,,State and discovery
+W7204201953,Beyond Over-Refusal: Defending Indirect Prompt Injection via Latent Instruction Manifolds,include,,Signals and monitoring
+W7204449761,Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems,include,,Injection and protocol taxonomies
+W7204582916,The Framing Gap: Indirect Prompt-Injection Exfiltration Defeats Surface-Level Defenses in Tool-Using Agents,include,,Execution and disclosure
+W7204945324,ECLIPSE: Self-Evolving Stealthy Prompt Injection Attack against Long-Horizon Agentic Systems,include,,Content and interpretation
+W7207557644,Beyond Prompt Injection: Trust-Boundary Security Assurance for LLM-Integrated and Agentic Applications,include,,Roles and trust boundaries
+W7208704450,Privacy-Preserving Topology-Guided Safety for LLM-Based Multi-Agent Systems via Federated Graph Learning,include,,Collaborative defenses
+W7208786046,The Double-Edged Sword of AI Pair Programmers: A Systematic Literature Review of Security Vulnerabilities in AI-Generated Code and Agentic Development Environments,exclude,"E1 security of AI-generated code, not of agents",
+W7209443407,Analyzing and Mitigating Prompt Injection Attacks in AI-driven Cloud Applications,include,,Shared and deployed workflows
+W7211921943,Vulnerabilities in autonomous execution: A survey of security threats and defenses in LLM-driven agentic and multi-agent systems,include,,Agent architectures and security
+W7212001064,EvoSafeHarness: Evolving Model- and Domain-Specific Harnesses for Securing Agents,include,,Tool and execution boundaries
+W7212034252,AgentDrift: A Step-Labeled Benchmark of Injection-Hijacked LLM Agent Trajectories,include,,Agent tasks and competitions
+W7213249050,ActGuard: Pre-execution Action Auditing against Indirect Prompt Injection in LLM Agents,include,,Tool and execution boundaries
+W7213477280,Optimized Multi-Agent Defense Pipeline Against Advanced Prompt Injection Attacks,include,,Collaborative defenses
+W7213546035,Bringing the Dual-LLM pattern to practice in Google ADK for deterministic AI agent security against prompt injection,include,,Planning and information flow
+W7213563905,"Collective Loss of Control in LLM Agent Systems: An Epidemic Account of Mutation, Contagion, and Recovery",include,,Topology and propagation
+W7214052462,"Connecting the Dots in Agentic AI Security: A Cross-Dimensional Threat Taxonomy, Evaluation Maturity, and Open Challenges",include,,Injection and protocol taxonomies
+W7214780593,CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents,include,,Prompt and model defenses
+W7214809189,JevAdvBench: A Benchmark and Black-Box Attacks for Reinforcement Learning for Calibrated Decisions Models,exclude,"E3 RL decision models, not LLM agents",
+W7214918954,Concealing LLM-Based Multi-Agent Topology via Phantom Structure Injection,include,,Collaborative defenses
+W7214974942,ToolFence: Fine-Grained Authorization for Secure Tool-Using LLM Agents,include,,Identity and access control
+W7220674507,RAISED: Self-Distillation for Robustness to Prompt Injection in LLM Agents,include,,Prompt and model defenses
+W7220711603,Evaluating Safety Embedding Prefiltering for Analyzing Millions of LLM Agent Social Network Messages for Security and Safety Harms,include,,Signals and monitoring
+W7220722328,Blocking at the Boundary: Auditing Long-Horizon Agents against Staged Prompt Injection,include,,Tool and execution boundaries
+W7220841333,A Threat Model for Indirect Prompt Injection in LLM-Integrated Applications,include,,Roles and trust boundaries
+W7220999565,AdvSim2Real : Training Web Agents Against Adaptive Prompt Injection in a Web World Model,include,,Prompt and model defenses
+W7221035800,AgentTracer: Tracing Indirect Prompt Injection Attack through Fine-Grained Intention-Execution Alignment,include,,Signals and monitoring
+W7221059640,APEX: Active Protection at Execution Boundaries for LLM Agents,include,,Tool and execution boundaries
+W7221809815,"BrowseSafe++: Benchmarking Prompt Injection Detection Across Web Contexts, Languages, and Browser Views",include,,Prompt and model evaluation
+W7221810097,Agent-Canary-Mas: End-to-End Evaluation of Protocol Risk in Long-Horizon Multi-Agent Systems,include,,Multi-agent evaluation
+W7222558873,INFUSE: A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems,include,,Agent tasks and competitions
+W7222611888,Log-To-Leak: Prompt Injection Attacks on Tool-Using LLM Agents via the Model Context Protocol,include,,State and discovery
+W7223010819,"Fake News, Real Crashes: Information Injection Attacks on LLM Financial Trading Agents",include,,Content and interpretation
+W7223040574,"Who Speaks, Who Authorizes, Who Acts? Understanding Trust Boundaries in Multi-Agent LLMs",include,,Roles and trust boundaries
+W7223042973,SoK: PIAtlas: Decomposing the Unbounded Prompt Injection Attack Space,include,,Injection and protocol taxonomies
+W7223050840,"THE DUAL ROLE OF LARGE LANGUAGE MODELS IN CYBERSECURITY: THREATS, DEFENSES, AND RESEARCH DIRECTIONS",exclude,E1 LLMs in cybersecurity in general,
+W7223054142,SpanGuard: Decoupling Instruction Localization from Authorization for Lightweight IPI Defense,include,,Signals and monitoring
+W7223067685,RATION: Towards Quantitative Risk-Based Access Control for AI Agents,include,,Identity and access control
+W7223097196,"Below the Waterline: A Survey of Agentic AI Security, Shadow AI Governance, and LLM Supply-Chain Risk in the Enterprise",include,,Agent architectures and security
+W7223663384,MAMORI: A Cross-Lingual Benchmark for Indirect Prompt Injection in Tool-Using LLM Agents,include,,Agent tasks and competitions
+W7223685842,"On Task, Off Track: Benchmarking LLM and Agent Robustness to Near-Target Prompt Injection",include,,Agent tasks and competitions
+W7223984699,A lightweight and explainable framework for prompt injection detection in AI applications,include,,Signals and monitoring
+W7224265772,WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems,include,,Multi-agent evaluation
+W7224363660,Trust Cascade through Provenance Erasure: How Multi-Agent Delegation Breaks Single-Agent Safety,include,,Roles and trust boundaries
+W7224618738,OrcaJack: Hijacking Agent Orchestration in Open Multi-Agent Systems,include,,Peer influence and composition
+W7224661389,e2a: A Secure Agent-Native Email Gateway with Phishing and Prompt-Injection Defense,include,,Tool and execution boundaries
+W7224778380,REALM: Identifying Minimal Task Assets for LLM Agents,include,,Identity and access control
+W7225098164,SpecGuard: Source-Aware Heterogeneous Agent Placement for Defending LLM-Based Multi-Agent Systems against Adversarial Communication,include,,Collaborative defenses
+W7225114577,Securing next-generation edge intelligence: A survey from federated learning to autonomous agents in cyber–physical systems,include,,Agent architectures and security
+W7225137572,Illusion: Safeguarding Topology Confidentiality in LLM Multi-Agent Systems via Behavior-Preserving Obfuscation,include,,Collaborative defenses
+W7225167471,ATrust: Adaptive Trust Boundary Expansion for Securing LLM Agents,include,,Identity and access control
+W7225180103,MemHarmBench: Evaluating Cross-Session Prompt Injection in Memory-Persistent AI Agents,include,,Agent tasks and competitions
+W7225191353,StateFence: Task-State Protection Against Evidence-Chain Contamination in Blue-Team LLM Agents,include,,Tool and execution boundaries
+W7225225613,An Explainable Graph Attention Network for Indirect Prompt Injection Detection in RAG Systems,include,,Signals and monitoring
+W7225225652,"Right Tool, Wrong Parameters: Defending LLM Agents Against Parameter Poisoning",include,,Tool and execution boundaries
+W7225404363,Beyond Instruction Override: Benchmarking Indirect Prompt Injection with Task-Tampering Attacks,include,,Agent tasks and competitions
+W7225416809,SPILLWAY: Separating Target Admission from Sanitization to Defend Tool-Using Agents against Prompt Injection,include,,Tool and execution boundaries
+W7225696942,"On the Relative Security of Prompt Injection: Mechanised Definitions, Defences and Verdicts for LLM Agents",include,,Planning and information flow
+W7225713102,Scaling Adaptive Prompt Injection Attacks with Agent Swarms,include,,Content and interpretation
+W7225723047,MetaPI: Constructing Prompt Injection Benchmarks from LLM Agent Benchmark,include,,Agent tasks and competitions
+W7226003528,Accuracy-Invisible Safety Degradation in a Compressed On-Device Prompt-Injection Classifier,include,,Signals and monitoring
+W7226018652,CapLite: Prompt-Injection Defense for Small Language Model Agents without Model-Written Security Artifacts,include,,Planning and information flow
+W7226025440,Intent-Aware Protection for AI Agents,include,,Prompt and model defenses
+W7233586008,"Securing Autonomous Multi-Agent AI Systems: A Zero-Trust Framework for Threat Detection, Behavioral Monitoring, and Resilience in Enterprise Environments",include,,Identity and access control
+W7235735698,"Security of Deep Research Agents: Attack Surface, Defenses, Benchmarks, and Agenda Seeding against Research Planning",include,,Agent architectures and security
+W7236125672,Threat Landscape of Vibe Coding and the Road to Secure Autonomy,include,,Agent architectures and security
+W7236584751,Weighing the Envelope: Component Weight and Arbitration in Envelope-Layer Defenses for a Single LLM Agent,include,,Prompt and model defenses
+W7236682773,PIPETTE: Prompt Injection Purple-Teaming for Robust LLM Agents,include,,Prompt and model defenses
+W7236831386,AutoPI: Taxonomy-Guided Adaptive Red Teaming for Prompt Injection in LLM Agents,include,,Content and interpretation
+W7237052607,Evaluating strategic reasoning in large language models : from matching market to social deception game,exclude,"E1 strategic reasoning evaluation, not security",
+W7237134296,Attacks and Defenses in Decentralized Multi-Agent Systems with Hop-by-Hop Task Decomposition and Delegation,include,,Peer influence and composition
+W7237384217,Security auditing in multi-agent systems based on LLMs: Exploiting vulnerabilities through code execution and indirect prompt injection,include,,Execution and disclosure
+W4403575202,G-Designer: Architecting Multi-agent Communication Topologies via Graph Neural Networks,exclude,"E1 multi-agent design or efficiency, security secondary",
+W4404305143,MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control,include,,Agent tasks and competitions
+W4405103804,BRETAGNE: Building a Reproducible and Efficient Training AI Gym for Network Environments,exclude,E3 not about LLM agents,
+W4406460287,[Short Paper] Forensic Analysis of Indirect Prompt Injection Attacks on LLM Agents,include,,Signals and monitoring
+W4407912006,SafetyRAG: Towards Safe Large Language Model-Based Application through Retrieval-Augmented Generation,include,,Prompt and model defenses
+W4411113149,TrendSim: Simulating Trending Topics in Social Media Under Poisoning Attacks with LLM-based Multi-agent System,exclude,"E1 LLM multi-agent system used as a simulator, not attacked",
+W4411996780,Large Language Models for Validating Network Protocol Parsers,exclude,E1 no injection or multi-agent security focus,
+W4412082302,GenAI Security: Outsmarting the Bots with a Proactive Testing Framework,exclude,E1c prompt injection outside agentic or tool-using systems,
+W4413283185,Multi-Layered Framework for LLM Hallucination Mitigation in High-Stakes Applications: A Tutorial,exclude,E1 no injection or multi-agent security focus,
+W4414009000,Security and Privacy in Multi-Agent LLM Networks: Addressing Vulnerabilities,include,,Agent architectures and security
+W4414025828,The moral case for using language model agents for recommendation,exclude,E1 no injection or multi-agent security focus,
+W4414688275,AgentSight: System-Level Observability for AI Agents Using eBPF,include,,Signals and monitoring
+W4414688295,Securing MCP-based Agent Workflows,include,,Planning and information flow
+W4414804934,CHAI: Command Hijacking against embodied AI,include,,Content and interpretation
+W4415087697,Free-MAD: Consensus-Free Multi-Agent Debate,exclude,"E1 multi-agent design or efficiency, security secondary",
+W4415134960,ATAG: AI-Agent Application Threat Assessment with Attack Graphs,include,,Multi-agent evaluation
+W4415230414,Incident Analysis for AI Agents,include,,Agent architectures and security
+W4415368003,Evaluating and Exploiting Security Vulnerabilities in Large Language Models (LLMs) for Offensive Penetration Testing,exclude,E1c prompt injection outside agentic or tool-using systems,
+W4416035563,Leaky Thoughts: Large Reasoning Models Are Not Private Thinkers,exclude,"E1b single-agent safety, privacy or governance without injection",
+W4416036628,Attacks by Content: Automated Fact-checking is an AI Security Issue,include,,Content and interpretation
+W4416037886,The Dangers of Indirect Prompt Injection Attacks on LLM-based Autonomous Web Navigation Agents: A Demonstration,include,,Content and interpretation
+W4416075237,TracLLM: A Generic Framework for Attributing Long Context LLMs,include,,Signals and monitoring
+W4416183614,Adversarial and Multilingual Threats in Retrieval-Augmented Generation: From Prompt Injection to Model Exploitation,exclude,E1c prompt injection outside agentic or tool-using systems,
+W4416258150,LLMZ+: Contextual Prompt Whitelist Principles for Agentic LLMs,include,,Prompt and model defenses
+W4416342804,Breaking the Brain: Adversarial Attacks and the Fragility of Modern AI Models,exclude,E1 no injection or multi-agent security focus,
+W4416549183,Poster: Agentic Shell Honeypot Using Structured Logging,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W4417087056,ASTRIDE: A Security Threat Modeling Platform for Agentic-AI Applications,include,,Agent architectures and security
+W4417102219,Attractive Metadata Attack: Inducing LLM Agents to Invoke Malicious Tools,include,,State and discovery
+W4417127728,Mind the Web: The Security of Web Use Agents,include,,Content and interpretation
+W7109196882,Topology Matters: Measuring Memory Leakage in Multi-Agent LLMs,include,,Topology and propagation
+W7115571327,A Hybrid Perplexity-MAS Framework for Proactive Jailbreak Attack Detection in Large Language Models,include,,Collaborative defenses
+W7117119982,LLM Firewall Using Validator Agent for Prevention Against Prompt Injection Attacks,include,,Collaborative defenses
+W7117364322,The Current State Of AI Education: Security As An Afterthought,exclude,E1 no injection or multi-agent security focus,
+W7117375019,Algorithmic red teaming approaches to secure LLMs,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7117387429,Weaponizing Words: Direct & Indirect Prompt Injection Attacks on LLM,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7117833627,It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents,include,,Agent tasks and competitions
+W7118532765,"Prompt Injection Attacks in Large Language Models and AI Agent Systems: A Comprehensive Review of Vulnerabilities, Attack Vectors, and Defense Mechanisms",include,,Injection and protocol taxonomies
+W7120124968,Know Thy Enemy: Securing LLMs Against Prompt Injection via Diverse Data Synthesis and Instruction-Level Chain-of-Thought Learning,include,,Prompt and model defenses
+W7120151315,A white-box prompt injection attack on embodied AI agents driven by large language models,include,,Content and interpretation
+W7124142878,Payments 1.0 to 5.0: Pathways to Agentic Autonomy,exclude,E1 no injection or multi-agent security focus,
+W7124317236,IBGP: Imperfect Byzantine Generals Problem for Zero-Shot Robustness in Communicative Multi-Agent Systems,include,,Collaborative defenses
+W7126107253,Decentralized Digital Identity Management for Large Language Model Agents,include,,Identity and access control
+W7127271196,Human Society-Inspired Approaches to Agentic AI Security: The 4C Framework,include,,Agent architectures and security
+W7127655985,Guardrailing LLM and Agentic Decisions for 6G AI-RAN,include,,Agent architectures and security
+W7128509792,CausalArmor: Efficient Indirect Prompt Injection Guardrails via Causal Attribution,include,,Signals and monitoring
+W7129398800,Secure AI Agents for Cloud Compliance in Adversarial Environments,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7129449582,"LLM and AI Agents for Autonomous Systems: A Survey of Applications, Datasets, and Security Challenges",include,,Agent architectures and security
+W7130523463,Security and privacy in LLMs: A comprehensive survey of threats and mitigation strategies,exclude,E1 general LLM-security survey without agent focus,
+W7130581202,Retrieval-Augmented Reasoning for Offensive Security: Towards Robust LLM Agents for CTF Automation,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7131076974,"Agentic Commerce: A Comprehensive Analysis of Cybersecurity Risks, Privacy Challenges, and Trust Mechanisms in Autonomous AI-Driven Marketplaces",include,,Agent architectures and security
+W7131084535,ZT-ICAS: A Zero-Trust Integrity-Constrained Framework for Agentic Vulnerability Scanning,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7131102438,The Evolution of Agentic AI in Cybersecurity: From Single LLM Reasoners to Multi-Agent Systems and Autonomous Pipelines,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7131119404,Multi-Layered Security Framework for Financial AI Solutions - PISA,include,,Planning and information flow
+W7131122628,Secure Prompt Engineering Patterns for Cloud LLM Agents,include,,Prompt and model defenses
+W7131383823,Authenticated and Offline-Verifiable Agent-to-Agent Messaging for LLM Agents,include,,Identity and access control
+W7131385378,Interaction-Centric Cybersecurity Risks in LLM-Powered Dialogue Systems,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7131819846,Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak without a Trace,include,,Execution and disclosure
+W7133223890,A Comprehensive Security Framework for the Model Context Protocol (MCP) in Multi-Agent AI Systems,include,,Identity and access control
+W7133304823,Addressing Prompt Injection in Large Language Models via In-Context Learning,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7133539277,Learning When to Act or Refuse: Guarding Agentic Reasoning Models for Safe Multi-Step Tool Use,include,,Prompt and model defenses
+W7135235618,"Large Language Models for Cybersecurity Intelligence: A Systematic Review of Emerging Threats, Defensive Capabilities, and Security Evaluation Frameworks",exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7137342358,Self-Healing OCR Pipelines: A Modular Defense Framework against Visual and Semantic Attacks,exclude,E3 not about LLM agents,
+W7137964807,SafeSieve: From Heuristics to Experience in Progressive Pruning for LLM-based Multi-Agent Communication,exclude,"E1 multi-agent design or efficiency, security secondary",
+W7138071996,Cross-Agent Multimodal Provenance-Aware Framework for Robust Prompt Injection Defense in Large Language and Vision-Language Models,include,,Planning and information flow
+W7138080155,Trustworthy Agentic AI Pipelines: Human-in-the-Loop Oversight Architectures for Secure Enterprise Deployment,include,,Tool and execution boundaries
+W7138325744,TrustOrch: A Dynamic Trust-Aware Orchestration Framework for Adversarially Robust Multi-Agent Collaboration,include,,Collaborative defenses
+W7138934569,Beyond Prompting: AI Safety Education in the Generative AI Era,exclude,E1 no injection or multi-agent security focus,
+W7139025531,Towards Capable and Secure Autonomous Computer-Use Agents (Student Abstract),include,,Agent tasks and competitions
+W7140099432,ConVerse: Benchmarking Contextual Safety in Agent-to-Agent Conversations,include,,Multi-agent evaluation
+W7147333841,The dark side of autonomous intelligence: a survey on data leakage and privacy failures in agentic AI,include,,Agent architectures and security
+W7147395135,SecureGov-Agent: A Governance-Centric Multi-Agent Framework for Privacy-Preserving and Attack-Resilient LLM Agents,include,,Collaborative defenses
+W7148177582,A Security Analysis of the OpenClaw AI Agent Framework,include,,Execution and disclosure
+W7148283261,The New Web Attack Surface: A Taxonomy of Semantic and Agentic Threats in AI Browsers,include,,Injection and protocol taxonomies
+W7152017873,LLM-Augmented Agentic Consensus Swarms for Autonomous Edge Security,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7154106924,Cascading Instruction Influence Indirect Prompt Injection in Hierarchical Multi-Agent Systems,include,,Peer influence and composition
+W7154942896,Governed Agentic AI for Software Platforms: A Reference Architecture for Safe Autonomy at Scale,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7154971979,Secure by Design: Quantifying Architectural Resilience and the Agents Rule of two,include,,Planning and information flow
+W7154984054,Zero-Shot Robotic Control via Custom LLM Agents: A Lightweight Framework for Embodied Learning,exclude,E1 no injection or multi-agent security focus,
+W7154984535,FATS: A Prompt Injection Attack Utilizing Feign Security Agents with Deceptive Few-Shots Learning,include,,Content and interpretation
+W7154997778,Synergetic Adaptive Orchestration and Governance: A Unified Framework for Production-Grade Multi-Agent Systems,include,,Identity and access control
+W7155164204,Evaluating Privilege Usage of Agents with Real-World Tools,include,,Agent tasks and competitions
+W7160077267,CyberFluxAI: A GenAI-Powered System for Rapid and Explainable Cybersecurity Incident Response,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7160283631,Tool Use as Action: Towards Agentic Control in Mobile Core Networks,exclude,E1 no injection or multi-agent security focus,
+W7160304775,Model Context Protocol Threat Modeling and Analysis of Vulnerabilities to Prompt Injection with Tool Poisoning,include,,State and discovery
+W7160413751,Securing LLM-Integrated Chatbots: A Transformer-Based Vulnerability Scanner for Prompt Injection and Jailbreak Detection,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7160439346,Words As Weapons,exclude,"E1 not a research study (book, tutorial or proceedings)",
+W7160451143,Hold the Prompt (HODPOT): Defense Design for Securing the System Prompt of LLM Agents,include,,Prompt and model defenses
+W7161131777,Temporal Dynamics of Memory Poisoning in Web3-Style LLM Agents,include,,State and discovery
+W7161155238,GenAI Security: Secure Chatbots and Agent Systems,exclude,"E1 not a research study (book, tutorial or proceedings)",
+W7161249109,MCP-Scanner: Detecting Security Risks in Model Context Protocol Systems,include,,Signals and monitoring
+W7161757328,RAG-Induced Failures in Multi-Agent Large Language Model Debate,exclude,"E1 multi-agent design or efficiency, security secondary",
+W7162074824,Securing Agents With Tracked Capabilities,include,,Planning and information flow
+W7162096642,Detecting Prompt Injection Attacks in Generative AI Systems: A Hybrid SIEM and One-Class SVM Framework,include,,Signals and monitoring
+W7162127756,A HIPAA-Compliant Architecture for Agentic Clinical AI Systems,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7162291095,"A Trace-Based Assurance Framework for Agentic AI Orchestration: Contracts, Testing, and Governance",include,,Multi-agent evaluation
+W7162317674,Self-Evolving Multi-Agent Fuzzing for Industrial IoT with Knowledge-Driven Cognitive Reasoning,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7162329719,Trustworthy AI Agent Pipelines via Authenticated Data Structures,include,,Planning and information flow
+W7162496031,Auditable LLM Autonomy for Operational Decision-Making: Big Data Evidence and Decision Traces,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7162546737,Autonomous Security Framework for AI-Native 6G Networks: Architecture and Threat Taxonomy,exclude,E1 no injection or multi-agent security focus,
+W7162660892,"WAB: Overcoming Memory, Network, and Security Walls in Native Agentic Browsers with WebAssembly",exclude,E1 no injection or multi-agent security focus,
+W7162880612,Dissociative Identity: Language Model Agents Lack Grounding for Reputation Mechanisms,exclude,E1 no injection or multi-agent security focus,
+W7163132345,TBIVL: A Unified Identity Verification Layer for Secure Agent-to-Service Context Exchange,include,,Identity and access control
+W7163227906,Behind the Prompt: Privacy Risks in Large Language Models,exclude,E1 no injection or multi-agent security focus,
+W7163336130,Zero-trust Conceptual Architecture for Secure Integration of Large Language Models and Autonomous AI Agents,include,,Identity and access control
+W7163658397,Advancing AI negotiations: A large-scale autonomous negotiation competition,exclude,E1 no injection or multi-agent security focus,
+W7164510754,Intelligent Multi-Agent Reinforcement Sanitizer for Securing LLM Systems,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7164680231,Seven security challenges in cross-domain multi-agent LLM systems,include,,Agent architectures and security
+W7164882361,Social Engineering of AI Agents,include,,Content and interpretation
+W7164883818,Research on Security Enhancement Methods for Adversarial Robust Large Language Model Intelligent Agents for Medical Decision-Making Tasks,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7165523518,Trust-Aware Orchestration Architecture for LLM-Assisted Workflows in Multi-Tenant Enterprise Systems,include,,Tool and execution boundaries
+W7165644308,Secure-by-Design Framework for Agentic AI: Mitigating Toxic Flows and Adversarial Exploits in Multi-Agent Ecosystems,include,,Planning and information flow
+W7165651447,Indirect prompt injection in large language models,include,,Content and interpretation
+W7165680161,"Agentic AI and Large Language Models for Autonomous IoT Cybersecurity: A Systematic Survey, Taxonomy, and Research Roadmap",exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7165737547,A Multi-Agent Framework for Step-Level Tool-Call Safety Evaluation in Industrial Control Systems,include,,Signals and monitoring
+W7166580796,From Automation to Accountability: Security Architectures and Non-Human Identity Governance in Generative AI–Driven Systems Integration,exclude,E1 no injection or multi-agent security focus,
+W7166585489,Runtime Policy Enforcement for MCP-Based LLM Agents,include,,Tool and execution boundaries
+W7166687811,Lineage: A UMA2.0 Protocol Extension for Multi-Hop LLM Agent Delegation,include,,Identity and access control
+W7166689145,TRISM-C: An Operational Cybersecurity Framework for Securing Agentic AI Against Adversarial Attacks,include,,Agent architectures and security
+W7166796391,NeuralFSM: Adaptive Multi-Agent Coordination via Learning Finite-State Execution Policy,exclude,"E1 multi-agent design or efficiency, security secondary",
+W7166796419,Rethinking Assessments of Prompt Injection Attacks,include,,Prompt and model evaluation
+W7166809705,Defenses Against Prompt Attacks Learn Surface Heuristics,include,,Prompt and model evaluation
+W7166811983,Lying with Truths: Open-Channel Multi-Agent Collusion for Belief Manipulation via Generative Montage,include,,Peer influence and composition
+W7166816311,RAP-ID: Mechanistic Prompt Injection Detection via Impostor Behavior Analysis,include,,Signals and monitoring
+W7166821762,Evo-Attacker: Memory-Augmented Reinforcement Learning for Long-Horizon Tool Attacks on LLM-MAS,include,,Peer influence and composition
+W7166822548,Visual Inception: Compromising Long-term Planning in Agentic Recommenders via Multimodal Memory Poisoning,include,,State and discovery
+W7166823976,Adversarial Attacks on Large Language Model Applications: Prompt Injection and Token Drain Exploitation,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7166825360,A Multi-Agent Framework for High-Interaction Terminal Simulation,exclude,E1 no injection or multi-agent security focus,
+W7166854251,Hexa-Trust System for Reliable Agent-to-Agent Payment,include,,Identity and access control
+W7166860626,AttnTrace: Contextual Attribution of Prompt Injection and Knowledge Corruption,include,,Signals and monitoring
+W7166863805,Securing the Tool Layer: A Threat Taxonomy and Runtime Defense Framework for Model Context Protocol Deployments,include,,Tool and execution boundaries
+W7166869271,VIGIL: Defending LLM Agents Against Tool-Stream Injection via Verify-Before-Commit,include,,Tool and execution boundaries
+W7166870238,Measuring Large Language Models’ Adversarial Behavior in Social Deduction Games,exclude,E1 no injection or multi-agent security focus,
+W7166887183,MCP-Guard: A Multi-Stage Defense-in-Depth Framework for Securing Model Context Protocol in Agentic AI,include,,Signals and monitoring
+W7166888501,Hijacking Large Audio-Language Models via Context-Agnostic and Imperceptible Auditory Prompt Injection,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7166890393,Site Isolation is Dead: How Site Isolation is Broken in Agentic Browsers and Extensions,include,,Execution and disclosure
+W7167011968,End-to-end security threats and defenses in retrieval-augmented LLM agents,include,,Agent architectures and security
+W7167045510,Enforcing Data Security Posture Management In AI Agents Through Policy-Aware APIS,include,,Identity and access control
+W7167214290,From taxonomy to stability: a CISO-ready engineer-deep architecture and best-practice blueprint for bounded autonomy in agentic cyber defense (AI vs AI),exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7167223787,"Controlled Benchmarking of Memory Topologies in LLM-Based Multi-Agent Systems: Quality, Efficiency, and Privacy Trade-Offs",exclude,"E1 multi-agent design or efficiency, security secondary",
+W7167234665,A Comprehensive Framework for Secure Multi-Agent Retrieval-Augmented Generation Systems,include,,Collaborative defenses
+W7167608774,Forensic LLM-Trace: Interpretable Multi-Agent AI Forensic Architecture for Prompt Injection Investigation,include,,Signals and monitoring
+W7167623431,Safe and Scalable Collaboration in Multiagent LLM Systems: A Comprehensive Review,include,,Agent architectures and security
+W7167626380,Agent Card Poisoning: Measuring Discovery-Layer Injection Attacks and Defenses in A2A Systems,include,,State and discovery
+W7167941468,Collaborative Cyberattack Mitigation Framework for Energy Grids,exclude,E3 not about LLM agents,
+W7168048551,Exploiting large language models in peer review: indirect prompt injection attacks and integrity probes,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7168979475,ArgRE: Formal Argumentation for Conflict Resolution in Multi-Agent Requirements Negotiation,exclude,E1 no injection or multi-agent security focus,
+W7169562842,Understanding the Evolving Threat Landscape of Generative and Agentic Artificial Intelligence,include,,Agent architectures and security
+W7169656646,OPENCLAW-SRT: Resource-Aware Autonomous Agent Architecture for Smart City Edge Computing,exclude,E1 no injection or multi-agent security focus,
+W7169882139,A Concise Review of Security Challenges and Protection for LLM-based Agents in Telecom Information Systems,include,,Agent architectures and security
+W7170059565,A Privacy-Preserving On-Device Multi-Agent Architecture for AI PC (POMA) Workflow Automation,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7171389567,Governed Agentic Process Automation: A Floor-Safety Guarantee for Compliance-Critical LLM Routing,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7171444171,Library Transformation in the Age of AI Agents: Service Reconfiguration and Governance Framework Based on the OpenClaw Architecture,exclude,E1 no injection or multi-agent security focus,
+W7171598326,Agentic AI in Cybersecurity:Threat Modeling and Containment Strategies for Autonomous LLM Agents,include,,Agent architectures and security
+W7171634392,The Reproduction Number of AI Worms: Epidemic Modeling of Adversarial Attacks in LLM Agent Ecosystems,include,,Topology and propagation
+W7171737318,"LLM-Based Autonomous Agents for Phishing Detection, Triage, and Response: A Reference Architecture for Agentic Cyber Defense",exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7171947221,"Prompt Injection as a Systemic Vulnerability in LLM-Based Tools: Threat Models, Empirical Analysis, and Mitigation Strategies",include,,Content and interpretation
+W7172519303,"Retrieval‐Augmented Generation for Large Language Models: Evolution, Architectures, Applications, and Challenges (2020–2025)",exclude,E1 no injection or multi-agent security focus,
+W7196942717,Study on Cybersecurity for LLM Systems,exclude,E1 no injection or multi-agent security focus,
+W7196949898,The 2nd SeT-LLM Workshop on Secure and Trustworthy Large Language Models,exclude,"E1 not a research study (book, tutorial or proceedings)",
+W7202100386,Design of a Security Framework for Multi-Agent Systems Based on Model Context Protocol in SOC Environments,include,,Tool and execution boundaries
+W7202128346,"Ai SecureDataGuard: A Big Data Security, Privacy-Preserving and Visualization System for LLM-Powered Smart Homes",include,,Signals and monitoring
+W7202191566,Designing AI Agents for Personal Assistance: Human Perceptions and Design Considerations,exclude,E1 no injection or multi-agent security focus,
+W7202261021,An Expert-Guided Architecture for Modular and Multi-Client Multi-Agent Systems,exclude,"E1 multi-agent design or efficiency, security secondary",
+W7202339688,Security and Assurance Evaluation of RAG-Based AI Assistants in Learning Management Systems: A Pilot Study on Prompt Injection and Data Leakage,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7202346481,When AI Agents Fail in Production: Security Lessons for Builders,include,,Shared and deployed workflows
+W7202352900,Poster: From Assistants to Actors: Deconstructing the Security Implications of Autonomous AI Agents,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7203451230,Execution-Aware Stage-Wise Evaluation Framework for Indirect Prompt Injection in LLM-Based Email Agents,include,,Agent tasks and competitions
+W7203631629,Agentic AI Security in IoMT: A PRISMA-Guided Scoping Review and Layered Threat–Defense Taxonomy,include,,Agent architectures and security
+W7203634677,Prompt Injection Through Operational Data Feeds: A Structural Governance Gap in OT-Connected Agentic AI Systems,include,,Content and interpretation
+W7203640990,DT-GenShield: A Digital Twin-Driven Runtime Security Architecture for Protecting Large Language Models Against Indirect Prompt Injection,include,,Tool and execution boundaries
+W7203643925,Prompt Injection as the New SQL Injection: The Emergence of Attacks on AI Reasoning,include,,Content and interpretation
+W7203676571,A Methodology for Automatic Test Case Generation in Intelligent Connected Vehicle Cybersecurity Testing Based on Large Language Models,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7203840374,A Formal Framework of Architectural Intent Collapse for Tool-Level Attacks on LLM Agents,include,,State and discovery
+W7204083775,When Cost Objectives Delete Capability: Accuracy-Constrained Tool Selection for Multi-Component Intrusion Detection in IoT Networks,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7204100722,Evaluating Prompt Injection Risk and Guardrails in LLM-Enabled Home IoT Assistants,include,,Agent tasks and competitions
+W7204101619,"A Survey of Fuzzing Techniques for Large Language Model Agents: Challenges, Methods, and Future Directions",include,,Agent architectures and security
+W7204135852,Whispers of Wealth: A Systematic Red-Teaming Study of the Agent Payments Protocol (AP2),include,,Execution and disclosure
+W7204174148,"Data security in large language models: risks, defense, and directions",exclude,E1 no injection or multi-agent security focus,
+W7204187668,IBBC-Guard: Intent-Bound Behavior-Chain Modeling for Unauthorized Tool-Call Detection and Dynamic Permission Control in LLM Agents,include,,Identity and access control
+W7204233849,Evil-AI Benchmark: An Evaluation Framework for Adversarial Security Assessment of LLM Agents in Smart Environments,include,,Agent tasks and competitions
+W7204266532,Securing Autonomous Clinical Agents: Time-Scoped Hypergraph Delegation for Controlling Patient Data Access,include,,Identity and access control
+W7204470097,"Prompt Firewalls for Securing Large Language Model Systems: Threats, Architectures, and Design Trade-offs",include,,Signals and monitoring
+W7204721856,CyberAgent: An Agentic AI Framework for Autonomous Security Operations with Reduced Operational Cost,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7204839629,AgentCardLeak: Inferring User Intent from AI-Agent Discovery Metadata,include,,State and discovery
+W7204931828,"Evaluating Indirect Prompt Injection Defenses in Tool-Using LLM Agents: Security, Utility, and Replication",include,,Agent tasks and competitions
+W7204970599,CapAgent: Semantic Data-Flow Governance for LLM Agents in Big-Data Cognitive Computing,include,,Planning and information flow
+W7208721857,"A Review of Large Language Models for Cybersecurity Defense: Core Capabilities, Application Practices, and Challenges",exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7210278635,"A Scoping Review of Agentic AI: Applications, Emerging Trends, Risks & Future Directions",exclude,E1 no injection or multi-agent security focus,
+W7211871587,SwarmGov-ZT: Zero-Trust Runtime Governance for Trust-Aware Multi-Agent Cybersecurity Response,include,,Collaborative defenses
+W7211872207,Mitigating Semantic Confusion in LLM-Integrated Web Services via Dynamic Dual-Stream Intent Matching,include,,Signals and monitoring
+W7212012457,Authority Is Not a String: A Capability-Scoped Harness for Prompt-Injection-Resistant Coding Agents,include,,Tool and execution boundaries
+W7212039816,"LLM-Based Agents for Cybersecurity: A Systematic Review of Architectures, Applications, and Open Challenges",exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7212256109,Predictive Behavioral Risk Detection for Agentic AI via Runtime Execution Monitoring,include,,Signals and monitoring
+W7212289344,Gateway-Centered Predictive and Preventive Security Framework for Agentic AI Systems,include,,Tool and execution boundaries
+W7212354795,Data poisoning in LLM multiagent societies: Social proof drives collective decision failure in financial deliberation,include,,Peer influence and composition
+W7213232531,Prompt Injection in Clinical Artificial Intelligence Systems: The Emerging Security Challenge of Large Language Models and Agentic AI,include,,Content and interpretation
+W7213430735,Verifiable AI Reviewers: Decentralized Skill Matching and Soulbound Reputation for Multi-Agent Peer Review,exclude,E1 no injection or multi-agent security focus,
+W7213510932,Securing Autonomous Large Language Model Agents: Lessons From OpenClaw,include,,Execution and disclosure
+W7213524268,Cloud Security Risks and Defense Architecture for Agentic AI Systems in Enterprise Environments,include,,Agent architectures and security
+W7213533298,Semantic Consistency Drift Monitoring for Training-Free Adversarial Prompt Injection Detection in Agentic LLM Pipelines,include,,Signals and monitoring
+W7213538467,Agentic Security Validation Framework for Retrieval-Augmented and Tool-Enabled Large Language Model Systems,include,,Agent tasks and competitions
+W7213560873,From obligation to enforcement: mapping EU AI act and CRA cybersecurity requirements to technical controls for LLM-based autonomous agents,include,,Agent architectures and security
+W7213867979,A Trusted Provenance and TEE-Based Reference Architecture for Intent-Execution Binding in LLM Agents,include,,Planning and information flow
+W7213870650,SecurePrompt-IntegrityNet: Prompt-Injection-Resilient Data Integrity Verification for Agentic LLM Networks via Cryptographic Attestation and Activation Monitoring,include,,Identity and access control
+W7213905672,Trust inversion and its exploitation: A threat model of the Model Context Protocol for agentic AI,include,,State and discovery
+W7214070470,Securing Customer Data and Tool-Using AI Agents in Retail Banking,include,,Shared and deployed workflows
+W7214163113,MASK: Multi-Agent Collaboration for Optimizing Adversarial Attacks on Multi-Agent Systems,include,,Peer influence and composition
+W7214177255,AAIGF-E: An AI and Agentic Intelligence Governance Framework for Electric-Sector Smart-City Infrastructure,exclude,E1 no injection or multi-agent security focus,
+W7214757364,Certified Multi-Source Integrity for Structured Agent Actions,include,,Planning and information flow
+W7214783551,Trustworthy Generative AI for Enterprise Automation: A Secure Agentic Framework for Large-Scale Cloud Platforms,include,,Tool and execution boundaries
+W7215688200,Multi-Agent Architecture for Decision Support Systems in Agricultural Data Analysis,exclude,E1 no injection or multi-agent security focus,
+W7220671186,Experimental Analysis of Adversarial Attacks on Agentic AI Systems with Layered Defense Mechanisms,include,,Agent tasks and competitions
+W7220705644,PhishRoute: Cost-Aware Multi-Agent Gating for Phishing Email Detection,exclude,"E1 LLM agents applied to security tasks, not security of agents",
+W7220708805,A Unified Mathematical Framework for Secure Multi-Agent Large Language Model Pipelines,include,,Identity and access control
+W7220830728,Pre-Decision Personality Grounding Improves the Robustness of LLM NPCs Against Adversarial Prompts,exclude,E1c prompt injection outside agentic or tool-using systems,
+W7220951161,Systemic privacy risks of personal data exposure through conversational large language model agents,exclude,"E1b single-agent safety, privacy or governance without injection",
+W7221332552,STAFT: Privacy-preserving semantic trace abstraction for forensic triage of personal AI agent incidents,include,,Signals and monitoring
+W7221801145,Toward Trustworthy Edge AI Agents: Automated Threat Modeling as a First-Class Design Requirement: Special Session Paper,include,,Agent architectures and security
+W7222905997,Ethics and Governance in the Age of Generative Artificial Intelligence: A Lifecycle Engineering Perspective,exclude,E1 no injection or multi-agent security focus,
+W7223211470,Anomaly Propagation Tracing in LLM-Based Multiagent Systems via Local Evidence Hypergraph Backtracking,include,,Signals and monitoring
+W7223552820,"Large language models and artificial intelligence agents in healthcare: clinical applications, infrastructure, and responsible deployment—a narrative review",exclude,E1 no injection or multi-agent security focus,
+W7223685880,A2A—A Mechanism Driven Framework for Interaction Based Agent Evaluation,exclude,E1 no injection or multi-agent security focus,
+W7224125655,Cybersecurity Detection Strategies for the Digital-Intelligent Business Sand Simulation During the AI Generative Process,exclude,E1 no injection or multi-agent security focus,
+W7225241626,DISARM: Taint-gated counterfactual auditing for efficient defense against indirect prompt injection,include,,Planning and information flow
+W7225244516,IPIGuard++: Effect Authorization and Witness-Carrying Argument Checks for Tool-Using Agents,include,,Planning and information flow
+W7236064284,"Agentic workflows in large language models: a comprehensive review of architectures, planning strategies, and real-world applications",exclude,E1 no injection or multi-agent security focus,

@@ -10,7 +10,7 @@ INERT is a toolchain that protects teams of LLM agents against **prompt injectio
 4. **generates attack tests** from the same model, covering every place an injection could enter, and
 5. **audits** every run from a tamper-evident log, without re-running any LLM.
 
-A plain-language summary of the project, the experiments and the results is in [docs/summary.md](docs/summary.md).
+The design is grounded in a **taxonomy of seven injection channels** built from 543 studies (Section 9.3). A plain-language summary of the project, the experiments and the results is in [docs/summary.md](docs/summary.md).
 
 ---
 
@@ -407,7 +407,9 @@ This runs, in order:
 | --- | --- |
 | `analysis/make_assets.py` | LaTeX tables, figures (PDF) and `paper/numbers.json` |
 | `analysis/residual.py` | residual-risk categories and a 100-case coding sheet `paper/residual_coding.csv` |
-| `analysis/fill_paper.py` | tables and data-driven prose injected into the manuscript |
+| `analysis/make_figures.py` | statistical figures: split violins, propagation curves, ablation heatmap, discovery curves, cost violins, adaptive-attack curves and McNemar forest plot |
+| `analysis/taxonomy_pipeline.sh` | the taxonomy, corpus tree, channel tree and collection counts (Section 9.3) |
+| `analysis/fill_paper.py` | tables, count macros and data-driven prose injected into the manuscript |
 | LaTeX build | the manuscript PDF |
 
 Statistics are fixed in [analysis/preregistration.md](analysis/preregistration.md). They are paired McNemar tests with bootstrap odds-ratio intervals, Wilcoxon signed-rank tests with Cliff's δ, a logistic mixed-effects model, Holm correction and Wilson intervals. Rows duplicated by resumed shards are removed by (case, model). After two raters fill the coding sheet, `python analysis/residual.py --kappa paper/residual_coding.csv` computes Cohen's κ.
@@ -421,7 +423,42 @@ Statistics are fixed in [analysis/preregistration.md](analysis/preregistration.m
 
 The experiments were run at temperature 0 with one seed per cell. Nondeterminism was quantified separately by the seed study. Observed throughput was 0.25–0.45 cases per second per GPU for 7–9B models (roughly 1 GPU-hour per 1,000 cases) and 0.05–0.09 cases per second per job for 70B-class models (roughly 3–6 job-hours per 1,000 cases).
 
-### 9.3 Provenance and deviations
+### 9.3 Reproducing the taxonomy
+
+Section 3 of the manuscript derives the seven injection channels from a corpus of 543 studies. The corpus was collected in three routes, each fully scripted:
+
+| Route | Studies | How |
+| --- | --- | --- |
+| First database search | 127 | two queries (Q1 prompt injection in multi-agent systems, Q2 taxonomy of injection channels), deduplicated and screened against inclusion and exclusion criteria |
+| Snowballing | 300 | backward and forward snowballing of the 127 seeds over OpenAlex and Scopus, automatic title-and-abstract screening, a link threshold of 5 seeds, then a manual check |
+| Scopus search | 116 | Q1 and Q2 in Scopus Boolean syntax; records the other routes missed, screened manually |
+
+Every study is assigned to one of 18 leaves of a codebook (3 categories, 6 subcategories).
+
+```bash
+bash analysis/taxonomy_pipeline.sh                                  # offline, from the cached API responses
+ELSEVIER_API_KEY=... bash analysis/taxonomy_pipeline.sh --fetch     # also query OpenAlex and Scopus for anything not cached
+```
+
+API keys (`ELSEVIER_API_KEY`, optionally `OPENALEX_API_KEY`) are read from the environment only and never written to disk. Every raw API response is cached in `docs/paper/EMSE/relevant-work/snowball/cache/`, so the pipeline reruns offline and gives identical counts.
+
+| Script | Role |
+| --- | --- |
+| `analysis/snowball.py` | seed resolution, backward and forward snowballing, Scopus search, screening, link threshold |
+| `analysis/corpus_tree.py` | corpus tree figure, `corpus_classification.csv` and the count macros of the manuscript |
+| `analysis/channel_tree.py` | channel-tree figure (attack forms per channel) |
+| `analysis/taxonomy_audit.py` | audit trail and consistency checks; exits non-zero if a manuscript table disagrees with its CSV |
+
+The audit trail in [docs/paper/EMSE/relevant-work/audit/](docs/paper/EMSE/relevant-work/audit/) has one CSV per step. Its README explains each file:
+
+- search records, deduplication and screening,
+- leaf codebook and classification,
+- channel tree, evidence, requirements, gap matrix and gaps,
+- seed resolution, snowball candidates, snowball screening and snowball classification.
+
+Manual screening and classification decisions are kept as a coding spec in `snowball/manual_screening.csv`. They were made with LLM assistance and reviewed by the author.
+
+### 9.4 Provenance and deviations
 
 Every record carries the code version, the model digest, the decoding configuration, the seed, the host and the job ID. All decisions taken during the study are documented in [docs/open-questions.md](docs/open-questions.md), including cluster changes, failed jobs and how they were resolved, and bug fixes followed by re-runs.
 
@@ -441,9 +478,10 @@ adapters/tamas       TAMAS adapter (upstream data vendored read-only at a pinned
 adapters/*           notes on re-implemented attack styles (MAS hijacking, Prompt Infection, AiTM)
 models/              example model, 51 zoo models (YAML), LLM registry
 hpc/                 SSH session script, fleet controller, SLURM template, manifests, Apptainer def
-analysis/            statistics, tables, figures, residual analysis, one-command pipeline
+analysis/            statistics, tables, figures, residual analysis, taxonomy pipeline, one-command pipeline
 results/             result records (git-ignored; final records archived read-only)
 docs/                plain-language summary, open questions, baselines, benchmarks, vendored code
+docs/paper/EMSE/     manuscript (Springer Nature LaTeX), review notes, taxonomy corpus, audit trail and API cache
 tests/               unit, property-based (Hypothesis) and integration tests
 ```
 

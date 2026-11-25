@@ -1,0 +1,33 @@
+{
+ "Q1": 72,
+ "Q2": 71,
+ "records": 143,
+ "duplicates": 6,
+ "unique": 137,
+ "by_source": {
+  "arXiv": 106,
+  "Semantic Scholar": 5,
+  "IEEE Xplore": 14,
+  "publisher DOI": 5,
+  "ACM DL": 7
+ },
+ "excluded": [
+  "Chowdhury2024BreakingDTBQ",
+  "Cui2024RecentAIBO",
+  "Das2024SecurityAPBP",
+  "Ferrag2024GenerativeAIBM",
+  "Li2025SecurityCFBN",
+  "Liu2024ExploringVABS",
+  "Peng2024JailbreakingAMAY",
+  "Peng2024SecuringLLBR",
+  "S2025ModernDLAC",
+  "Xu2025ASOAT"
+ ],
+ "included": 127,
+ "untraced": [],
+ "by_category": {
+  "Threats and propagation": 37,
+  "Security defenses": 41,
+  "Evaluation and foundations": 49
+ }
+}

@@ -44,8 +44,9 @@ def residual_sentence(n: dict[str, Any]) -> str:
              "declass": "passed through a declassifier", "plausible": "called a target tool that agents also call on "
              "benign runs of the same task", "other": "fit none of these categories"}
     parts = [f"{v} ({100 * v / total:.0f}\\%) {names.get(k, k)}" for k, v in sorted(r.items(), key=lambda kv: -kv[1])]
-    return ("A rule-based categorization of all " + str(total) + " successful attacks against I2, derived from the "
-            "run records, shows where the residual risk lies: " + ", ".join(parts) + ".\n\n")
+    return ("A rule-based categorization of all " + str(total) + " successful attacks against I2, all of which "
+            "occurred on TAMAS and were derived from the run records, shows where the residual risk lies: "
+            + ", ".join(parts) + ".\n\n")
 
 
 def glmm_sentence(n: dict[str, Any]) -> str:
@@ -55,11 +56,53 @@ def glmm_sentence(n: dict[str, Any]) -> str:
     co = {k.split("T.")[-1].rstrip("]"): v for k, v in g.items() if k.startswith("C(defense)")}
     shown = [f"{d} {f(v['mean'])} ({f(v['sd'])})" for d, v in sorted(co.items()) if v["sd"] < 0.3]
     sep = [d for d, v in co.items() if v["sd"] >= 0.3]
-    return (" The logistic mixed-effects model with defense and model as fixed effects and task as a random "
-            "intercept gives log-odds of attack success relative to B0 (posterior mean and standard deviation) of "
-            + ", ".join(shown) + "." + (f" The coefficients of {' and '.join(sorted(sep))} are not identifiable because "
-            "these conditions have no successful attack (complete separation), so we rely on the paired tests for them."
-            if sep else ""))
+    return (" The pre-registered logistic mixed model gives log-odds of attack success relative to B0 "
+            "(posterior mean and standard deviation) of "
+            + ", ".join(shown) + (f", while {' and '.join(sorted(sep))} are not identifiable (no successful attack)."
+                                    if sep else "."))
+
+
+def i2_reject_sentence(n: dict[str, Any]) -> str:
+    f2 = n.get("first_reject_I2") or {}
+    a1 = f2.get("A1") or {}
+    if not a1:
+        return ""
+    none = 100 * a1.get("none", 0) / max(1, sum(a1.values()))
+    return (f"The first rejecting check (Figure~\\ref{{fig:ablation}}b) confirms the mapping. Under I2, "
+            f"{none:.0f}\\% of the A1 tests cause no rejection at "
+            "all: selection withheld the tainted read, so the executor never proposed an injected value, and the "
+            "attack failed without any check having to fire.")
+
+
+def tests_sentence(n: dict[str, Any]) -> str:
+    t = {k: v for k, v in (n.get("tests") or {}).items() if "or" in v and not k.startswith("util_")}
+    if not t:
+        return ""
+    worst = max(v.get("p_holm", v["p"]) for v in t.values())
+    m, e = f"{worst:.0e}".split("e")
+    return (f" Figure~\\ref{{fig:adaptive}}b, shown with the RQ5 results, gives the paired comparisons as exact "
+            f"McNemar odds ratios with bootstrap intervals. All {len(t)} comparisons against B0 and B4 are significant after Holm correction "
+            f"(largest adjusted $p < 10^{{{int(e) + 1}}}$).")
+
+
+def tamper_sentence(n: dict[str, Any]) -> str:
+    t = n.get("rq1_tamper") or {}
+    if not t:
+        return ""
+    hi = max(t, key=lambda k: t[k]["asr"])
+    return (f"Message tampering (A3) succeeds under B0 in {p(t.get('chain', {}).get('asr'))} of the tests on chains, "
+            f"against {p(t[hi]['asr'])} on {hi} topologies, so chains do not amplify tampering. ")
+
+
+def i1a2_clause(n: dict[str, Any]) -> str:
+    c = n.get("i1_a2_success_by_criterion") or {}
+    tot = sum(c.values())
+    if not tot:
+        return "no such attack reached its goal"
+    k = max(c, key=lambda x: c[x])
+    return (f"{c[k]} of these {tot} successes are {k} tests in which the compromised agent writes the payload into "
+            "its own slot, from where it travels semantically to the executor. Its attempts to answer another "
+            "agent's request are all rejected")
 
 
 def dpi_whole_cmp(tam: dict[str, Any]) -> str:
@@ -95,7 +138,7 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         f"{p(i2['u_ben'])} of benign tasks against that baseline's {p(b3['u_ben'])}. An adaptive attacker did not "
         f"succeed against INERT. On TAMAS, INERT reduced indirect injection from {p(tam.get('B0', {}).get('IPI'))} to "
         f"{p(tam.get('I2', {}).get('IPI'))} but did not stop agents that misuse tools they legitimately own. "
-        f"Attack suites generated from the model violated "
+        f"%Attack suites generated from the model violated "
         f"{rq3.get('B0:generated', {}).get('unique', 0)} distinct model elements of the undefended systems, against "
         f"{rq3.get('B0:bench', {}).get('unique', 0)} for benchmark-style attacks.")
     out["intro_findings"] = (
@@ -103,10 +146,9 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         f"INERT reduced the attack success rate on the topology zoo from {p(b0['asr'])} to {p(i2['asr'])} and kept "
         f"{p(i2['u_ben'])} benign utility, more than the undefended system ({p(b0['u_ben'])}). The strongest baseline, "
         f"a CaMeL-style planner, also blocked every attack but completed only {p(b3['u_ben'])} of benign tasks. "
-        "Ablations show that each INERT mechanism closes a distinct channel, and that the taint policy is the only "
-        "defense against semantic propagation. Attack suites generated from the model found more successful attacks "
-        "per unit of cost than benchmark-style suites. On TAMAS, INERT did not stop agents that misuse tools the model "
-        "allows them to use, which we report as residual risk together with a post-hoc mitigation.")
+        "Each mechanism closed the channel the taxonomy assigns to it, generated suites found more successful attacks "
+        "per unit of cost than benchmark-style suites, and on TAMAS agents that misuse tools the model allows them "
+        "remain a residual risk.")
     out["results_overview"] = (
         f"Table~\\ref{{tab:main}} summarizes the topology zoo: {num(nb_att)} attacked runs and the benign runs of all "
         f"seven conditions over all models"
@@ -116,8 +158,9 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         f"{p(b3['u_ben'])}, because B3's planner never sees the material it must act on and its capability policy "
         f"denies side effects whose arguments derive from it. The message-level defenses reduce but do not prevent "
         f"attacks: the detector B1 reaches {p(b1['asr'])}, the permitted graph B4 {p(b4['asr'])}. "
-        f"Figure~\\ref{{fig:tradeoff}} places every condition in the security--utility plane and "
-        f"Table~\\ref{{tab:llm}} breaks the main conditions down by model." + glmm_sentence(n))
+        f"Figure~\\ref{{fig:tradeoff}}a places every condition and every model in the security--utility plane, and "
+        f"Figure~\\ref{{fig:tradeoff}}b shows the distribution of both rates over the 306 combinations of workflow "
+        f"and model." + glmm_sentence(n) + tests_sentence(n))
     # ---------------------------------------------------------------- RQ1
     rq1 = n.get("rq1", {})
     if rq1:
@@ -135,17 +178,22 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         best = min(rq1.items(), key=lambda kv: kv[1]["asr"])
         deep = max(rq1.items(), key=lambda kv: kv[1]["depth"])
         out["rq1_text"] = (
-            "Without a controller, an injection rarely stays with the agent that reads it. Table~\\ref{tab:rq1} reports "
-            "B0 by topology and size. The number of infected agents grows with the number of agents in "
+            "Without a controller, an injection rarely stays with the agent that reads it. Figure~\\ref{fig:propagation}a--c "
+            "reports B0 by topology and size, with bootstrap 95\\% bands. The number of infected agents grows with the number of agents in "
             f"{grows} of {len(by_t)} topologies ({inf}). The blast radius, the share of all agent outputs that carry "
             f"attacker content, falls with size in {shrinks} of {len(by_t)} topologies, because added agents dilute "
             "the transcript rather than escape it. The longest infected chains occur in "
             f"{deep[0]} (mean depth {f(deep[1]['depth'])}). Attack success is highest for {worst[0]} "
             f"({p(worst[1]['asr'])}) and lowest for {best[0]} ({p(best[1]['asr'])}). The planner--coder--reviewer workflow "
             "propagates least because only the coder writes the artifact that reaches the executor.\n\n"
+            + tamper_sentence(n) +
+            "Figure~\\ref{fig:propagation}d separates exposure from effect. Under I1 and I2 about as many agents "
+            "carry attacker content as under the message-level defenses, yet the attacks rarely or never reach an "
+            "effect: the injected text is still read and repeated, but it stays in data fields.\n\n"
             "\\textbf{Answer to RQ1.} Injections propagate to several agents in every topology, and the absolute "
             "number of infected agents grows with team size. Hypothesis H1 holds for the count of infected agents "
-            "but not for the share of outputs, which decreases with size.")
+            "but not for the share of outputs, which decreases with size, and its second clause, that chains "
+            "amplify tampering, is not supported.")
     # ---------------------------------------------------------------- RQ2
     rq2 = n.get("rq2", {})
     if rq2:
@@ -160,26 +208,28 @@ def render(n: dict[str, Any]) -> dict[str, str]:
             k = max(v, key=lambda x: v[x])
             return f"\\textsc{{{k.title().replace('_', '')}}} ({100 * v[k] / sum(v.values()):.0f}\\%)"
         out["rq2_text"] = (
-            "Table~\\ref{tab:rq2} reports the ablation suite, in which every INERT condition faces the same generated "
-            f"tests. I2 blocks every attacker model (A1 {g('I2', 'A1')}, A2 {g('I2', 'A2')}, A3 {g('I2', 'A3')}, A4 "
-            f"{g('I2', 'A4')}, A5 {g('I2', 'A5')}). Each ablation reopens precisely the channel that the taxonomy of "
+            f"Figure~\\ref{{fig:ablation}} reports the ablation suite ({num(n.get('ablation_design', {}).get('runs', 0))} "
+            f"runs on {n.get('ablation_design', {}).get('workflows', 0)} workflows with the "
+            f"{word(n.get('ablation_design', {}).get('llms', 0))} full-grid models), in which every INERT condition "
+            f"faces the same generated tests. I2 blocks every attacker model (the highest attack success over A1 to A5 is {p(max(rq2.get('I2', {}).values() or [float('nan')]))}). Each ablation reopens precisely the channel that the taxonomy of "
             f"Section~\\ref{{sec:taxonomy}} assigns to it. Without tokens, compromised agents ({g('I2-tokens', 'A2')}) "
             f"and message tampering ({g('I2-tokens', 'A3')}) succeed, because forged and altered proposals are accepted. "
             f"Without key matching, replayed proposals succeed ({g('I2-key', 'A5')} of A5 tests). Without validators, "
             f"colluding agents reach {g('I2-validator', 'A4')} and a compromised executor agent {g('I2-validator', 'A2')}. "
             f"Without any taint (I1), indirect injection succeeds in {g('I1', 'A1')} of the tests, which is the semantic "
-            "propagation that structural mechanisms cannot see. Removing only one of the two taint checks keeps the "
+            "propagation that structural mechanisms cannot see. A compromised agent also succeeds in "
+            f"{g('I1', 'A2')} of the tests under I1, but " + i1a2_clause(n) + ". Removing only one of the two taint checks keeps the "
             "attack success rate at zero, because selection and acceptance back each other up. They are not "
             "interchangeable, however. Without selection the executor agent sees tainted context, its proposals are "
             "rejected at acceptance, and the task fails: utility under attack is "
             f"{p(n.get('rq2_util_attack', {}).get('I2-tsel'))} without selection against "
             f"{p(n.get('rq2_util_attack', {}).get('I2'))} for I2. Acceptance alone is the safety net if selection is "
             "misconfigured.\n\n"
-            f"The first rejecting mechanism confirms the mapping: for A1 it is mostly {top('A1')}, for A2 {top('A2')}, "
-            f"for A3 {top('A3')}, for A4 {top('A4')} and for A5 {top('A5')}.\n\n"
+            + i2_reject_sentence(n) + "\n\n"
             "\\textbf{Answer to RQ2.} Tokens stop authorship attacks, key matching stops replay, validators bound the "
             "authority of compromised agents, and the taint policy is the only mechanism that stops semantic "
-            "propagation into executor fields. H2 is supported.")
+            "propagation into executor fields. H2 is supported, with one qualification: under I1 a compromised agent "
+            "still wins through the semantic channel of its own output, which only the taint policy closes.")
     # ---------------------------------------------------------------- RQ3
     if rq3:
         parts = []
@@ -191,13 +241,17 @@ def render(n: dict[str, Any]) -> dict[str, str]:
                     f"LLM calls against {f(bq['per_kcall'], 1)} for the benchmark-style suites, and violated "
                     f"{gq['unique']} distinct obligations against {bq['unique']}")
         crit = n.get("rq3_by_criterion", {}).get("B0", {})
-        cr = ", ".join(f"{k} {p(v)}" for k, v in sorted(crit.items(), key=lambda kv: -kv[1]))
+        top_c = max(crit, key=lambda k: crit[k]) if crit else "n/a"
         out["rq3_text"] = (
-            "The benchmark-style suites inject one payload into the primary untrusted resource, as AgentDojo and "
+            "Table~\\ref{tab:rq3} compares the suites. The benchmark-style suites inject one payload into the primary untrusted resource, as AgentDojo and "
             "InjecAgent do. The generated suites cover the six criteria of Section~\\ref{sec:generation} and were "
-            "sampled to at most 15 tests per workflow and task. " + ". ".join(parts) + ". "
-            f"Per criterion, the attack success rate against B0 is {cr}. The criteria that benchmarks do not cover, "
-            "such as compromised and colluding agents, tampering and replay, are among the most effective. Neither "
+            "sampled to at most 15 tests per workflow and task. Figure~\\ref{fig:discovery}a--b plots how many distinct "
+            "obligations each suite violates as the target spends LLM calls, averaged over 200 random orderings of "
+            "the tests, and Figure~\\ref{fig:discovery}c gives the attack success per criterion. "
+            + ". ".join(parts) + ". "
+            f"Against B0 the most effective criterion is {top_c} ({p(crit.get(top_c))}), and the criteria that "
+            "benchmarks do not cover, compromised and colluding agents and tampering in transit, are among the most "
+            "effective, while benchmark-style injection ranks in the middle. Neither "
             "suite found a successful attack against I2, so the generated tests also act as a regression suite for "
             "the defense.\n\n"
             "\\textbf{Answer to RQ3.} At equal cost, model-coverage suites find more successful attacks and reach "
@@ -205,7 +259,8 @@ def render(n: dict[str, Any]) -> dict[str, str]:
     # ---------------------------------------------------------------- RQ4
     lat, tok, ut = t.get("lat_I2_vs_B0", {}), t.get("tok_I2_vs_B0", {}), t.get("util_I2_vs_B0", {})
     out["rq4_text"] = (
-        f"Table~\\ref{{tab:rq4}} reports benign tasks. I2 completes {p(i2['u_ben'])} of them, which is more than B0 "
+        f"Table~\\ref{{tab:main}} reports benign utility, false rejections and LLM calls, and "
+        f"Figure~\\ref{{fig:cost}} the distributions of tokens and latency. I2 completes {p(i2['u_ben'])} of them, which is more than B0 "
         f"({p(b0['u_ben'])}). The paired comparison gives an odds ratio of {f(ut.get('or'))} for I2 succeeding where "
         f"B0 fails versus the opposite (Holm-adjusted $p$ {'$<0.001$' if (ut.get('p_holm', 1) or 1) < 0.001 else '= ' + f(ut.get('p_holm'), 3)}). "
         "Typed slots with one question each appear to help models of this size more than a free-form group chat "
@@ -220,10 +275,13 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         "attacks against which INERT deliberately fails closed. A tampered proposal or a tool whose metadata "
         "changed is refused rather than used, which turns an integrity attack into an availability loss.\n\n"
         "\\textbf{Answer to RQ4.} INERT's utility cost is negative relative to the undefended system on our tasks, "
-        "much lower than B3's, and its false-rejection rate is the lowest of all defenses. H4 is supported.")
+        "much lower than B3's, and its false-rejection rate is the lowest of all defenses. H4 predicted a loss "
+        "comparable to B3's, so the outcome is more favourable than hypothesized, and its second part (false "
+        "rejections below B1's flag rate) holds.")
     # ---------------------------------------------------------------- RQ5
     if rq5:
         out["rq5_text"] = (
+            "Figure~\\ref{fig:adaptive}a shows cumulative success as a function of the attempt budget. "
             "The adaptive attacker had ten attempts per case, the model description, the policy text and, after each "
             "attempt, the tools that were called and, for INERT, the controller's rejection reasons. " + " ".join(
                 f"Against {d} it succeeded in {p(v['asr'])} of {v['n']} cases"
@@ -245,22 +303,18 @@ def render(n: dict[str, Any]) -> dict[str, str]:
             f"{g2('I2', 'IPI')} under I2. For direct injection, the outcome depends on what the system knows about "
             f"provenance. When the whole query counts as the user's request (DPI-whole, as in TAMAS), I2 reaches "
             f"{g2('I2', 'DPI-whole')}" + dpi_whole_cmp(tam) + ", because INERT trusts the user's channel by design. "
-            f"When the injected suffix is labelled as untrusted content (DPI-split), I2 reaches {g2('I2', 'DPI-split')}, "
-            f"against {g2('B0', 'DPI-split')} for B0 and {g2('B3', 'DPI-split')} for B3. "
-            f"Impersonation, which is also delivered in the user's query, succeeds in {g2('I2', 'Impersonation')}.\n\n"
-            "The TAMAS agents carry harmful tools in their own tool sets, and the Byzantine and colluding attacks "
-            "give agents personas that tell them to use these tools. I2 does not prevent an agent from choosing a "
-            f"tool the model permits it to choose: Colluding reaches {g2('I2', 'Colluding')} and Byzantine "
+            f"With the injected suffix labelled untrusted (DPI-split), I2 reaches {g2('I2', 'DPI-split')} against "
+            f"{g2('B0', 'DPI-split')} for B0, and impersonation, also delivered in the query, {g2('I2', 'Impersonation')}.\n\n"
+            "TAMAS agents carry harmful tools in their own tool sets, and Byzantine and colluding personas tell them "
+            f"to use these tools, which I2 does not prevent: Colluding reaches {g2('I2', 'Colluding')} and Byzantine "
             f"{g2('I2', 'Byzantine')}, against {g2('B0', 'Colluding')} and {g2('B0', 'Byzantine')} for B0"
             + (", so INERT is no better than the undefended system here" if tam.get('I2', {}).get('Byzantine', 0) >=
-               tam.get('B0', {}).get('Byzantine', 0) else "") + ". B3 and B4 do "
-            "better here because both derive a per-task allowlist from the request alone. After observing this, "
-            "we added one model element to the TAMAS models, a task-scope slot that reads only the request and lists "
-            "the tools the task needs, with an owned validator that restricts every agent's tool choice to that list. "
-            f"This post-hoc variant (I2S) brings Colluding to {g2('I2S', 'Colluding')} and Byzantine to "
+               tam.get('B0', {}).get('Byzantine', 0) else "") + ". B3 and B4 do better because both derive a per-task "
+            "allowlist from the request. A post-hoc variant (I2S) adds a task-scope slot that reads only the request "
+            f"and lists the tools the task needs, enforced by an owned validator. It brings Colluding to {g2('I2S', 'Colluding')} and Byzantine to "
             f"{g2('I2S', 'Byzantine')}, at a benign utility of {g2('I2S', 'Benign util.')} against "
-            f"{g2('I2', 'Benign util.')} for I2, because the scope sometimes omits a tool the task needs. We report "
-            "I2S separately because it was designed after seeing the results.")
+            f"{g2('I2', 'Benign util.')} for I2, because the scope sometimes omits a needed tool. We report I2S "
+            "separately because it was designed after seeing the results.")
     sd = n.get("seeds", {})
     if sd:
         out["seeds_text"] = ("Across seeds, the standard deviation of the attack success rate is " + ", ".join(
@@ -270,36 +324,26 @@ def render(n: dict[str, Any]) -> dict[str, str]:
     else:
         out["seeds_text"] = ""
     out["discussion_text"] = (
-        "\\paragraph{Structural and semantic guarantees fail differently.} The ablations confirm the split drawn by the "
-        "taxonomy. Tokens, key matching and metadata pinning defeat attacks on authorship, freshness and "
-        "configuration whatever the payload says, so the adaptive attacker gains nothing from feedback against "
-        "them. The taint policy decides what an agent may see before it decides, which is why it is the only "
-        "mechanism that stops an injected recipient, path or command from travelling through a chain of agents into "
-        "an executor field. Message-level defenses act on the wrong unit. They judge single messages, while the "
-        "harm is a flow.\n\n"
-        "\\paragraph{Where INERT does not help.} The residual risk sits in authority that the model itself grants. A "
-        "compromised agent that owns an executor field can misuse it within its validators, and an injection that "
-        "arrives as the user's own request is trusted. TAMAS makes the first case visible because its agents carry "
-        "harmful tools. Least privilege at the level of the model, for example the task-scope slot of I2S, narrows "
-        "this risk but moves the problem to the component that decides the scope and costs utility when the scope "
-        "is wrong.\n\n"
+        "\\paragraph{Structural and semantic guarantees fail differently.} Tokens, key matching and metadata pinning "
+        "defeat attacks on authorship, freshness and configuration whatever the payload says, so feedback does not "
+        "help an adaptive attacker. The taint policy decides what an agent may see before it decides, which is why "
+        "only it stops an injected recipient, path or command from travelling into an executor field. Message-level "
+        "defenses judge single messages, while the harm is a flow.\n\n"
+        "\\paragraph{Where INERT does not help.} Residual risk sits in authority the model grants: a compromised "
+        "owner of an executor field can misuse it within its validators, and content in the user's own request is "
+        "trusted. Model-level least privilege such as the task scope of I2S narrows this risk but moves it to the "
+        "component that decides the scope.\n\n"
         + residual_sentence(n) +
-        "\\paragraph{Availability.} INERT fails closed. Tampering and tool-metadata changes become refusals, which is "
-        "the right default for integrity but an attack surface for denial of service. An authenticated channel "
-        "between agents and controller removes the tampering case in deployment.\n\n"
-        "\\paragraph{Comparison with design-level baselines.} B3 matches INERT's attack success rate on the zoo but "
-        "loses utility whenever the executor's decision depends on untrusted material. INERT handles these cases "
-        "with designer-declared declassifiers, which bound what untrusted text may contribute instead of excluding "
-        "it. B4 shows that an LLM-generated control-flow graph is both too permissive for data-flow attacks and too "
-        "restrictive for benign work.")
+        "\\paragraph{Availability.} Failing closed turns tampering into refusals, a denial-of-service surface that an "
+        "authenticated transport removes.\n\n"
+        "")
     out["conclusion_text"] = (
-        "INERT treats an LLM multi-agent system as a model-driven artifact. One compiled model is enforced by a "
-        "deterministic controller, tested by generated attacks and audited from logs without re-running any model. "
-        f"In our study the full configuration reduced the attack success rate on the topology zoo to {p(i2['asr'])} "
-        f"while completing {p(i2['u_ben'])} of benign tasks, more than the undefended system and far more than the "
-        "strongest design-level baseline. Every mechanism mattered for a specific channel, and test suites derived "
-        "from the model exposed more distinct weaknesses than benchmark-style attacks. The remaining risk lies in "
-        "authority that the model grants to agents and in content that arrives as the user's own request. Future "
-        "work will study how developers write INERT models, derive task scopes with guarantees, and extend the "
-        "approach to long-running and self-modifying agent systems.")
+        "INERT treats an LLM multi-agent system as a model-driven artifact whose controller is a reference monitor "
+        "for injection channels, derived from a taxonomy of seven channels and enforced, tested and audited from "
+        "one compiled model. "
+        f"The full configuration reduced attack success on the topology zoo to {p(i2['asr'])} while completing "
+        f"{p(i2['u_ben'])} of benign tasks, more than the undefended system and far more than the strongest "
+        "design-level baseline, and model-derived suites exposed more weaknesses than benchmark-style attacks. The remaining risk lies in authority the model grants and "
+        "in content that arrives as the user's own request. Future work will study how developers write INERT "
+        "models, task scopes with guarantees and long-lived memory.")
     return out

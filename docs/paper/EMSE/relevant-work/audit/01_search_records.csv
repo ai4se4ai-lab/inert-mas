@@ -1,0 +1,144 @@
+record_id,query,rank,bibkey,title,year,venue,library,url
+Q1-001,Q1,1,Zhang2024AgentSBA,Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.02644.pdf
+Q1-002,Q1,2,Ferrag2025FromPIB,From Prompt Injections to Protocol Exploits: Threats in LLM-Powered AI Agents Workflows,2025,ICT Express,arXiv,https://arxiv.org/pdf/2506.23260.pdf
+Q1-003,Q1,3,Lee2024PromptILC,Prompt Infection: LLM-to-LLM Prompt Injection within Multi-Agent Systems,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.07283.pdf
+Q1-004,Q1,4,Khan2025AgentsUSD,Agents Under Siege: Breaking Pragmatic Multi-Agent LLM Systems with Optimized Prompt Attacks,2025,Annual Meeting of the Association for Computational Linguistics,arXiv,https://arxiv.org/pdf/2504.00218.pdf
+Q1-005,Q1,5,Shahriar2025ASOE,"A Survey on Agentic Security: Applications, Threats and Defenses",2025,ArXiv,arXiv,https://arxiv.org/pdf/2510.06445.pdf
+Q1-006,Q1,6,McHugh2025PromptI2F,Prompt Injection 2.0: Hybrid AI Threats,2025,ArXiv,arXiv,https://arxiv.org/pdf/2507.13169.pdf
+Q1-007,Q1,7,Ling2026TowardSLG,"Toward Secure LLM Agents: Threat Surfaces, Attacks, Defenses, and Evaluation",2026,ArXiv,arXiv,https://arxiv.org/pdf/2606.10749.pdf
+Q1-008,Q1,8,Arif2026ConjunctivePAH,Conjunctive Prompt Attacks in Multi-Agent LLM Systems,2026,Annual Meeting of the Association for Computational Linguistics,arXiv,https://arxiv.org/pdf/2604.16543.pdf
+Q1-009,Q1,9,Hu2026TwinACI,Twin Agent: Context Residual Compression for Privilege Separated Agents,2026,ArXiv,arXiv,https://arxiv.org/pdf/2607.19595.pdf
+Q1-010,Q1,10,Xu2026SecurityAAJ,Security Attack and Defense Strategies for Autonomous Agent Frameworks: A Layered Review with OpenClaw as a Case Study,2026,ArXiv,arXiv,https://arxiv.org/pdf/2604.27464.pdf
+Q1-011,Q1,11,Malik2026ADLK,A Deep Learning Framework for Evaluating and Mitigating Prompt Injection in LLM Agents,2026,Journal of Computing \&amp; Biomedical Informatics,Semantic Scholar,https://pdfs.semanticscholar.org/9bfa/37ca0226b8f7038a7437126596becd92bea5.pdf
+Q1-012,Q1,12,Li2026UniversalDFL,Universal Defenses for Tool-Integrated LLM Agents Against Adversarial Attacks,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.16098.pdf
+Q1-013,Q1,13,Cao2026ASSM,A Systematic Survey of Prompt Injection Attacks and Defenses in LLM-Integrated Applications and Agentic Systems,2026,2026 12th International Conference on Big Data and Information Analytics (BigDIA),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11684636
+Q1-014,Q1,14,Ogunjinmi2026AgenticARN,Agentic AI Red-Teaming for Prompt Injection Detection in Multi-Agent Systems,2026,2026 IEEE Conference on Generative AI for Secure Systems (GAISS),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11779686
+Q1-015,Q1,15,Liu2023FormalizingABO,Formalizing and Benchmarking Prompt Injection Attacks and Defenses,2023,USENIX Security Symposium,arXiv,https://arxiv.org/pdf/2310.12815.pdf
+Q1-016,Q1,16,Li2025DRIFTDRP,DRIFT: Dynamic Rule-Based Defense with Injection Isolation for Securing LLM Agents,2025,ArXiv,arXiv,https://arxiv.org/pdf/2506.12104.pdf
+Q1-017,Q1,17,Debenedetti2025DefeatingPIQ,Defeating Prompt Injections by Design,2025,2026 IEEE Conference on Secure and Trustworthy Machine Learning (SaTML),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11691650
+Q1-018,Q1,18,Shi2025PromptIAR,Prompt Injection Attack to Tool Selection in LLM Agents,2025,ArXiv,arXiv,https://arxiv.org/pdf/2504.19793.pdf
+Q1-019,Q1,19,An2025IPIGuardANS,IPIGuard: A Novel Tool Dependency Graph-Based Defense Against Indirect Prompt Injection in LLM Agents,2025,Conference on Empirical Methods in Natural Language Processing,arXiv,https://arxiv.org/pdf/2508.15310.pdf
+Q1-020,Q1,20,Wang2026TheLOT,The Landscape of Prompt Injection Threats in LLM Agents: From Taxonomy to Analysis,2026,ArXiv,arXiv,https://arxiv.org/pdf/2602.10453.pdf
+Q1-021,Q1,21,Wen2025RLIAU,RL Is a Hammer and LLMs Are Nails: A Simple Reinforcement Learning Recipe for Strong Prompt Injection,2025,ArXiv,arXiv,https://arxiv.org/pdf/2510.04885.pdf
+Q1-022,Q1,22,Hossain2025AMLV,A Multi-Agent LLM Defense Pipeline Against Prompt Injection Attacks,2025,2025 IEEE International Women in Engineering (WIE) Conference on Electrical and Computer Engineering (WIECON-ECE),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11526251
+Q1-023,Q1,23,Wu2024SystemLevelDAW,System-Level Defense against Indirect Prompt Injection Attacks: An Information Flow Control Perspective,2024,ArXiv,arXiv,https://arxiv.org/pdf/2409.19091.pdf
+Q1-024,Q1,24,Alamsabi2026EmbeddingBasedDOX,Embedding-Based Detection of Indirect Prompt Injection Attacks in Large Language Models Using Semantic Context Analysis,2026,Algorithms,Semantic Scholar,https://pdfs.semanticscholar.org/5209/017cd9b4dfad629a3641863b9e6a8589bd3f.pdf
+Q1-025,Q1,25,Gosmar2025PromptIDY,Prompt Injection Detection and Mitigation via AI Multi-Agent NLP Frameworks,2025,ArXiv,arXiv,https://arxiv.org/pdf/2503.11517.pdf
+Q1-026,Q1,26,Siu2026AgentSNZ,Agent Security Needs Redefinition through a Holistic Framework,2026,ArXiv,arXiv,https://arxiv.org/pdf/2607.22024.pdf
+Q1-027,Q1,27,Ramakrishnan2025SecuringAAAA,Securing AI Agents Against Prompt Injection Attacks,2025,ArXiv,arXiv,https://arxiv.org/pdf/2511.15759.pdf
+Q1-028,Q1,28,Peign2025MultiAgentSTAB,Multi-Agent Security Tax: Trading Off Security and Collaboration Capabilities in Multi-Agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2502.19145.pdf
+Q1-029,Q1,29,S2025ModernDLAC,Modern Day LLMs : A GOLDMINE or a LANDMINE ?,2025,2025 International Conference on Intelligent Systems and Pioneering Innovations in Robotics and Electric Mobility (INSPIRE),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11300550
+Q1-030,Q1,30,Zou2025SecurityCIAD,Security Challenges in AI Agent Deployment: Insights from a Large Scale Public Competition,2025,ArXiv,arXiv,https://arxiv.org/pdf/2507.20526.pdf
+Q1-031,Q1,31,Song2025BeyondTPAE,Beyond the Protocol: Unveiling Attack Vectors in the Model Context Protocol (MCP) Ecosystem,2025,IEEE Transactions on Software Engineering,IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11528180
+Q1-032,Q1,32,Naik2026OMNILEAKOMAF,OMNI-LEAK: Orchestrator Multi-Agent Network Induced Data Leakage,2026,ArXiv,arXiv,https://arxiv.org/pdf/2602.13477.pdf
+Q1-033,Q1,33,Jamshidi2026SecurityEOAG,Security Engineering of OpenClaw: Analyzing Attack Surface Expansion and Trust-Boundary Violations,2026,ArXiv,arXiv,https://arxiv.org/pdf/2606.15008.pdf
+Q1-034,Q1,34,Sehwag2026ASPISAAH,ASPI: Seeking Ambiguity Clarification Amplifies Prompt Injection Vulnerability in LLM Agents,2026,ArXiv,arXiv,https://arxiv.org/pdf/2605.17324.pdf
+Q1-035,Q1,35,Le2026CrosslayerCOAI,Cross-layer contagion of prompt injections in multi-agent swarms: a multiplex microscopic markov chain approach,2026,Cybersecurity,publisher DOI,https://doi.org/10.1186/s42400-026-00628-w
+Q1-036,Q1,36,Zhan2024InjecAgentBIAJ,InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents,2024,ArXiv,arXiv,https://arxiv.org/pdf/2403.02691.pdf
+Q1-037,Q1,37,Abdelnabi2023NotWYAK,Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection,2023,Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security,ACM DL,http://dl.acm.org/citation.cfm?id=3623985
+Q1-038,Q1,38,Pasquini2024NeuralELAL,Neural Exec: Learning (and Learning from) Execution Triggers for Prompt Injection Attacks,2024,Proceedings of the 2024 Workshop on Artificial Intelligence and Security,ACM DL,http://dl.acm.org/citation.cfm?id=3694764
+Q1-039,Q1,39,Toyer2023TensorTIAM,Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game,2023,ArXiv,arXiv,https://arxiv.org/pdf/2311.01011.pdf
+Q1-040,Q1,40,Dziemian2026HowVAAN,How Vulnerable Are AI Agents to Indirect Prompt Injections? Insights from a Large-Scale Public Competition,2026,ArXiv,arXiv,https://arxiv.org/pdf/2603.15714.pdf
+Q1-041,Q1,41,Li2025PIGuardPIAO,PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free,2025,Annual Meeting of the Association for Computational Linguistics,Semantic Scholar,https://pdfs.semanticscholar.org/354a/7d5dbf0c414363336cbd7be39149e6fc86d2.pdf
+Q1-042,Q1,42,Xiang2026ArchitectingSAAP,Architecting Secure AI Agents: Perspectives on System-Level Defenses Against Indirect Prompt Injection Attacks,2026,ArXiv,arXiv,https://arxiv.org/pdf/2603.30016.pdf
+Q1-043,Q1,43,Mourad2026SecuringTPAQ,Securing the Prompt Pipeline: A Systematic Review of Defense Mechanisms Against Prompt-Based Attacks in LLM Agents,2026,Electronics,publisher DOI,https://doi.org/10.3390/electronics15163700
+Q1-044,Q1,44,Yi2023BenchmarkingADAR,Benchmarking and Defending against Indirect Prompt Injection Attacks on Large Language Models,2023,Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1,ACM DL,http://dl.acm.org/citation.cfm?id=3709179
+Q1-045,Q1,45,Piet2023JatmoPIAS,Jatmo: Prompt Injection Defense by Task-Specific Finetuning,2023,European Symposium on Research in Computer Security,arXiv,https://arxiv.org/pdf/2312.17673.pdf
+Q1-046,Q1,46,Xu2025ASOAT,A Survey of Attacks on Large Language Models [Feature],2025,IEEE Circuits and Systems Magazine,IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11773338
+Q1-047,Q1,47,Li2024GenTelSafeAUAU,GenTel-Safe: A Unified Benchmark and Shielding Framework for Defending Against Prompt Injection Attacks,2024,ArXiv,arXiv,https://arxiv.org/pdf/2409.19521.pdf
+Q1-048,Q1,48,Liu2026LongPIBenchALAV,LongPIBench: A Long-Context Benchmark for Prompt Injection,2026,ArXiv,arXiv,https://arxiv.org/pdf/2608.28411.pdf
+Q1-049,Q1,49,Shaheer2025BeyondTBAW,Beyond the Benchmark: Innovative Defenses Against Prompt Injection Attacks,2025,ArXiv,arXiv,https://arxiv.org/pdf/2512.16307.pdf
+Q1-050,Q1,50,Carolina2025EvaluatingMDAX,Evaluating Multi-Agent Defences Against Jailbreaking Attacks on Large Language Models,2025,2025 3rd International Conference on Foundation and Large Language Models (FLLM),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11391246
+Q1-051,Q1,51,Peng2024JailbreakingAMAY,Jailbreaking and Mitigation of Vulnerabilities in Large Language Models,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.15236.pdf
+Q1-052,Q1,52,Prabhakarn2026PromptIAAZ,"Prompt Injection and Jailbreak Attacks on LLM Applications: A Review of Attacks, Defenses and Risk-Adaptive Protection",2026,Iconic Research and Engineering Journals,publisher DOI,https://doi.org/10.64388/ire1725422
+Q1-053,Q1,53,Yadav2025AdversialPIBA,"Adversial Prompt Injection in Large Language Models: Taxonomy, Exploits, and Mitigation Frameworks",2025,2025 Seventh International Conference on Research in Computational Intelligence and Communication Networks (ICRCICN),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11364988
+Q1-054,Q1,54,Geng2025PromptIABB,"Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies",2025,"Computers, Materials \&amp; Continua",publisher DOI,https://doi.org/10.32604/cmc.2025.074081
+Q1-055,Q1,55,Li2024InjecGuardBABC,InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.22770.pdf
+Q1-056,Q1,56,Hagag2026ArchitectureMFBD,Architecture Matters for Multi-Agent Security,2026,ArXiv,arXiv,https://arxiv.org/pdf/2604.23459.pdf
+Q1-057,Q1,57,Pedro2023FromPIBE,From Prompt Injections to SQL Injection Attacks: How Protected is Your LLM-Integrated Web Application?,2023,ArXiv,arXiv,https://arxiv.org/pdf/2308.01990.pdf
+Q1-058,Q1,58,Sunil2026MemoryPABF,Memory Poisoning Attack and Defense on Memory Based LLM-Agents,2026,ArXiv,arXiv,https://arxiv.org/pdf/2601.05504.pdf
+Q1-059,Q1,59,Chen2024DefenseAPBG,Defense Against Prompt Injection Attack by Leveraging Attack Techniques,2024,Annual Meeting of the Association for Computational Linguistics,arXiv,https://arxiv.org/pdf/2411.00459.pdf
+Q1-060,Q1,60,Rababah2024SoKPHBH,SoK: Prompt Hacking of Large Language Models,2024,2024 IEEE International Conference on Big Data (BigData),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=10825103
+Q1-061,Q1,61,Chen2024StruQDABI,StruQ: Defending Against Prompt Injection with Structured Queries,2024,USENIX Security Symposium,arXiv,https://arxiv.org/pdf/2402.06363.pdf
+Q1-062,Q1,62,Wan2024CYBERSECEVAL3ABJ,CYBERSECEVAL 3: Advancing the Evaluation of Cybersecurity Risks and Capabilities in Large Language Models,2024,ArXiv,arXiv,https://arxiv.org/pdf/2408.01605.pdf
+Q1-063,Q1,63,Benjamin2024SystematicallyAPBK,Systematically Analyzing Prompt Injection Vulnerabilities in Diverse LLM Architectures,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.23308.pdf
+Q1-064,Q1,64,Yeo2025MultimodalPIBL,Multimodal Prompt Injection Attacks: Risks and Defenses for Modern LLMs,2025,ArXiv,arXiv,https://arxiv.org/pdf/2509.05883.pdf
+Q1-065,Q1,65,Ferrag2024GenerativeAIBM,Generative AI in Cybersecurity: A Comprehensive Review of LLM Applications and Vulnerabilities,2024,unknown,arXiv,https://arxiv.org/pdf/2405.12750.pdf
+Q1-066,Q1,66,Li2025SecurityCFBN,Security Concerns for Large Language Models: A Survey,2025,J. Inf. Secur. Appl.,arXiv,https://arxiv.org/pdf/2505.18889.pdf
+Q1-067,Q1,67,Cui2024RecentAIBO,Recent Advances in Attack and Defense Approaches of Large Language Models,2024,ArXiv,arXiv,https://arxiv.org/pdf/2409.03274.pdf
+Q1-068,Q1,68,Das2024SecurityAPBP,Security and Privacy Challenges of Large Language Models: A Survey,2024,ACM Computing Surveys,ACM DL,http://dl.acm.org/citation.cfm?id=3712001
+Q1-069,Q1,69,Chowdhury2024BreakingDTBQ,Breaking Down the Defenses: A Comparative Survey of Attacks on Large Language Models,2024,ArXiv,arXiv,https://arxiv.org/pdf/2403.04786.pdf
+Q1-070,Q1,70,Peng2024SecuringLLBR,"Securing Large Language Models: Addressing Bias, Misinformation, and Prompt Attacks",2024,ArXiv,arXiv,https://arxiv.org/pdf/2409.08087.pdf
+Q1-071,Q1,71,Liu2024ExploringVABS,Exploring Vulnerabilities and Protections in Large Language Models: A Survey,2024,ArXiv,arXiv,https://arxiv.org/pdf/2406.00240.pdf
+Q1-072,Q1,72,aal2025PromptIABT,Prompt Injection Attacks on Large Language Models: Multi-Model Security Analysis with Categorized Attack Types,2025,"International Joint Conference on Knowledge Discovery, Knowledge Engineering and Knowledge Management",Semantic Scholar,https://pdfs.semanticscholar.org/177a/8484103a27fbf80553fc266fa09b542aa4b4.pdf
+Q2-001,Q2,1,Ferrag2025FromPIA,From Prompt Injections to Protocol Exploits: Threats in LLM-Powered AI Agents Workflows,2025,ICT Express,arXiv,https://arxiv.org/pdf/2506.23260.pdf
+Q2-002,Q2,2,Ling2026TowardSLB,"Toward Secure LLM Agents: Threat Surfaces, Attacks, Defenses, and Evaluation",2026,ArXiv,arXiv,https://arxiv.org/pdf/2606.10749.pdf
+Q2-003,Q2,3,Mitra2026WhereREC,Where Rules End and Judges Begin: Measuring the Judgment Boundary in Multi-Agent Systems Security,2026,unknown,arXiv,https://arxiv.org/pdf/2610.07657.pdf
+Q2-004,Q2,4,Owoputi2022SecurityOMD,Security of Multi-Agent Cyber-Physical Systems: A Survey,2022,IEEE Access,IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=9955543
+Q2-005,Q2,5,Paul2026BeyondSIE,Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injection in Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.22949.pdf
+Q2-006,Q2,6,Wang2026TrinityGuardAUF,TrinityGuard: A Unified Framework for Safeguarding Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2603.15408.pdf
+Q2-007,Q2,7,RahulDevT2026TowardSAG,"Toward Secure AI-Powered Penetration Testing Agents: Security Threats, Guardrails, and Architectural Perspectives",2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.16694.pdf
+Q2-008,Q2,8,An2026ACIArenaTUH,ACIArena: Toward Unified Evaluation for Agent Cascading Injection,2026,Annual Meeting of the Association for Computational Linguistics,arXiv,https://arxiv.org/pdf/2604.07775.pdf
+Q2-009,Q2,9,Malla2026FromMTI,From Monoliths to Swarms: A Study of Attack Surface Evolution in the Transition to Multi-Agent Web Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2608.00202.pdf
+Q2-010,Q2,10,Yang2026SoKWSJ,SoK: When Safe Agents Fail Together: The Security of Multi Agent LLM Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.00595.pdf
+Q2-011,Q2,11,Rafe2026OrchestrationAVK,Orchestration and Verification of Agentic AI Systems: A Survey of Multi-Agent Collaboration and Safety,2026,"European Journal of Applied Science, Engineering and Technology",publisher DOI,https://doi.org/10.59324/ejaset.2026.4\%282\%29.16
+Q2-012,Q2,12,Yu2025ASOL,A Survey on Trustworthy LLM Agents: Threats and Countermeasures,2025,Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2,ACM DL,http://dl.acm.org/citation.cfm?id=3736561
+Q2-013,Q2,13,Jha2025BreakingAFM,Breaking and Fixing Defenses Against Control-Flow Hijacking in Multi-Agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2510.17276.pdf
+Q2-014,Q2,14,Shi2026SAIGuardCSN,SAIGuard: Communication-State Simulation for Proactive Defense of LLM Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2606.12474.pdf
+Q2-015,Q2,15,Yu2026MisleadingTPO,Misleading the Planner through Deceptive Resumes: Registration-Time Injection in Centralized Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.15516.pdf
+Q2-016,Q2,16,Triedman2025MultiAgentSEP,Multi-Agent Systems Execute Arbitrary Malicious Code,2025,ArXiv,arXiv,https://arxiv.org/pdf/2503.12188.pdf
+Q2-017,Q2,17,Xu2026WhenAGQ,When Agents Go Rogue: Activation-Based Detection of Malicious Behaviors in Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2607.06807.pdf
+Q2-018,Q2,18,Zhu2025MASTERMSR,MASTER: Multi-Agent Security Through Exploration of Roles and Topological Structures - A Comprehensive Framework,2025,ArXiv,arXiv,https://arxiv.org/pdf/2505.18572.pdf
+Q2-019,Q2,19,Hossain2026OnUIS,"On Understanding, Identifying, and Mitigating Vulnerabilities in Agentic Large Language Models",2026,ArXiv,arXiv,https://arxiv.org/pdf/2608.10530.pdf
+Q2-020,Q2,20,Liu2026TheCPT,The Capability Paradox: How Smarter Auditors Make Multi-Agent Systems Less Secure,2026,ArXiv,arXiv,https://arxiv.org/pdf/2605.17480.pdf
+Q2-021,Q2,21,Liu2026MADBenchBTU,MADBench: Benchmarking the Security of Multi-Agent Debate,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.39146.pdf
+Q2-022,Q2,22,Luo2026DefendingLMV,Defending LLM-based Multi-Agent Systems Against Cooperative Attacks with Sentence-Level Rectification,2026,ArXiv,arXiv,https://arxiv.org/pdf/2605.28104.pdf
+Q2-023,Q2,23,Kachuee2026MASGuardUGW,MAS-Guard: Unified Guardrails from Individual Agents to Multi-Agent LLM Systems,2026,unknown,arXiv,https://arxiv.org/pdf/2610.28397.pdf
+Q2-024,Q2,24,Wang2025IPLAX,IP Leakage Attacks Targeting LLM-Based Multi-Agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2505.12442.pdf
+Q2-025,Q2,25,Mao2025AgentSafeSLY,AgentSafe: Safeguarding Large Language Model-based Multi-agent Systems via Hierarchical Data Management,2025,ArXiv,arXiv,https://arxiv.org/pdf/2503.04392.pdf
+Q2-026,Q2,26,Zhang2026OpenEvoShieldDNZ,OpenEvoShield: Dual Non-Stationary Continual Defense for Open-World Multi-Agent System Attacks,2026,ArXiv,arXiv,https://arxiv.org/pdf/2607.19351.pdf
+Q2-027,Q2,27,Gosmar2026PromptIMAA,"Prompt Injection Mitigation with Agentic AI, Nested Learning, and AI Sustainability via Semantic Caching",2026,ArXiv,arXiv,https://arxiv.org/pdf/2601.13186.pdf
+Q2-028,Q2,28,Lee2024PromptILAB,Prompt Infection: LLM-to-LLM Prompt Injection within Multi-Agent Systems,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.07283.pdf
+Q2-029,Q2,29,Zou2025BlockA2ATSAC,BlockA2A: Towards Secure and Verifiable Agent-to-Agent Interoperability,2025,ArXiv,arXiv,https://arxiv.org/pdf/2508.01332.pdf
+Q2-030,Q2,30,Hagag2026ORBITAFAD,ORBIT: A Framework for Multi-Agent Safety and Security Evaluations,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.33102.pdf
+Q2-031,Q2,31,Yan2026PropGuardSLAE,PropGuard: Safeguarding LLM-MAS via Propagation-Aware Exploration and Remediation,2026,ArXiv,arXiv,https://arxiv.org/pdf/2605.16346.pdf
+Q2-032,Q2,32,Wang2025MASShieldADAF,MAS-Shield: A Defense Framework for Secure and Efficient LLM MAS,2025,Findings of the Association for Computational Linguistics: EMNLP 2026,arXiv,https://arxiv.org/pdf/2511.22924.pdf
+Q2-033,Q2,33,MateoTorrejon2026GAMMAFACAG,GAMMAF: A Common Framework for Graph-Based Anomaly Monitoring Benchmarking in LLM Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2604.24477.pdf
+Q2-034,Q2,34,Mitra2026AgenticCyOpsSMAH,AgenticCyOps: Securing Multi-Agentic AI Integration in Enterprise Cyber Operations,2026,ArXiv,arXiv,https://arxiv.org/pdf/2603.09134.pdf
+Q2-035,Q2,35,Xie2025WhosTMAI,Who's the Mole? Modeling and Detecting Intention-Hiding Malicious Agents in LLM-Based Multi-Agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2507.04724.pdf
+Q2-036,Q2,36,Gosmar2025SentinelAFAJ,Sentinel Agents for Secure and Trustworthy Agentic AI in Multi-Agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2509.14956.pdf
+Q2-037,Q2,37,Patlan2025CrossUserPUAK,Cross-User Poisoning: User-Task Boundary Failures in Multi-User Collaborative Language Agents,2025,unknown,arXiv,https://arxiv.org/pdf/2511.17671.pdf
+Q2-038,Q2,38,Wang2025ShadowsITAL,Shadows in the Code: Exploring the Risks and Defenses of LLM-based Multi-Agent Software Development Systems,2025,AAAI Conference on Artificial Intelligence,arXiv,https://arxiv.org/pdf/2511.18467.pdf
+Q2-039,Q2,39,He2025RedTeamingLMAM,Red-Teaming LLM Multi-Agent Systems via Communication Attacks,2025,ArXiv,arXiv,https://arxiv.org/pdf/2502.14847.pdf
+Q2-040,Q2,40,Zhang2024PsySafeACAN,"PsySafe: A Comprehensive Framework for Psychological-based Attack, Defense, and Evaluation of Multi-agent System Safety",2024,Annual Meeting of the Association for Computational Linguistics,arXiv,https://arxiv.org/pdf/2401.11880.pdf
+Q2-041,Q2,41,Gu2024AgentSAAO,Agent Smith: A Single Image Can Jailbreak One Million Multimodal LLM Agents Exponentially Fast,2024,International Conference on Machine Learning,arXiv,https://arxiv.org/pdf/2402.08567.pdf
+Q2-042,Q2,42,Ji2026TamingVPAP,Taming Various Privilege Escalation in LLM-Based Agent Systems: A Mandatory Access Control Framework,2026,ArXiv,arXiv,https://arxiv.org/pdf/2601.11893.pdf
+Q2-043,Q2,43,Yan2025AttackTMAQ,"Attack the Messages, Not the Agents: A Multi-round Adaptive Stealthy Tampering Framework for LLM-MAS",2025,ArXiv,arXiv,https://arxiv.org/pdf/2508.03125.pdf
+Q2-044,Q2,44,Nakamura2025TerrariumRTAR,"Terrarium: Revisiting the Blackboard for Multi-Agent Safety, Privacy, and Security Studies",2025,ArXiv,arXiv,https://arxiv.org/pdf/2510.14312.pdf
+Q2-045,Q2,45,Li2026MESAPVAS,MESA: Prioritizing Vulnerable Communication Channels for Securing Multi-Agent Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2606.30602.pdf
+Q2-046,Q2,46,Zhu2026BlockchainETAT,"Blockchain Empowered Trustworthy Agent Networks: Foundations, Taxonomy, and Future Directions",2026,ArXiv,arXiv,https://arxiv.org/pdf/2608.04626.pdf
+Q2-047,Q2,47,Narajala2025SecuringGMAU,Securing GenAI Multi-Agent Systems Against Tool Squatting: A Zero Trust Registry-Based Approach,2025,2026 International Conference on AI x Data and Knowledge Engineering (AIxDKE),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11486468
+Q2-048,Q2,48,Miao2025BlindGuardSLAV,BlindGuard: Safeguarding LLM-based Multi-Agent Systems under Unknown Attacks,2025,Annual Meeting of the Association for Computational Linguistics,arXiv,https://arxiv.org/pdf/2508.08127.pdf
+Q2-049,Q2,49,Wang2025GSafeguardATAW,G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2502.11127.pdf
+Q2-050,Q2,50,Hu2026AttackingADAX,Attacking and Defending Multi-Agent Collaborative Filtering Systems Through Connectivity,2026,Proceedings of the 20th ACM Conference on Recommender Systems,ACM DL,http://dl.acm.org/citation.cfm?id=3831748
+Q2-051,Q2,51,Mao2025FromLTAY,From LLMs to MLLMs to Agents: A Survey of Emerging Paradigms in Jailbreak Attacks and Defenses within LLM Ecosystem,2025,ACM Transactions on Knowledge Discovery from Data,ACM DL,http://dl.acm.org/citation.cfm?id=3856301
+Q2-052,Q2,52,Kao2026YouTMAZ,You Told Me to Do It: Measuring Instructional Text-induced Private Data Leakage in LLM Agents,2026,ArXiv,arXiv,https://arxiv.org/pdf/2603.11862.pdf
+Q2-053,Q2,53,Xie2026FromSTBA,From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration,2026,ArXiv,arXiv,https://arxiv.org/pdf/2603.04474.pdf
+Q2-054,Q2,54,Yu2025NetSafeETBB,NetSafe: Exploring the Topological Safety of Multi-agent System,2025,Annual Meeting of the Association for Computational Linguistics,Semantic Scholar,https://pdfs.semanticscholar.org/2807/c9e8d36fd08eb9182f132721ee052e093fe8.pdf
+Q2-055,Q2,55,Kavathekar2025TAMASBABC,TAMAS: Benchmarking Adversarial Risks in Multi-Agent LLM Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2511.05269.pdf
+Q2-056,Q2,56,Sharma2025TowardsUQBD,Towards Unifying Quantitative Security Benchmarking for Multi Agent Systems,2025,ArXiv,arXiv,https://arxiv.org/pdf/2507.21146.pdf
+Q2-057,Q2,57,Witt2025OpenCIBE,Open Challenges in Multi-Agent Security: Towards Secure Systems of Interacting AI Agents,2025,ArXiv,arXiv,https://arxiv.org/pdf/2505.02077.pdf
+Q2-058,Q2,58,Nagaraja2026WhenPCBF,When Prompts Control Robots: Prompt Injection Attacks in Multi-Agent Robotic Systems,2026,ArXiv,arXiv,https://arxiv.org/pdf/2608.00747.pdf
+Q2-059,Q2,59,Zhang2024AgentSBBG,Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents,2024,ArXiv,arXiv,https://arxiv.org/pdf/2410.02644.pdf
+Q2-060,Q2,60,Tallam2026AuthorizationPIBH,Authorization Propagation in Multi-Agent AI Systems: Identity Governance as Infrastructure,2026,ArXiv,arXiv,https://arxiv.org/pdf/2605.05440.pdf
+Q2-061,Q2,61,Luo2025LargeLMBI,"Large Language Model Agent: A Survey on Methodology, Applications and Challenges",2025,ArXiv,arXiv,https://arxiv.org/pdf/2503.21460.pdf
+Q2-062,Q2,62,Abdelnabi2023NotWYBJ,Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection,2023,Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security,ACM DL,http://dl.acm.org/citation.cfm?id=3623985
+Q2-063,Q2,63,Cai2026CrossLayerSFBK,Cross-Layer Semantic Flow Reconstruction for Attack Detection in Agentic Systems,2026,unknown,arXiv,https://arxiv.org/pdf/2603.04469.pdf
+Q2-064,Q2,64,Engelmann2022RV4JaCaRBL,RV4JaCa - Runtime Verification for Multi-Agent Systems,2022,AREA@IJCAI-ECAI,arXiv,https://arxiv.org/pdf/2207.09708.pdf
+Q2-065,Q2,65,Li2026TowardsSABM,"Towards Secure Agent Skills: Architecture, Threat Taxonomy, and Security Analysis",2026,ArXiv,arXiv,https://arxiv.org/pdf/2604.02837.pdf
+Q2-066,Q2,66,Wang2025SecurityOIBN,Security of Internet of Agents: Attacks and Countermeasures,2025,IEEE Open Journal of the Computer Society,IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=11081880
+Q2-067,Q2,67,Liu2023FormalizingABBO,Formalizing and Benchmarking Prompt Injection Attacks and Defenses,2023,USENIX Security Symposium,arXiv,https://arxiv.org/pdf/2310.12815.pdf
+Q2-068,Q2,68,Taheri2020MitigationARBP,Mitigation and Resiliency of Multi-Agent Systems Subject to Malicious Cyber Attacks on Communication Links,2020,2020 IEEE Conference on Control Technology and Applications (CCTA),IEEE Xplore,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=9206392
+Q2-069,Q2,69,Rashidi2026TheBOBQ,"The Balkanization of Execution-Security Research for AI Coding Agents: Isolation, Access Control, and Time-of-Check-to-Time-of-Use Vulnerabilities",2026,ArXiv,arXiv,https://arxiv.org/pdf/2607.05743.pdf
+Q2-070,Q2,70,Hashmi2026PromptIDBR,Prompt Injection Detection for Email Agents Through Attack Chain Modeling,2026,ArXiv,arXiv,https://arxiv.org/pdf/2609.30657.pdf
+Q2-071,Q2,71,Chen2024AgentPoisonRLBS,AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases,2024,ArXiv,arXiv,https://arxiv.org/pdf/2407.12784.pdf

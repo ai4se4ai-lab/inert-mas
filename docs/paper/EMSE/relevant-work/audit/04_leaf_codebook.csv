@@ -1,0 +1,19 @@
+category,subcategory,leaf,definition,informs_inert_element,n_studies
+Threats and propagation,Threat mechanisms,Content and interpretation,"How injected content is crafted or interpreted by a model (payload design, modality, optimization)","A1, payload classes and mutators",6
+Threats and propagation,Threat mechanisms,Peer influence and composition,"How one agent's output influences other agents (replication, composition, tampering of inter-agent messages)","A2-A4, P2, label propagation (P5)",5
+Threats and propagation,Threat mechanisms,State and discovery,"Injection through persistent state or discovery/selection metadata (memory, registration, tool selection)","A5, P4, RECONF; gap G5 (memory)",5
+Threats and propagation,Threat mechanisms,Execution and disclosure,"Attacks that end in code execution, tool misuse or data disclosure","executor sinks, effect oracle, P1",6
+Threats and propagation,Collaboration structure,Topology and propagation,How team topology and size shape propagation and error cascades,"topology zoo, RQ1 metrics",7
+Threats and propagation,Collaboration structure,Roles and trust boundaries,"Threat models and trade-offs defined by roles, authority and trust boundaries","slot owners, capabilities (P2)",4
+Threats and propagation,Collaboration structure,Shared and deployed workflows,Security of deployed or shared multi-agent workflows and blackboards,"shared-state channel C6, envelopes",4
+Security defenses,Runtime controls,Planning and information flow,Defenses that fix plans or track information flow before acting,"taint policy, declassifiers, B3, B4",7
+Security defenses,Runtime controls,Identity and access control,"Defenses based on identity, registries, capabilities or access control","per-request tokens, pinned metadata",4
+Security defenses,Runtime controls,Tool and execution boundaries,Defenses or runtime checks at tool and execution boundaries,"tool sandbox, fail-closed execution",4
+Security defenses,Detection and guardrails,Signals and monitoring,"Detection from signals, activations, logs or communication monitoring","baseline B1, reason codes",9
+Security defenses,Detection and guardrails,Collaborative defenses,Defenses in which agents or graph models judge or prune other agents,"baselines B1, B2; gap G1",9
+Security defenses,Detection and guardrails,Prompt and model defenses,"Defenses by prompting, fine-tuning or guard models","baseline B2, quoted context",8
+Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Benchmarks and evaluation frameworks for multi-agent security,"TAMAS adapter, attacker models",10
+Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,Benchmarks and competitions for single-agent injection,"BENCH suite, adaptive attacker A6",4
+Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Benchmarks for prompt injection against models or LLM applications,"payload classes, ASR definition",8
+Evaluation and foundations,Surveys and taxonomies,Agent architectures and security,Surveys and position papers on agent and agent-system security,requirements R1-R8,16
+Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Taxonomies and surveys of prompt injection and agent protocols,channel definitions C1-C7,11

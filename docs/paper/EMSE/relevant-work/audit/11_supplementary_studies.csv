@@ -1,0 +1,23 @@
+bibkey,role,identifier_verified,used_in,later_found_by_snowballing
+rossi2024categorization,prompt-injection taxonomy,arXiv:2402.00898,"Sec. 10.1, Table 9",no
+schulhoff2023hackaprompt,prompt-hacking ontology,"EMNLP 2023, doi:10.18653/v1/2023.emnlp-main.302","Sec. 10.1, Table 9",yes
+deng2025agentsthreat,agent-security survey,"ACM Comput. Surv. 57(7):182, arXiv:2406.02630",Table 9,no
+hammond2025multiagent,multi-agent risk taxonomy,"Cooperative AI Foundation TR #1, arXiv:2502.14143","Sec. 10.1, Table 9",yes
+cemri2025mast,MAS failure taxonomy (MAST),"NeurIPS 2025 D&B, arXiv:2503.13657","Sec. 10.1, Table 9",no
+owasp2025agentic,practitioner threat taxonomy,https://genai.owasp.org (Feb 2025),Table 9,no
+mitre2025atlas,practitioner threat taxonomy,https://atlas.mitre.org,Table 9,no
+humbatova2020taxonomy,SE taxonomy method reference,"ICSE 2020, arXiv:1910.11015","Sec. 10.1, Table 9",no
+wu2025isolategpt,isolation and privilege control,"NDSS 2025, arXiv:2403.04960","Sec. 10.3, Table 3",no
+shi2025progent,isolation and privilege control,arXiv:2504.11703,"Sec. 10.3, Table 3",yes
+kim2025pfi,isolation and privilege control,arXiv:2503.15547,"Sec. 10.3, Table 3",no
+tsai2025conseca,isolation and privilege control,"HotOS 2025, arXiv:2501.17070","Sec. 10.3, Table 3",no
+zhong2025rtbas,single-agent flow control,arXiv:2502.08966,"Sec. 10.3, Table 3",yes
+li2026ace,single-agent flow control,"NDSS 2026, arXiv:2504.20984","Sec. 10.3, Table 3",yes
+zhu2025melon,detection,"ICML 2025, PMLR 267:80310-80329, arXiv:2502.05174","Sec. 10.3, Table 3",yes
+abdelnabi2025drift,detection,"SaTML 2025, arXiv:2406.00799","Sec. 10.3, Table 3",yes
+chen2025secalign,prompt-level and training,"CCS 2025, doi:10.1145/3719027.3744836","Sec. 10.3, Table 3",no
+zeng2024autodefense,MAS collaborative defense,arXiv:2403.04783,Sec. 10.3,no
+ju2024flooding,MAS propagation,arXiv:2407.07791,Sec. 10.2,yes
+huang2025faulty,MAS resilience,"ICML 2025, PMLR 267:26202-26226, arXiv:2408.00989",Sec. 10.2,yes
+evtimov2025wasp,benchmark,"NeurIPS 2025 D&B, arXiv:2504.18575","Sec. 10.4, Table 3",yes
+andriushchenko2025agentharm,benchmark,"ICLR 2025, arXiv:2410.09024",Sec. 10.4,no

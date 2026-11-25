@@ -31,6 +31,9 @@ def main() -> int:
     assets, tex_path = Path(a.assets), Path(a.tex)
     tex = tex_path.read_text(encoding="utf-8")
     for t in sorted(assets.glob("tab_*.tex")):
+        if f"%<<{t.stem}>>" not in tex:  # shown as a figure in the manuscript (analysis/make_figures.py)
+            print("not in manuscript, kept in assets:", t.name)
+            continue
         tex = replace_block(tex, t.stem, t.read_text())
     numbers = json.loads((assets / "numbers.json").read_text())
     if Path(a.text).exists():

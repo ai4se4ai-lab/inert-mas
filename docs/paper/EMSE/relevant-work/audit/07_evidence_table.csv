@@ -1,0 +1,15 @@
+studies,design,channels,implication,inert_element,in_printed_table
+greshake2023indirect,case studies,C2,Author of retrieved data and caller have different authority,input and tool labels,yes
+zhan2024injecagent,benchmark,C3,A permitted read exposes the agent to unauthorized instructions,"A1, environment labels",yes
+lee2024promptinfection,experiments,C4,"Every receiving agent counts, including relays","infection metrics, label propagation",yes
+he2025aitm,threat model,C4,Message integrity and sender authorization need separate checks,"A3, MAC, P2",yes
+arif2026conjunctive,experiments,C4,Per-component verdicts miss the meaning of combined inputs,label join,no
+triedman2025mas,experiments,C3;C5,Transitions need authorizing evidence,"P1, fake-error payloads",yes
+jha2025controlvalve,defense,C5,Allowed edge and allowed context are distinct obligations,"B4, EDGE vs SEL",yes
+Yu2026MisleadingTPO,planner study,C7,Claimed capabilities steer delegation before any task runs,plan-bound owners,no
+invariant2025toolpoisoning;Narajala2025SecuringGMAU,advisory; registry defense,C7,Tool identity must be tested apart from its arguments,"P4, RECONF",yes
+Chen2024AgentPoisonRLBS;Patlan2025CrossUserPUAK,retrieval poisoning; threat model,C6,Write provenance and current principal belong to the decision,"per-run envelopes, gap G5",yes
+naik2026omnileak,confidentiality study,C4;C5,Destination and provenance of released data must be audited,"executor sinks, audit",no
+kavathekar2025tamas,benchmark,C1;C2;C4,Stratify by attacker placement and keep benign utility,"A1-A4, TAMAS study",yes
+An2026ACIArenaTUH,benchmark,C2;C4;C7,Separate the entry surface from the attack objective,criteria vs goals,no
+debenedetti2025camel;li2025drift,defenses,C2;C3,A fixed plan still needs a flow policy for tool arguments,"P5, baseline B3",yes

@@ -1,0 +1,21 @@
+{
+ "supplementary": 22,
+ "supplementary_in_corpus": 10,
+ "Q1": 72,
+ "Q2": 71,
+ "records": 143,
+ "duplicates": 6,
+ "unique": 137,
+ "included": 127,
+ "excluded": 10,
+ "title_rule_agrees": 132,
+ "rule_differs_with_note": 5,
+ "rule_differs_without_note": 0,
+ "leaves": 18,
+ "classified": 127,
+ "attack_forms": 14,
+ "attack_forms_without_corpus_support": 2,
+ "unknown_keys": [],
+ "evidence_table_mismatch": [],
+ "gap_table_mismatch": []
+}

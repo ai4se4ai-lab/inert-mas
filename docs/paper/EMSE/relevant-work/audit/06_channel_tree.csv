@@ -1,0 +1,15 @@
+interface_class,channel,attack_form,control_class,inert_mechanism,property,coverage_criterion,supporting_studies,note
+Entry,C1 User request,Injected suffix in the user's request (direct injection),semantic,input label on the injected suffix,P5,TAINT,perez2022ignore;liu2024formalizing;kavathekar2025tamas,
+Entry,C2 External content,Data becomes a worker's sub-task (data-to-instruction),semantic,taint check at context selection (MP1),P5,SEL,greshake2023indirect;zhan2024injecagent;debenedetti2024agentdojo,
+Entry,C2 External content,"Data becomes a recipient, path or command (data-to-executor)",semantic,taint check at acceptance and tool execution,P5,TAINT;EDGE,debenedetti2025camel;zhang2025asb;naik2026omnileak,
+Entry,C3 Tool response,Fake error or status routes control (control-flow hijack),structural,fixed compiled plan,P1,EDGE,triedman2025mas;jha2025controlvalve,
+Collaboration,C4 Peer message,Payload copied from agent to agent (self-replication),semantic,labels propagate inside envelopes,P5,EDGE;SEL,lee2024promptinfection;Gu2024AgentSAAO,
+Collaboration,C4 Peer message,Sender impersonation,structural,per-request capability tokens,P2,SLOT,kavathekar2025tamas;Paul2026BeyondSIE,
+Collaboration,C4 Peer message,Message rewritten in transit (agent-in-the-middle),structural,"MAC over request, key and value",P2,EDGE,he2025aitm;Yan2025AttackTMAQ,
+Collaboration,C5 Coordination signal,Replay of a stale approval or result,structural,exact dependency-key match,P3,RECONF,,derived from the kernel's freshness model; no corpus study reports replay against LLM MAS
+Collaboration,C5 Coordination signal,Release of an inconsistent snapshot,structural,publication barrier,P6,SLOT;COLL,,derived from the kernel's publication model
+Collaboration,C5 Coordination signal,Colluding agents agree on a protected decision,residual,owned validators narrow the choice,-,COLL,kavathekar2025tamas;Xie2025WhosTMAI,
+Persistence and configuration,C6 Shared state,Poisoned record read in a later task or session,semantic,labels within a run; cross-session memory open (G5),P5,-,Chen2024AgentPoisonRLBS;Patlan2025CrossUserPUAK;Sunil2026MemoryPABF,
+Persistence and configuration,C7 Discovery metadata,Poisoned tool description,structural,tool hash pinned in the contract,P4,RECONF,invariant2025toolpoisoning;Song2025BeyondTPAE;Shi2025PromptIAR,
+Persistence and configuration,C7 Discovery metadata,Rogue agent or provider registration,structural,ownership bound to the plan,P2;P4,RECONF,Yu2026MisleadingTPO;Narajala2025SecuringGMAU,
+Cross-cutting,Any channel,Compromised owner misuses its own authority,residual,"owned validators, task scope",-,SLOT;COLL,kavathekar2025tamas;Wang2025ShadowsITAL,

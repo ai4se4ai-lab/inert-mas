@@ -190,6 +190,7 @@ def main() -> int:
 
     # ---------------------------------------------------------------- RQ1 propagation by topology (B0)
     topo = defaultdict(lambda: defaultdict(list))
+    tamper: dict[str, list[bool]] = defaultdict(list)  # H1, second clause: transport tampering by topology
     for r in zoo:
         if r["defense"] == "B0" and r.get("criterion") not in ("BENIGN", "ADAPTIVE"):
             name = r["model_name"]
@@ -199,6 +200,8 @@ def main() -> int:
             topo[(t, size)]["inf"].append(r.get("infected_agents", 0))
             topo[(t, size)]["blast"].append(r.get("blast_radius", 0))
             topo[(t, size)]["depth"].append(r.get("depth", 0))
+            if r.get("attacker") == "A3":
+                tamper[t].append(r["asr"])
     lines = [r"\begin{tabular}{@{}llrrrrr@{}}", r"\toprule",
              r"Topology & Agents & $n$ & ASR (\%) & Infected agents & Blast radius & Depth \\", r"\midrule"]
     rq1 = {}
@@ -211,6 +214,10 @@ def main() -> int:
     lines += [r"\botrule", r"\end{tabular}"]
     (out / "tab_rq1.tex").write_text("\n".join(lines) + "\n")
     numbers["rq1"] = rq1
+    numbers["rq1_tamper"] = {t: {"asr": mean(v), "n": len(v)} for t, v in tamper.items()}
+    abl_n = [r for r in allzoo if r.get("suite") == "zoo-ablation"]
+    numbers["ablation_design"] = {"runs": len(abl_n), "workflows": len({r["model_name"] for r in abl_n}),
+                                  "llms": len({r.get("llm") for r in abl_n})}
 
     # ---------------------------------------------------------------- RQ2 ablation x attacker class
     abl = defaultdict(lambda: defaultdict(list))
@@ -237,6 +244,16 @@ def main() -> int:
             au[r["defense"]].append(r["utility"])
     numbers["rq2_util_attack"] = {d: mean(v) for d, v in au.items()}
     numbers["first_reject"] = {k: dict(v) for k, v in first.items()}
+    i1a2: dict[str, int] = defaultdict(int)  # which obligations a compromised agent wins under I1 (H2)
+    for r in ablation:
+        if r["defense"] == "I1" and r.get("attacker") == "A2" and r["asr"]:
+            i1a2[r.get("criterion", "")] += 1
+    numbers["i1_a2_success_by_criterion"] = dict(i1a2)
+    fi2: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))  # I2 only, "none" = no rejection
+    for r in ablation:
+        if r["defense"] == "I2" and r.get("criterion") not in ("BENIGN", "ADAPTIVE"):
+            fi2[r.get("attacker")][r.get("first_reject") or "none"] += 1
+    numbers["first_reject_I2"] = {k: dict(v) for k, v in fi2.items()}
 
     # ---------------------------------------------------------------- RQ3 generated vs benchmark suites
     rq3 = {}

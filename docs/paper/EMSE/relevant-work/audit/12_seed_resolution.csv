@@ -1,0 +1,128 @@
+bibkey,title,openalex_id,resolved_by,title_similarity,references,cited_by_count,scopus_citing_records
+zhang2025asb,Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents,W4403884175,doi,1.0,50,349,118
+Ferrag2025FromPIB,From Prompt Injections to Protocol Exploits: Threats in LLM-Powered AI Agents Workflows,W4416525422,title search,1.0,71,188,69
+lee2024promptinfection,Prompt Infection: LLM-to-LLM Prompt Injection within Multi-Agent Systems,W4403363860,title search,1.0,38,277,86
+shahroz2025siege,Agents Under Siege: Breaking Pragmatic Multi-Agent LLM Systems with Optimized Prompt Attacks,W4417224581,doi,0.963,53,13,19
+Shahriar2025ASOE,"A Survey on Agentic Security: Applications, Threats and Defenses",W4415315108,doi,1.0,232,50,11
+McHugh2025PromptI2F,Prompt Injection 2.0: Hybrid AI Threats,W4415310439,doi,1.0,22,41,18
+Ling2026TowardSLG,"Toward Secure LLM Agents: Threat Surfaces, Attacks, Defenses, and Evaluation",W7164162217,doi,1.0,228,21,0
+arif2026conjunctive,Conjunctive Prompt Attacks in Multi-Agent LLM Systems,W7166861002,title search,1.0,42,7,0
+Hu2026TwinACI,Twin Agent: Context Residual Compression for Privilege Separated Agents,W7170143799,doi,1.0,20,1,0
+Xu2026SecurityAAJ,Security Attack and Defense Strategies for Autonomous Agent Frameworks: A Layered Review with OpenClaw as a Case Study,W7159628215,doi,1.0,35,1,0
+Malik2026ADLK,A Deep Learning Framework for Evaluating and Mitigating Prompt Injection in LLM Agents,W7221404771,title search,1.0,19,0,0
+Li2026UniversalDFL,Universal Defenses for Tool-Integrated LLM Agents Against Adversarial Attacks,W7213426895,doi,1.0,24,0,0
+Cao2026ASSM,A Systematic Survey of Prompt Injection Attacks and Defenses in LLM-Integrated Applications and Agentic Systems,W7213435939,title search,1.0,37,0,0
+Ogunjinmi2026AgenticARN,Agentic AI Red-Teaming for Prompt Injection Detection in Multi-Agent Systems,W7233830317,title search,1.0,11,0,0
+liu2024formalizing,Formalizing and Benchmarking Prompt Injection Attacks and Defenses,W4387839052,doi,1.0,13,258,315
+li2025drift,DRIFT: Dynamic Rule-Based Defense with Injection Isolation for Securing LLM Agents,W4415110937,title search,1.0,18,108,11
+debenedetti2025camel,Defeating Prompt Injections by Design,,unresolved,0.0,0,,83
+Shi2025PromptIAR,Prompt Injection Attack to Tool Selection in LLM Agents,W7161032443,title search,1.0,57,228,33
+an2025ipiguard,IPIGuard: A Novel Tool Dependency Graph-Based Defense Against Indirect Prompt Injection in LLM Agents,W4416037246,title search,1.0,15,114,23
+Wang2026TheLOT,The Landscape of Prompt Injection Threats in LLM Agents: From Taxonomy to Analysis,W7128731475,doi,1.0,87,47,0
+Wen2025RLIAU,RL Is a Hammer and LLMs Are Nails: A Simple Reinforcement Learning Recipe for Strong Prompt Injection,W4414972656,doi,1.0,37,45,5
+Hossain2025AMLV,A Multi-Agent LLM Defense Pipeline Against Prompt Injection Attacks,W4417080546,title search,1.0,23,28,11
+wu2024ifc,System-Level Defense against Indirect Prompt Injection Attacks: An Information Flow Control Perspective,W4403810420,doi,1.0,37,119,18
+Alamsabi2026EmbeddingBasedDOX,Embedding-Based Detection of Indirect Prompt Injection Attacks in Large Language Models Using Semantic Context Analysis,W7125837174,title search,1.0,39,25,11
+Gosmar2025PromptIDY,Prompt Injection Detection and Mitigation via AI Multi-Agent NLP Frameworks,W4417285855,doi,1.0,17,29,10
+Siu2026AgentSNZ,Agent Security Needs Redefinition through a Holistic Framework,W7171391727,doi,1.0,33,3,0
+Ramakrishnan2025SecuringAAAA,Securing AI Agents Against Prompt Injection Attacks,W4416549951,doi,1.0,3,22,7
+peigne2025securitytax,Multi-Agent Security Tax: Trading Off Security and Collaboration Capabilities in Multi-Agent Systems,W4416130737,doi,1.0,33,16,22
+Zou2025SecurityCIAD,Security Challenges in AI Agent Deployment: Insights from a Large Scale Public Competition,W7197037656,title search,1.0,0,15,7
+Song2025BeyondTPAE,Beyond the Protocol: Unveiling Attack Vectors in the Model Context Protocol (MCP) Ecosystem,W4414597551,title search,1.0,68,72,2
+naik2026omnileak,OMNI-LEAK: Orchestrator Multi-Agent Network Induced Data Leakage,W7129229292,doi,1.0,20,16,2
+Jamshidi2026SecurityEOAG,Security Engineering of OpenClaw: Analyzing Attack Surface Expansion and Trust-Boundary Violations,W7164921330,doi,1.0,24,2,0
+Sehwag2026ASPISAAH,ASPI: Seeking Ambiguity Clarification Amplifies Prompt Injection Vulnerability in LLM Agents,W7161681165,doi,1.0,25,4,0
+Le2026CrosslayerCOAI,Cross-layer contagion of prompt injections in multi-agent swarms: a multiplex microscopic markov chain approach,W7169210368,doi,1.0,42,0,0
+zhan2024injecagent,InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents,W4402670146,title search,1.0,36,1402,226
+greshake2023indirect,Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection,W4388886073,doi,1.0,27,3529,864
+Pasquini2024NeuralELAL,Neural Exec: Learning (and Learning from) Execution Triggers for Prompt Injection Attacks,W4404612289,title search,1.0,25,135,46
+Toyer2023TensorTIAM,Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game,W4388329043,doi,1.0,26,142,77
+Dziemian2026HowVAAN,How Vulnerable Are AI Agents to Indirect Prompt Injections? Insights from a Large-Scale Public Competition,W7138840503,doi,1.0,44,42,0
+li2025piguard,PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free,W4412889730,title search,1.0,44,123,21
+Xiang2026ArchitectingSAAP,Architecting Secure AI Agents: Perspectives on System-Level Defenses Against Indirect Prompt Injection Attacks,W7147128569,doi,1.0,24,17,1
+Mourad2026SecuringTPAQ,Securing the Prompt Pipeline: A Systematic Review of Defense Mechanisms Against Prompt-Based Attacks in LLM Agents,W7203747543,doi,1.0,26,1,0
+Yi2023BenchmarkingADAR,Benchmarking and Defending against Indirect Prompt Injection Attacks on Large Language Models,W4409150456,title search,1.0,37,647,209
+Piet2023JatmoPIAS,Jatmo: Prompt Injection Defense by Task-Specific Finetuning,W4402217583,title search,1.0,66,217,91
+Li2024GenTelSafeAUAU,GenTel-Safe: A Unified Benchmark and Shielding Framework for Defending Against Prompt Injection Attacks,W4403812581,doi,1.0,37,17,13
+Liu2026LongPIBenchALAV,LongPIBench: A Long-Context Benchmark for Prompt Injection,W7204759488,title search,1.0,47,1,0
+Shaheer2025BeyondTBAW,Beyond the Benchmark: Innovative Defenses Against Prompt Injection Attacks,W4417529992,doi,1.0,22,1,0
+Carolina2025EvaluatingMDAX,Evaluating Multi-Agent Defences Against Jailbreaking Attacks on Large Language Models,W7130575428,title search,1.0,11,0,0
+Prabhakarn2026PromptIAAZ,"Prompt Injection and Jailbreak Attacks on LLM Applications: A Review of Attacks, Defenses and Risk-Adaptive Protection",W7236652444,doi,1.0,133,0,0
+Yadav2025AdversialPIBA,"Adversial Prompt Injection in Large Language Models: Taxonomy, Exploits, and Mitigation Frameworks",W7127370637,title search,1.0,14,3,1
+Geng2025PromptIABB,"Prompt Injection Attacks on Large Language Models: A Survey of Attack Methods, Root Causes, and Defense Strategies",W7115947466,doi,1.0,86,59,14
+Li2024InjecGuardBABC,InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models,W4404342689,doi,1.0,37,65,22
+hagag2026architecture,Architecture Matters for Multi-Agent Security,W7157124873,doi,1.0,35,7,0
+Pedro2023FromPIBE,From Prompt Injections to SQL Injection Attacks: How Protected is Your LLM-Integrated Web Application?,W4385682279,doi,1.0,29,143,0
+Sunil2026MemoryPABF,Memory Poisoning Attack and Defense on Memory Based LLM-Agents,W7123280946,doi,1.0,12,65,2
+Chen2024DefenseAPBG,Defense Against Prompt Injection Attack by Leveraging Attack Techniques,W4412944922,title search,1.0,31,73,30
+Rababah2024SoKPHBH,SoK: Prompt Hacking of Large Language Models,W4406457934,title search,1.0,41,44,24
+chen2025struq,StruQ: Defending Against Prompt Injection with Structured Queries,W4391766701,doi,1.0,38,315,154
+Wan2024CYBERSECEVAL3ABJ,CYBERSECEVAL 3: Advancing the Evaluation of Cybersecurity Risks and Capabilities in Large Language Models,W4403585381,doi,1.0,10,177,58
+Benjamin2024SystematicallyAPBK,Systematically Analyzing Prompt Injection Vulnerabilities in Diverse LLM Architectures,W4404346378,doi,1.0,15,34,31
+Yeo2025MultimodalPIBL,Multimodal Prompt Injection Attacks: Risks and Defenses for Modern LLMs,W4415054481,doi,1.0,8,15,9
+aal2025PromptIABT,Prompt Injection Attacks on Large Language Models: Multi-Model Security Analysis with Categorized Attack Types,W4415663805,title search,1.0,0,7,6
+Mitra2026WhereREC,Where Rules End and Judges Begin: Measuring the Judgment Boundary in Multi-Agent Systems Security,W7220923695,doi,1.0,65,0,0
+Owoputi2022SecurityOMD,Security of Multi-Agent Cyber-Physical Systems: A Survey,W4312832039,title search,1.0,134,54,61
+Paul2026BeyondSIE,Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injection in Multi-Agent Systems,W7214049783,doi,1.0,14,0,0
+Wang2026TrinityGuardAUF,TrinityGuard: A Unified Framework for Safeguarding Multi-Agent Systems,W7137825607,doi,1.0,49,15,0
+RahulDevT2026TowardSAG,"Toward Secure AI-Powered Penetration Testing Agents: Security Threats, Guardrails, and Architectural Perspectives",W7213406581,doi,1.0,115,0,0
+An2026ACIArenaTUH,ACIArena: Toward Unified Evaluation for Agent Cascading Injection,W7166798094,title search,1.0,24,15,2
+Malla2026FromMTI,From Monoliths to Swarms: A Study of Attack Surface Evolution in the Transition to Multi-Agent Web Systems,W7172420091,doi,1.0,35,0,0
+Yang2026SoKWSJ,SoK: When Safe Agents Fail Together: The Security of Multi Agent LLM Systems,W7206155294,doi,1.0,174,6,0
+Rafe2026OrchestrationAVK,Orchestration and Verification of Agentic AI Systems: A Survey of Multi-Agent Collaboration and Safety,W7154623225,title search,1.0,53,5,1
+Yu2025ASOL,A Survey on Trustworthy LLM Agents: Threats and Countermeasures,W4412877234,title search,1.0,152,255,85
+jha2025controlvalve,Breaking and Fixing Defenses Against Control-Flow Hijacking in Multi-Agent Systems,W4415963337,doi,1.0,37,24,2
+Shi2026SAIGuardCSN,SAIGuard: Communication-State Simulation for Proactive Defense of LLM Multi-Agent Systems,W7164571517,title search,1.0,37,1,0
+Yu2026MisleadingTPO,Misleading the Planner through Deceptive Resumes: Registration-Time Injection in Centralized Multi-Agent Systems,W7213327553,doi,1.0,32,2,0
+triedman2025mas,Multi-Agent Systems Execute Arbitrary Malicious Code,,unresolved,0.0,0,,20
+Xu2026WhenAGQ,When Agents Go Rogue: Activation-Based Detection of Malicious Behaviors in Multi-Agent Systems,W7167799911,doi,1.0,62,6,0
+Zhu2025MASTERMSR,MASTER: Multi-Agent Security Through Exploration of Roles and Topological Structures - A Comprehensive Framework,W4416034050,title search,1.0,49,9,1
+Hossain2026OnUIS,"On Understanding, Identifying, and Mitigating Vulnerabilities in Agentic Large Language Models",W7202263795,doi,1.0,141,2,0
+Liu2026TheCPT,The Capability Paradox: How Smarter Auditors Make Multi-Agent Systems Less Secure,W7161710072,doi,1.0,15,2,0
+Liu2026MADBenchBTU,MADBench: Benchmarking the Security of Multi-Agent Debate,W7215091782,doi,1.0,34,0,0
+Luo2026DefendingLMV,Defending LLM-based Multi-Agent Systems Against Cooperative Attacks with Sentence-Level Rectification,W7162675075,doi,1.0,37,2,0
+Kachuee2026MASGuardUGW,MAS-Guard: Unified Guardrails from Individual Agents to Multi-Agent LLM Systems,W7223140662,doi,1.0,25,1,0
+Wang2025IPLAX,IP Leakage Attacks Targeting LLM-Based Multi-Agent Systems,W4415016570,doi,1.0,64,27,5
+Mao2025AgentSafeSLY,AgentSafe: Safeguarding Large Language Model-based Multi-agent Systems via Hierarchical Data Management,W4416082600,doi,1.0,43,63,20
+Zhang2026OpenEvoShieldDNZ,OpenEvoShield: Dual Non-Stationary Continual Defense for Open-World Multi-Agent System Attacks,W7163809147,title search,1.0,29,1,0
+Gosmar2026PromptIMAA,"Prompt Injection Mitigation with Agentic AI, Nested Learning, and AI Sustainability via Semantic Caching",W7168366197,title search,1.0,15,6,0
+Zou2025BlockA2ATSAC,BlockA2A: Towards Secure and Verifiable Agent-to-Agent Interoperability,,unresolved,0.0,0,,8
+Hagag2026ORBITAFAD,ORBIT: A Framework for Multi-Agent Safety and Security Evaluations,W7214782110,doi,1.0,53,1,0
+Yan2026PropGuardSLAE,PropGuard: Safeguarding LLM-MAS via Propagation-Aware Exploration and Remediation,W7161740699,doi,1.0,28,3,0
+Wang2025MASShieldADAF,MAS-Shield: A Defense Framework for Secure and Efficient LLM MAS,W4416949794,title search,1.0,35,5,0
+MateoTorrejon2026GAMMAFACAG,GAMMAF: A Common Framework for Graph-Based Anomaly Monitoring Benchmarking in LLM Multi-Agent Systems,W7157247745,doi,1.0,35,2,0
+Mitra2026AgenticCyOpsSMAH,AgenticCyOps: Securing Multi-Agentic AI Integration in Enterprise Cyber Operations,W7134971770,doi,1.0,44,5,1
+Xie2025WhosTMAI,Who's the Mole? Modeling and Detecting Intention-Hiding Malicious Agents in LLM-Based Multi-Agent Systems,W4415348265,doi,1.0,35,24,0
+Gosmar2025SentinelAFAJ,Sentinel Agents for Secure and Trustworthy Agentic AI in Multi-Agent Systems,W4417077680,doi,1.0,12,28,12
+Patlan2025CrossUserPUAK,Cross-User Poisoning: User-Task Boundary Failures in Multi-User Collaborative Language Agents,W7106678461,doi,1.0,35,5,0
+Wang2025ShadowsITAL,Shadows in the Code: Exploring the Risks and Defenses of LLM-based Multi-Agent Software Development Systems,W7106707956,doi,1.0,24,4,0
+he2025aitm,Red-Teaming LLM Multi-Agent Systems via Communication Attacks,W4412888620,title search,1.0,43,195,53
+Zhang2024PsySafeACAN,"PsySafe: A Comprehensive Framework for Psychological-based Attack, Defense, and Evaluation of Multi-agent System Safety",W4402671221,title search,1.0,49,127,53
+Gu2024AgentSAAO,Agent Smith: A Single Image Can Jailbreak One Million Multimodal LLM Agents Exponentially Fast,W4391871694,doi,1.0,96,208,88
+Ji2026TamingVPAP,Taming Various Privilege Escalation in LLM-Based Agent Systems: A Mandatory Access Control Framework,W7125276460,doi,1.0,69,84,9
+Yan2025AttackTMAQ,"Attack the Messages, Not the Agents: A Multi-round Adaptive Stealthy Tampering Framework for LLM-MAS",W7138273102,title search,1.0,36,26,7
+Nakamura2025TerrariumRTAR,"Terrarium: Revisiting the Blackboard for Multi-Agent Safety, Privacy, and Security Studies",,unresolved,0.0,0,,3
+Li2026MESAPVAS,MESA: Prioritizing Vulnerable Communication Channels for Securing Multi-Agent Systems,W7166685071,doi,1.0,48,1,0
+Zhu2026BlockchainETAT,"Blockchain Empowered Trustworthy Agent Networks: Foundations, Taxonomy, and Future Directions",W7196962092,doi,1.0,96,2,0
+Narajala2025SecuringGMAU,Securing GenAI Multi-Agent Systems Against Tool Squatting: A Zero Trust Registry-Based Approach,W4416927819,title search,1.0,8,37,11
+Miao2025BlindGuardSLAV,BlindGuard: Safeguarding LLM-based Multi-Agent Systems under Unknown Attacks,W4416243467,title search,1.0,42,56,22
+Wang2025GSafeguardATAW,G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems,W4412945563,title search,1.0,61,141,40
+Hu2026AttackingADAX,Attacking and Defending Multi-Agent Collaborative Filtering Systems Through Connectivity,W7197053042,title search,1.0,83,0,0
+Mao2025FromLTAY,From LLMs to MLLMs to Agents: A Survey of Emerging Paradigms in Jailbreak Attacks and Defenses within LLM Ecosystem,W4417423213,title search,1.0,166,26,10
+Kao2026YouTMAZ,You Told Me to Do It: Measuring Instructional Text-induced Private Data Leakage in LLM Agents,W7135215352,doi,1.0,39,3,0
+Xie2026FromSTBA,From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration,W7134087660,doi,1.0,57,45,2
+Yu2025NetSafeETBB,NetSafe: Exploring the Topological Safety of Multi-agent System,W4412888814,title search,1.0,35,46,17
+kavathekar2025tamas,TAMAS: Benchmarking Adversarial Risks in Multi-Agent LLM Systems,W7166876206,title search,1.0,41,47,9
+Sharma2025TowardsUQBD,Towards Unifying Quantitative Security Benchmarking for Multi Agent Systems,,unresolved,0.0,0,,2
+Witt2025OpenCIBE,Open Challenges in Multi-Agent Security: Towards Secure Systems of Interacting AI Agents,W4415030290,doi,1.0,318,156,47
+Nagaraja2026WhenPCBF,When Prompts Control Robots: Prompt Injection Attacks in Multi-Agent Robotic Systems,W7172407232,doi,1.0,25,5,0
+Tallam2026AuthorizationPIBH,Authorization Propagation in Multi-Agent AI Systems: Identity Governance as Infrastructure,W7160651990,doi,1.0,5,25,1
+Luo2025LargeLMBI,"Large Language Model Agent: A Survey on Methodology, Applications and Challenges",W4415062702,doi,1.0,276,524,171
+Cai2026CrossLayerSFBK,Cross-Layer Semantic Flow Reconstruction for Attack Detection in Agentic Systems,W7134039921,doi,1.0,17,4,0
+Engelmann2022RV4JaCaRBL,RV4JaCa - Runtime Verification for Multi-Agent Systems,W4285794235,title search,1.0,44,18,14
+Li2026TowardsSABM,"Towards Secure Agent Skills: Architecture, Threat Taxonomy, and Security Analysis",W7150881351,doi,1.0,30,37,2
+Wang2025SecurityOIBN,Security of Internet of Agents: Attacks and Countermeasures,W4412482272,title search,1.0,58,57,36
+Taheri2020MitigationARBP,Mitigation and Resiliency of Multi-Agent Systems Subject to Malicious Cyber Attacks on Communication Links,W3086266442,title search,1.0,32,6,1
+Rashidi2026TheBOBQ,"The Balkanization of Execution-Security Research for AI Coding Agents: Isolation, Access Control, and Time-of-Check-to-Time-of-Use Vulnerabilities",W7167676764,doi,1.0,47,6,0
+Hashmi2026PromptIDBR,Prompt Injection Detection for Email Agents Through Attack Chain Modeling,W7214606010,doi,1.0,12,0,0
+Chen2024AgentPoisonRLBS,AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases,W4415800619,title search,1.0,34,677,170
