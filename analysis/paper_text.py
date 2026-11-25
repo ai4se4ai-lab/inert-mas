@@ -115,7 +115,7 @@ def tamper_sentence(n: dict[str, Any]) -> str:
     if not t:
         return ""
     hi = max(t, key=lambda k: t[k]["asr"])
-    return (f"Message tampering (A3) succeeds under B0 in {p(t.get('chain', {}).get('asr'))} of the tests on chains, "
+    return (f"For the second clause of H1 we compare message tampering (A3) across topologies. It succeeds under B0 in {p(t.get('chain', {}).get('asr'))} of the tests on chains, "
             f"against {p(t[hi]['asr'])} on {hi} topologies, so chains do not amplify tampering. ")
 
 
@@ -181,10 +181,14 @@ def render(n: dict[str, Any]) -> dict[str, str]:
     nb_att = sum(v["n_att"] for v in main.values())
     out["abstract_results"] = (
         f"In a study of {num(n['rows'])} runs, INERT lowered the attack success rate on the 51-workflow topology zoo "
-        f"from {p(b0['asr'])} without defense to {p(i2['asr'])} (forbidden effects alone: from {p(b0['goal'])} to "
-        f"{p(i2['goal'])}), matching the strongest baseline, a CaMeL-style planner with quarantined data, while completing "
-        f"{p(i2['u_ben'])} of benign tasks against that baseline's {p(b3['u_ben'])}. An adaptive attacker did not "
-        f"succeed against INERT. On TAMAS, INERT reduced indirect injection from {p(tam.get('B0', {}).get('IPI'))} to "
+        f"from {p(b0['asr'])} without defence to {p(i2['asr'])}, matching the strongest baseline, a CaMeL-style "
+        f"planner with quarantined data, while completing "
+        f"{p(i2['u_ben'])} of benign tasks against that baseline's {p(b3['u_ben'])}. An adaptive attacker that knew "
+        f"the model and policy and saw INERT's rejection reasons succeeded in "
+        f"{'none' if rq5.get('I2', {}).get('asr', 1) == 0 else p(rq5.get('I2', {}).get('asr'))} of "
+        f"{rq5.get('I2', {}).get('n', 0)} cases within ten attempts each, whereas it defeated an injection detector in "
+        f"{p(rq5.get('B1', {}).get('asr'))} and a permitted-graph defence in {p(rq5.get('B4', {}).get('asr'))} of "
+        f"cases. On TAMAS, INERT reduced indirect injection from {p(tam.get('B0', {}).get('IPI'))} to "
         f"{p(tam.get('I2', {}).get('IPI'))}, about the rate at which benign runs call the targeted tools, but did not stop agents "
         "that misuse tools they legitimately own. "
         f"%Attack suites generated from the model violated "
@@ -196,8 +200,8 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         f"(forbidden effects from {p(b0['goal'])} to {p(i2['goal'])}) and kept "
         f"{p(i2['u_ben'])} benign utility, more than the undefended system ({p(b0['u_ben'])}). The strongest baseline, "
         f"a CaMeL-style planner, also blocked every attack but completed only {p(b3['u_ben'])} of benign tasks. "
-        "Each mechanism closed the channel the taxonomy assigns to it, generated suites found more successful attacks "
-        "per unit of cost than benchmark-style suites, and on TAMAS agents that misuse tools the model allows them "
+        "Each mechanism closed the injection channel it was designed for, generated suites found more successful "
+        "attacks per unit of cost than benchmark-style suites, and, on TAMAS, agents that misuse tools the model allows them "
         "remain a residual risk.")
     pb = n.get("p1_base_rate") or {}
     zc = n.get("zoo_composition") or {}
@@ -210,10 +214,11 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         f"Two conditions reach an attack success rate of {p(i2['asr'])}: I2 and B3 (Wilson 95\\% upper bound "
         f"{p(i2['asr_hi'], 2)}). They differ sharply in utility. I2 completes {p(i2['u_ben'])} of benign tasks and B3 "
         f"{p(b3['u_ben'])}, because B3's planner never sees the material it must act on and its capability policy "
-        f"denies side effects whose arguments derive from it. The message-level defenses reduce but do not prevent "
+        f"denies side effects whose arguments derive from it. The message-level defences reduce but do not prevent "
         f"attacks: the detector B1 reaches {p(b1['asr'])}, the permitted graph B4 {p(b4['asr'])}. "
-        "ASR and Goal differ by construction. For the baselines, ASR also counts a control-flow violation (P1): a "
-        "handoff outside the model that reaches the agent owning the attacker's target tool. Free-form group chats "
+        "ASR and Goal differ by construction, because ASR also counts property violations. For the baselines these "
+        "are control-flow violations (P1), that is, handoffs outside the model that reach the agent owning the "
+        "attacker's target tool. Free-form group chats "
         "make such handoffs without any attack, in "
         + ", ".join(f"{p(pb[d]['benign_offmodel'])} ({d})" for d in ("B0", "B1", "B2") if d in pb)
         + f" and {p(pb.get('B4', {}).get('benign_offmodel'))} (B4)" +
@@ -252,7 +257,7 @@ def render(n: dict[str, Any]) -> dict[str, str]:
             "propagates least because only the coder writes the artifact that reaches the executor.\n\n"
             + tamper_sentence(n) +
             "Figure~\\ref{fig:propagation}d separates exposure from effect. Under I1 and I2 about as many agents "
-            "carry attacker content as under the message-level defenses, yet the attacks rarely or never reach an "
+            "carry attacker content as under the message-level defences, yet the attacks rarely or never reach an "
             "effect: the injected text is still read and repeated, but it stays in data fields.\n\n"
             "\\textbf{Answer to RQ1.} Injections propagate to several agents in every topology, and the absolute "
             "number of infected agents grows with team size. Hypothesis H1 holds for the count of infected agents "
@@ -341,7 +346,7 @@ def render(n: dict[str, Any]) -> dict[str, str]:
             "benchmarks do not cover, compromised and colluding agents and tampering in transit, are among the most "
             "effective, while benchmark-style injection ranks in the middle. Neither "
             "suite found a successful attack against I2, so the generated tests also act as a regression suite for "
-            "the defense.\n\n"
+            "the defence.\n\n"
             "\\textbf{Answer to RQ3.} At equal cost, model-coverage suites find more successful attacks and reach "
             "several times more distinct model elements than benchmark-style suites. H3 is supported.")
     # ---------------------------------------------------------------- RQ4
@@ -379,7 +384,7 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         "\\textbf{Answer to RQ4.} Relative to the undefended system INERT's net utility is higher on our tasks, "
         "because typed slots help more than the taint policy costs; the cost of the security mechanisms proper is "
         f"the {100 * (i1['u_ben'] - i2['u_ben']):.1f}-point gap between I1 and I2, much lower than B3's loss, and "
-        "INERT's false-rejection rate is the lowest of all defenses. H4 predicted a loss relative to B0 comparable "
+        "INERT's false-rejection rate is the lowest of all defences. H4 predicted a loss relative to B0 comparable "
         "to B3's, so the outcome is more favourable than hypothesized, and its second part (false rejections below "
         "B1's flag rate) holds.")
     # ---------------------------------------------------------------- per model and task family
@@ -416,7 +421,7 @@ def render(n: dict[str, Any]) -> dict[str, str]:
                 f"Against {d} it succeeded in {p(v['asr'])} of {v['n']} cases"
                 + (f" after {f(v['attempts'], 1)} attempts on average." if v['asr'] > 0 else ", exhausting its budget.")
                 for d, v in sorted(rq5.items())) +
-            " Feedback helped the attacker against the message-level defenses, which it learned to evade within a few "
+            " Feedback helped the attacker against the message-level defences, which it learned to evade within a few "
             "attempts. Against I2 the rejection reasons only told the attacker that untrusted content never reaches "
             "the executor, which no payload can change.\n\n"
             "\\textbf{Answer to RQ5.} The structural and taint guarantees held under adaptive attack, including on "
@@ -474,24 +479,24 @@ def render(n: dict[str, Any]) -> dict[str, str]:
     out["discussion_text"] = (
         "\\paragraph{Structural and semantic guarantees fail differently.} Tokens, key matching and metadata pinning "
         "defeat attacks on authorship, freshness and configuration whatever the payload says, so feedback does not "
-        "help an adaptive attacker. The taint policy decides what an agent may see before it decides, which is why "
-        "only it stops an injected recipient, path or command from travelling into an executor field. Message-level "
-        "defenses judge single messages, while the harm is a flow.\n\n"
+        "help an adaptive attacker. The taint policy decides what an agent may see before the agent makes its decision, "
+        "which is why only this policy stops an injected recipient, path or command from travelling into an executor field. Message-level "
+        "defences, in contrast, judge single messages, whereas the harm arises from a flow across agents.\n\n"
         "\\paragraph{Where INERT does not help.} Residual risk sits in authority the model grants: a compromised "
         "owner of an executor field can misuse it within its validators, and content in the user's own request is "
         "trusted. Model-level least privilege such as the task scope of I2S narrows this risk but moves it to the "
         "component that decides the scope.\n\n"
         + residual_sentence(n) +
-        "\\paragraph{Availability.} Failing closed turns tampering into refusals, a denial-of-service surface that an "
-        "authenticated transport removes.\n\n"
+        "\\paragraph{Availability.} Failing closed turns tampering into refusals. This opens a denial-of-service "
+        "surface, which an authenticated transport between agents and controller would remove.\n\n"
         "")
     out["conclusion_text"] = (
-        "INERT treats an LLM multi-agent system as a model-driven artifact whose controller is a reference monitor "
-        "for injection channels, derived from a taxonomy of seven channels and enforced, tested and audited from "
-        "one compiled model. "
+        "INERT treats an LLM multi-agent system as a model-driven artifact. A taxonomy of seven injection channels "
+        "determines what must be mediated, and one compiled model is enforced by a controller that acts as a "
+        "reference monitor, tested by generated attacks and audited from a replayable log. "
         f"The full configuration reduced attack success on the topology zoo to {p(i2['asr'])} while completing "
         f"{p(i2['u_ben'])} of benign tasks, more than the undefended system and far more than the strongest "
         "design-level baseline, and model-derived suites exposed more weaknesses than benchmark-style attacks. The remaining risk lies in authority the model grants and "
         "in content that arrives as the user's own request. Future work will study how developers write INERT "
-        "models, task scopes with guarantees and long-lived memory.")
+        "models, how task scopes can be given guarantees and how long-lived memory can be mediated.")
     return out
