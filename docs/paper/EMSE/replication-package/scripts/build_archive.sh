@@ -7,9 +7,10 @@
 #
 # The archive contains
 #   - the committed repository at HEAD (git archive): code, tests, baselines, TAMAS adapter and data,
-#     zoo models, manifests, analysis scripts, manuscript, taxonomy audit trail and API cache, this package;
-#   - results/final/        the 182 result shards (git-ignored in the repository, ~280 MB uncompressed);
-#   - hpc/fetched/code/     the four code snapshots that produced the records (named by content hash).
+#     zoo models, manifests, the 182 result shards in results/final/, analysis scripts, manuscript,
+#     taxonomy audit trail and API cache, this package;
+#   - hpc/fetched/code/     the four code snapshots that produced the records (named by content hash,
+#                           git-ignored because hpc/fetched/ also holds logs with account names).
 # It deliberately leaves out hpc/fetched/jobs.jsonl and other fetched logs, which carry cluster
 # account names, and anything under hpc/.ssh/.
 set -euo pipefail
@@ -23,12 +24,11 @@ COMMIT=$(git rev-parse --short=12 HEAD)
 NAME=inert-mas-replication-$COMMIT
 DIST=$PKG/dist
 STAGE=$(mktemp -d)
-# results/final is archived read-only; cp -a keeps that mode, so make the copy writable before removal
+# copied files may be read-only (cp -a keeps modes), so make the staging tree writable before removal
 trap 'chmod -R u+w "$STAGE" 2>/dev/null; rm -rf "$STAGE"' EXIT
 mkdir -p "$DIST" "$STAGE/$NAME"
 git archive --format=tar HEAD | tar -x -C "$STAGE/$NAME"
-mkdir -p "$STAGE/$NAME/results" "$STAGE/$NAME/hpc/fetched"
-cp -a results/final "$STAGE/$NAME/results/final"
+mkdir -p "$STAGE/$NAME/hpc/fetched"
 cp -a hpc/fetched/code "$STAGE/$NAME/hpc/fetched/code"
 printf '%s\n' "$(git rev-parse HEAD)" > "$STAGE/$NAME/COMMIT"
 tar -C "$STAGE" -cf - "$NAME" | xz -T0 -9 > "$DIST/$NAME.tar.xz"

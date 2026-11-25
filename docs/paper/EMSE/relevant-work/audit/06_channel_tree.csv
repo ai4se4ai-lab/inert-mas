@@ -8,8 +8,8 @@ Collaboration,C4 Peer message,Sender impersonation,structural,per-request capabi
 Collaboration,C4 Peer message,Message rewritten in transit (agent-in-the-middle),structural,"MAC over request, key and value",P2,EDGE,he2025aitm;Yan2025AttackTMAQ,
 Collaboration,C5 Coordination signal,Replay of a stale approval or result,structural,exact dependency-key match,P3,RECONF,,derived from the kernel's freshness model; no corpus study reports replay against LLM MAS
 Collaboration,C5 Coordination signal,Release of an inconsistent snapshot,structural,publication barrier,P6,SLOT;COLL,,derived from the kernel's publication model
-Collaboration,C5 Coordination signal,Colluding agents agree on a protected decision,residual,owned validators narrow the choice,-,COLL,kavathekar2025tamas;Xie2025WhosTMAI,
-Persistence and configuration,C6 Shared state,Poisoned record read in a later task or session,semantic,labels within a run; cross-session memory open (G5),P5,-,Chen2024AgentPoisonRLBS;Patlan2025CrossUserPUAK;Sunil2026MemoryPABF,
+Collaboration,C5 Coordination signal,Colluding agents agree on a protected decision,residual,owned validators narrow the choice,P4,COLL,kavathekar2025tamas;Xie2025WhosTMAI,
+Persistence and configuration,C6 Shared state,Poisoned record read in a later task or session,semantic,not mediated; cross-session memory is gap G5,-,-,Chen2024AgentPoisonRLBS;Patlan2025CrossUserPUAK;Sunil2026MemoryPABF,
 Persistence and configuration,C7 Discovery metadata,Poisoned tool description,structural,tool hash pinned in the contract,P4,RECONF,invariant2025toolpoisoning;Song2025BeyondTPAE;Shi2025PromptIAR,
 Persistence and configuration,C7 Discovery metadata,Rogue agent or provider registration,structural,ownership bound to the plan,P2;P4,RECONF,Yu2026MisleadingTPO;Narajala2025SecuringGMAU,
-Cross-cutting,Any channel,Compromised owner misuses its own authority,residual,"owned validators, task scope",-,SLOT;COLL,kavathekar2025tamas;Wang2025ShadowsITAL,
+Cross-cutting,Any channel,Compromised owner misuses its own authority,residual,"owned validators; task scope (I2S, post hoc)",P4,SLOT;COLL,kavathekar2025tamas;Wang2025ShadowsITAL,

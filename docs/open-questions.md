@@ -62,6 +62,18 @@ Each entry: the question, the choice taken (most conservative), and where it mat
 16. **Location of the replication package (2026-11-24).** The request named `paper/EMSE`, which does
     not exist; `paper/` holds generated analysis assets and the manuscript lives in `docs/paper/EMSE/`.
     The package was placed in `docs/paper/EMSE/replication-package/`, next to the manuscript and the
-    taxonomy audit trail it documents, and adds no data to git: result shards and code snapshots stay
-    git-ignored and go into the deposit archive built by `scripts/build_archive.sh`. Moving the folder
+    taxonomy audit trail it documents, and adds no data of its own. Since 2026-11-25 the result shards are tracked in git (`results/final`);
+    the code snapshots stay git-ignored and go into the deposit archive built by `scripts/build_archive.sh`. Moving the folder
     only requires adjusting the `../../../../` prefixes in its links and the `ROOT=` line of its scripts.
+17. **Primary search engine of the taxonomy (2026-11-25, open).** Review 1 asks to name the academic
+    search engine used for Q1 and Q2 and its field restrictions. The repository holds the exports
+    (`docs/paper/EMSE/relevant-work/*.md`) and the source library of every record, but not the name
+    of the engine. Conservative choice until the author supplies it: the manuscript keeps "an academic
+    search engine" and points to the published exports; no engine is named or guessed.
+18. **Review 1 analyses (2026-11-25).** Added to the analysis without new runs: run accounting
+    (Table 7), the benign base rate of the baseline P1 clause, effect-only (Goal) ordering, utility per
+    task family, RQ2 breakdowns (success kind, A5 by reconfiguration type, I2 rejection counts), the
+    TAMAS oracle floor and residual successes per TAMAS configuration. ASR remains the primary outcome
+    as pre-registered. Not done because it needs new GPU runs or a human: new baselines (AgentSafe,
+    G-Safeguard, BlindGuard), a stronger attacker on declassifiers, ACIArena, and a second rater for
+    the corpus classification; each is stated as a limitation.

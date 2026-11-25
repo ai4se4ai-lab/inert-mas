@@ -5,8 +5,12 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-results/
+# result records: the archived study (results/final) is tracked; new runs stay local until archived
+results/*
 !results/.gitkeep
+!results/README.md
+!results/final/
+!results/push-check-20261123.jsonl
 hpc/.ssh/
 hpc/fetched/
 *.sif

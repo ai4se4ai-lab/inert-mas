@@ -118,7 +118,7 @@ def pct(x: float) -> str:
 
 
 SUBSTUDIES = [  # (suite, label in the run-accounting table)
-    ("zoo-benign", "Topology zoo, benign tasks"), ("zoo-attack", "Topology zoo, attacked (Table 6)"),
+    ("zoo-benign", "Topology zoo, benign tasks"), ("zoo-attack", "Topology zoo, attacked (Table~\\ref{tab:main})"),
     ("zoo-ablation", "Ablation suite (RQ2)"), ("seeds", "Seed sub-study (temperature 0.7)"),
     ("adaptive", "Adaptive attacker (RQ5)"), ("tamas", "TAMAS"), ("tamas-split2", "TAMAS DPI-split re-run"),
     ("tamas-scope", "TAMAS task scope (I2S)")]
@@ -183,6 +183,23 @@ def review_numbers(rows: list[dict[str, Any]], zoo: list[dict[str, Any]], ablati
             if xs:
                 fam[d][fa] = mean(xs)
     numbers["util_by_family"] = dict(fam)
+    lf: dict[str, dict[str, dict[str, float]]] = defaultdict(lambda: defaultdict(dict))
+    for llm in sorted({r.get("llm") for r in zoo}):
+        for d in ("I1", "I2"):
+            for fa in ("email", "reply", "web", "code"):
+                xs = [r["utility"] for r in zoo if r["defense"] == d and r.get("llm") == llm and r["family"] == fa
+                      and r.get("criterion") == "BENIGN"]
+                lf[llm][d][fa] = mean(xs)
+    numbers["util_by_llm_family"] = {k: dict(v) for k, v in lf.items()}
+    fams = ("email", "reply", "web", "code")
+    lines = [r"\begin{tabular}{@{}lrrrrr@{}}", r"\toprule",
+             r"Def. & email & reply & web & code & all \\", r"\midrule"]
+    for d in ORDER:
+        if d in fam and not d.startswith("I2-"):
+            allv = mean([r["utility"] for r in zoo if r["defense"] == d and r.get("criterion") == "BENIGN"])
+            lines.append(f"{d} & " + " & ".join(pct(fam[d][x]) for x in fams) + f" & {pct(allv)} \\\\")
+    lines += [r"\botrule", r"\end{tabular}"]
+    (out / "tab_family.tex").write_text("\n".join(lines) + "\n")
     dec = [ok for r in zoo if r["defense"] == "I2" and r.get("criterion") == "BENIGN" and r["family"] == "reply"
            for _, ok in r.get("declassified", [])]
     numbers["reply_declass_ok"] = mean(dec) if dec else float("nan")
@@ -520,7 +537,7 @@ def main() -> int:
     numbers["per_llm"] = {}
     for llm in sorted(per):
         numbers["per_llm"][llm] = {d: {"asr": mean(per[llm][d]["a"]), "util": mean(per[llm][d]["u"])} for d in defs}
-        lines.append(f"\\texttt{{{llm.replace('-small', '')}}} & " + " & ".join(f"{pct(mean(per[llm][d]['a']))} & {pct(mean(per[llm][d]['u']))}"
+        lines.append(f"\\texttt{{{llm}}} & " + " & ".join(f"{pct(mean(per[llm][d]['a']))} & {pct(mean(per[llm][d]['u']))}"
                                                      for d in defs) + r" \\")
     lines += [r"\botrule", r"\end{tabular}"]
     (out / "tab_llm.tex").write_text("\n".join(lines) + "\n")

@@ -37,6 +37,7 @@ echo "== 1. Regenerate into $OUT (about 2 minutes)"
 "$PY" analysis/make_assets.py "${FILES[@]}" --out "$OUT" > "$OUT/make_assets.log" 2>&1 || { echo "  [FAIL] make_assets"; status=1; }
 "$PY" analysis/residual.py "${FILES[@]}" --out "$OUT" > "$OUT/residual.log" 2>&1 || { echo "  [FAIL] residual"; status=1; }
 "$PY" analysis/make_figures.py "${FILES[@]}" --assets "$OUT" > "$OUT/make_figures.log" 2>&1 || { echo "  [FAIL] make_figures"; status=1; }
+"$PY" analysis/example_trace.py --out "$OUT" > "$OUT/example_trace.log" 2>&1 || { echo "  [FAIL] example_trace"; status=1; }
 
 echo "== 2. Tables and residual-risk files (byte comparison with paper/)"
 for f in paper/tab_*.tex paper/residual.json paper/residual_coding.csv; do

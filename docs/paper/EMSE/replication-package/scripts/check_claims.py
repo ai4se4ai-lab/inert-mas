@@ -10,7 +10,7 @@ reviewer can check the published numbers against a second, short implementation.
 Sections:
   1. provenance   every record names a manifest whose SHA-256 matches hpc/manifests/, a model digest,
                   a decoding configuration and a code version with an archived snapshot
-  2. results      run counts, Table 6 (main), RQ3 distinct obligations, RQ5 adaptive, TAMAS IPI
+  2. results      run counts, Table 8 (main), RQ3 distinct obligations, RQ5 adaptive, TAMAS IPI
   3. example      the running example of Sections 2.7 and 5 (needs the `inert` package installed)
 
 Exit code 0 when every check passes, 1 otherwise.
@@ -41,6 +41,17 @@ EXPECTED = {
     "rq3_distinct": {"B0:generated": 761, "B0:bench": 153},   # Table "RQ3"
     "rq5_asr": {"B1": 88.9, "B4": 75.0, "B3": 0.0, "I2": 0.0},  # adaptive attacker, 10 attempts
     "tamas_ipi": {"B0": 51.7, "B4": 15.0, "B3": 2.3, "I2": 8.0},  # TAMAS indirect injection, goal met %
+    "goal": {"B0": 56.3, "B1": 11.8, "B2": 47.6, "B3": 0.0, "B4": 46.2, "I1": 7.1, "I2": 0.0},  # Table 8, Goal
+    # Sec. 7: benign runs with an off-model handoff to the executor agent (the baseline P1 clause)
+    "p1_benign": {"B0": 52.5, "B1": 51.6, "B2": 50.5, "B4": 26.1},
+    "runs_by_suite": {"zoo-benign": 8568, "zoo-attack": 60690, "zoo-ablation": 11900, "seeds": 3780,
+                      "adaptive": 144, "tamas": 16800, "tamas-split2": 2100, "tamas-scope": 2400},  # Table 7
+    "i2key_a5": {"replay": 70.5, "tool_meta": 100.0},  # Sec. 7.2
+    "i2_util_code": 54.2, "i1_util_code": 88.1,  # Sec. 7.4
+    "tamas_i2_overlap": {"IPI": (23, 24), "DPI-split": (17, 21)},  # Sec. 7.7: successes also seen on benign run
+    "residual": {"whole": 369, "split": 257},  # Sec. 8: I2 successes per TAMAS configuration
+    "i2_util_by_llm": {"llama3.1:8b": 52.2, "qwen2.5:72b": 100.0},  # Sec. 7.5, Table 10: extremes
+    "i2_code_zero": ["llama3.1:8b", "llama3.3:70b"],  # Sec. 7.5: no code task completed under I2
 }
 GENERATED = ("EDGE", "SLOT", "SEL", "TAINT", "RECONF", "COLL")
 
@@ -138,6 +149,54 @@ def results(rows: list[dict], raw: int) -> None:
     for d, want in EXPECTED["tamas_ipi"].items():
         xs = [r["goal_met"] for r in tam if r["defense"] == d and r.get("tamas_attack") == "IPI"]
         check(f"TAMAS IPI goal met % {d}", pct(xs), want)
+
+    for d, want in EXPECTED["goal"].items():
+        check(f"Table main {d}: Goal %", pct([r["goal_met"] for r in att if r["defense"] == d]), want)
+    for d, want in EXPECTED["p1_benign"].items():
+        ben = [r for r in zoo if r["defense"] == d and r.get("criterion") == "BENIGN"]
+        # in every zoo workflow the executor agent `actor` owns the attacker's target tool
+        check(f"benign runs with an off-model handoff to the executor, {d} %",
+              pct(["actor" in (r.get("off_model_targets") or []) for r in ben]), want)
+    for suite, want in EXPECTED["runs_by_suite"].items():
+        check(f"runs in sub-study {suite}", sum(1 for r in ok_rows if r.get("suite") == suite), want)
+    abl = [r for r in ok_rows if r.get("suite") == "zoo-ablation" and r["defense"] == "I2-key"
+           and r.get("attacker") == "A5"]
+    for kind, want in EXPECTED["i2key_a5"].items():
+        check(f"I2-key A5 success %, {kind} tests",
+              pct([r["asr"] for r in abl if str(r.get("obligation", "")).split(":")[1] == kind]), want)
+    for d, want in (("I2", EXPECTED["i2_util_code"]), ("I1", EXPECTED["i1_util_code"])):
+        check(f"benign utility on the code family {d} %",
+              pct([r["utility"] for r in zoo if r["defense"] == d and r["family"] == "code"
+                   and r.get("criterion") == "BENIGN"]), want)
+    ben_calls = {(r["defense"], r["domain"], r["index"], r["llm"]): {c["tool"] for c in r["tool_calls"]}
+                 for r in tam if r.get("tamas_attack") == "Benign"}
+
+    def also(r: dict) -> bool:
+        return all(t in ben_calls.get((r["defense"], r["domain"], r["index"], r["llm"]), set())
+                   for t in r.get("targets") or [])
+    for col, want in EXPECTED["tamas_i2_overlap"].items():
+        att_, var = ("IPI", None) if col == "IPI" else ("DPI", "split")
+        # DPI-split counts only the re-run (suite tamas-split2), as in the analysis
+        succ = [r for r in tam if r["defense"] == "I2" and r.get("tamas_attack") == att_ and r["goal_met"]
+                and (var is None or (r.get("variant") == var and r.get("suite") == "tamas-split2"))]
+        check(f"TAMAS {col} I2 successes whose target the benign run also calls", (sum(map(also, succ)), len(succ)),
+              want)
+    llms = sorted({r.get("llm") for r in zoo})
+    check("I2 attack success % on every model", sorted({pct([r["asr"] for r in att if r["defense"] == "I2"
+                                                             and r.get("llm") == m_]) for m_ in llms}), [0.0])
+    for m_, want in EXPECTED["i2_util_by_llm"].items():
+        check(f"I2 benign utility % on {m_}", pct([r["utility"] for r in zoo if r["defense"] == "I2"
+                                                  and r.get("llm") == m_ and r.get("criterion") == "BENIGN"]), want)
+    check("models completing no code task under I2", sorted(
+        m_ for m_ in llms if not any(r["utility"] for r in zoo if r["defense"] == "I2" and r.get("llm") == m_
+                                     and r["family"] == "code" and r.get("criterion") == "BENIGN")),
+        EXPECTED["i2_code_zero"])
+    fixed = {r.get("llm") for r in tam if r.get("suite") == "tamas-split2"}
+    used = [r for r in tam if not (r.get("suite") == "tamas" and r.get("variant") == "split" and r.get("llm") in fixed)]
+    for cfg, want in EXPECTED["residual"].items():
+        n = sum(1 for r in used if r["defense"] == "I2" and r.get("asr")
+                and not (r.get("tamas_attack") == "DPI" and r.get("variant") != cfg))
+        check(f"successful attacks against I2 on TAMAS, DPI labelled {cfg}", n, want)
 
 
 def example() -> None:

@@ -239,7 +239,7 @@ def fig_ablation(abl: list[dict[str, Any]], out: Path) -> None:
     ax.set_title("(a) Attack success (%) per removed mechanism")
     reasons = ["TOKEN_INVALID", "KEY_STALE", "TOOL_METADATA_MISMATCH", "SCHEMA_INVALID", "TAINT_VIOLATION",
                "VALIDATOR_REJECT", "none"]
-    rname = {"TOKEN_INVALID": "TokenInvalid", "KEY_STALE": "KeyStale", "TOOL_METADATA_MISMATCH": "ToolMetadata",
+    rname = {"TOKEN_INVALID": "TokenInvalid", "KEY_STALE": "KeyStale", "TOOL_METADATA_MISMATCH": "ToolMetadataMismatch",
              "SCHEMA_INVALID": "SchemaInvalid", "TAINT_VIOLATION": "TaintViolation",
              "VALIDATOR_REJECT": "ValidatorReject", "none": "no rejection (effect blocked later)"}
     present = [x for x in reasons if any(first[a].get(x) for a in atts)]

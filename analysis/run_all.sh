@@ -12,6 +12,7 @@ echo "${#FILES[@]} result files"
 $PY analysis/make_assets.py "${FILES[@]}" --out paper
 $PY analysis/residual.py "${FILES[@]}" --out paper
 $PY analysis/make_figures.py "${FILES[@]}" --assets paper
+$PY analysis/example_trace.py --out paper
 PY=$PY bash analysis/taxonomy_pipeline.sh
 $PY analysis/fill_paper.py --assets paper
 bash docs/paper/EMSE/Springer-Nature-LaTeX-template/build.sh

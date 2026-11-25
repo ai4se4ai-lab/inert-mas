@@ -1,13 +1,13 @@
 category,subcategory,leaf,bibkey,cited_in_tree,queries,source
-Threats and propagation,Threat mechanisms,Content and interpretation,Gu2024AgentSAAO,no,Q2,arXiv
+Threats and propagation,Threat mechanisms,Content and interpretation,Gu2024AgentSAAO,yes,Q2,arXiv
 Threats and propagation,Threat mechanisms,Content and interpretation,Sehwag2026ASPISAAH,no,Q1,arXiv
 Threats and propagation,Threat mechanisms,Content and interpretation,Yeo2025MultimodalPIBL,no,Q1,arXiv
-Threats and propagation,Threat mechanisms,Content and interpretation,Pasquini2024NeuralELAL,no,Q1,ACM DL
-Threats and propagation,Threat mechanisms,Content and interpretation,greshake2023indirect,yes,Q1+Q2,ACM DL
+Threats and propagation,Threat mechanisms,Content and interpretation,Pasquini2024NeuralELAL,yes,Q1,ACM DL
+Threats and propagation,Threat mechanisms,Content and interpretation,greshake2023indirect,no,Q1+Q2,ACM DL
 Threats and propagation,Threat mechanisms,Content and interpretation,Wen2025RLIAU,no,Q1,arXiv
 Threats and propagation,Threat mechanisms,Peer influence and composition,shahroz2025siege,yes,Q1,arXiv
-Threats and propagation,Threat mechanisms,Peer influence and composition,Yan2025AttackTMAQ,no,Q2,arXiv
-Threats and propagation,Threat mechanisms,Peer influence and composition,arif2026conjunctive,yes,Q1,arXiv
+Threats and propagation,Threat mechanisms,Peer influence and composition,Yan2025AttackTMAQ,yes,Q2,arXiv
+Threats and propagation,Threat mechanisms,Peer influence and composition,arif2026conjunctive,no,Q1,arXiv
 Threats and propagation,Threat mechanisms,Peer influence and composition,lee2024promptinfection,no,Q1+Q2,arXiv
 Threats and propagation,Threat mechanisms,Peer influence and composition,he2025aitm,no,Q2,arXiv
 Threats and propagation,Threat mechanisms,State and discovery,Chen2024AgentPoisonRLBS,yes,Q2,arXiv
@@ -15,26 +15,26 @@ Threats and propagation,Threat mechanisms,State and discovery,Patlan2025CrossUse
 Threats and propagation,Threat mechanisms,State and discovery,Sunil2026MemoryPABF,no,Q1,arXiv
 Threats and propagation,Threat mechanisms,State and discovery,Yu2026MisleadingTPO,no,Q2,arXiv
 Threats and propagation,Threat mechanisms,State and discovery,Shi2025PromptIAR,no,Q1,arXiv
-Threats and propagation,Threat mechanisms,Execution and disclosure,Pedro2023FromPIBE,no,Q1,arXiv
-Threats and propagation,Threat mechanisms,Execution and disclosure,Wang2025IPLAX,no,Q2,arXiv
-Threats and propagation,Threat mechanisms,Execution and disclosure,triedman2025mas,yes,Q2,arXiv
-Threats and propagation,Threat mechanisms,Execution and disclosure,naik2026omnileak,yes,Q1,arXiv
+Threats and propagation,Threat mechanisms,Execution and disclosure,Pedro2023FromPIBE,yes,Q1,arXiv
+Threats and propagation,Threat mechanisms,Execution and disclosure,Wang2025IPLAX,yes,Q2,arXiv
+Threats and propagation,Threat mechanisms,Execution and disclosure,triedman2025mas,no,Q2,arXiv
+Threats and propagation,Threat mechanisms,Execution and disclosure,naik2026omnileak,no,Q1,arXiv
 Threats and propagation,Threat mechanisms,Execution and disclosure,Nagaraja2026WhenPCBF,no,Q2,arXiv
 Threats and propagation,Threat mechanisms,Execution and disclosure,Kao2026YouTMAZ,no,Q2,arXiv
 Threats and propagation,Collaboration structure,Topology and propagation,hagag2026architecture,yes,Q1,arXiv
 Threats and propagation,Collaboration structure,Topology and propagation,Hu2026AttackingADAX,no,Q2,ACM DL
-Threats and propagation,Collaboration structure,Topology and propagation,Le2026CrosslayerCOAI,no,Q1,publisher DOI
+Threats and propagation,Collaboration structure,Topology and propagation,Le2026CrosslayerCOAI,yes,Q1,publisher DOI
 Threats and propagation,Collaboration structure,Topology and propagation,Malla2026FromMTI,no,Q2,arXiv
 Threats and propagation,Collaboration structure,Topology and propagation,Xie2026FromSTBA,no,Q2,arXiv
 Threats and propagation,Collaboration structure,Topology and propagation,Zhu2025MASTERMSR,no,Q2,arXiv
-Threats and propagation,Collaboration structure,Topology and propagation,Yu2025NetSafeETBB,yes,Q2,Semantic Scholar
+Threats and propagation,Collaboration structure,Topology and propagation,Yu2025NetSafeETBB,no,Q2,Semantic Scholar
 Threats and propagation,Collaboration structure,Roles and trust boundaries,Paul2026BeyondSIE,no,Q2,arXiv
-Threats and propagation,Collaboration structure,Roles and trust boundaries,peigne2025securitytax,no,Q1,arXiv
-Threats and propagation,Collaboration structure,Roles and trust boundaries,Liu2026TheCPT,no,Q2,arXiv
-Threats and propagation,Collaboration structure,Roles and trust boundaries,Mitra2026WhereREC,yes,Q2,arXiv
-Threats and propagation,Collaboration structure,Shared and deployed workflows,Mitra2026AgenticCyOpsSMAH,no,Q2,arXiv
+Threats and propagation,Collaboration structure,Roles and trust boundaries,peigne2025securitytax,yes,Q1,arXiv
+Threats and propagation,Collaboration structure,Roles and trust boundaries,Liu2026TheCPT,yes,Q2,arXiv
+Threats and propagation,Collaboration structure,Roles and trust boundaries,Mitra2026WhereREC,no,Q2,arXiv
+Threats and propagation,Collaboration structure,Shared and deployed workflows,Mitra2026AgenticCyOpsSMAH,yes,Q2,arXiv
 Threats and propagation,Collaboration structure,Shared and deployed workflows,Jamshidi2026SecurityEOAG,no,Q1,arXiv
-Threats and propagation,Collaboration structure,Shared and deployed workflows,Wang2025ShadowsITAL,no,Q2,arXiv
+Threats and propagation,Collaboration structure,Shared and deployed workflows,Wang2025ShadowsITAL,yes,Q2,arXiv
 Threats and propagation,Collaboration structure,Shared and deployed workflows,Nakamura2025TerrariumRTAR,no,Q2,arXiv
 Security defenses,Runtime controls,Planning and information flow,Mao2025AgentSafeSLY,yes,Q2,arXiv
 Security defenses,Runtime controls,Planning and information flow,jha2025controlvalve,yes,Q2,arXiv
@@ -43,18 +43,18 @@ Security defenses,Runtime controls,Planning and information flow,li2025drift,no,
 Security defenses,Runtime controls,Planning and information flow,an2025ipiguard,no,Q1,arXiv
 Security defenses,Runtime controls,Planning and information flow,wu2024ifc,no,Q1,arXiv
 Security defenses,Runtime controls,Planning and information flow,Hu2026TwinACI,no,Q1,arXiv
-Security defenses,Runtime controls,Identity and access control,Tallam2026AuthorizationPIBH,no,Q2,arXiv
+Security defenses,Runtime controls,Identity and access control,Tallam2026AuthorizationPIBH,yes,Q2,arXiv
 Security defenses,Runtime controls,Identity and access control,Zou2025BlockA2ATSAC,yes,Q2,arXiv
-Security defenses,Runtime controls,Identity and access control,Narajala2025SecuringGMAU,yes,Q2,IEEE Xplore
+Security defenses,Runtime controls,Identity and access control,Narajala2025SecuringGMAU,no,Q2,IEEE Xplore
 Security defenses,Runtime controls,Identity and access control,Ji2026TamingVPAP,no,Q2,arXiv
-Security defenses,Runtime controls,Tool and execution boundaries,Taheri2020MitigationARBP,no,Q2,IEEE Xplore
-Security defenses,Runtime controls,Tool and execution boundaries,Engelmann2022RV4JaCaRBL,no,Q2,arXiv
+Security defenses,Runtime controls,Tool and execution boundaries,Taheri2020MitigationARBP,yes,Q2,IEEE Xplore
+Security defenses,Runtime controls,Tool and execution boundaries,Engelmann2022RV4JaCaRBL,yes,Q2,arXiv
 Security defenses,Runtime controls,Tool and execution boundaries,Rashidi2026TheBOBQ,no,Q2,arXiv
 Security defenses,Runtime controls,Tool and execution boundaries,Li2026UniversalDFL,no,Q1,arXiv
 Security defenses,Detection and guardrails,Signals and monitoring,Malik2026ADLK,no,Q1,Semantic Scholar
-Security defenses,Detection and guardrails,Signals and monitoring,Cai2026CrossLayerSFBK,no,Q2,arXiv
+Security defenses,Detection and guardrails,Signals and monitoring,Cai2026CrossLayerSFBK,yes,Q2,arXiv
 Security defenses,Detection and guardrails,Signals and monitoring,Alamsabi2026EmbeddingBasedDOX,no,Q1,Semantic Scholar
-Security defenses,Detection and guardrails,Signals and monitoring,Li2026MESAPVAS,no,Q2,arXiv
+Security defenses,Detection and guardrails,Signals and monitoring,Li2026MESAPVAS,yes,Q2,arXiv
 Security defenses,Detection and guardrails,Signals and monitoring,Hashmi2026PromptIDBR,no,Q2,arXiv
 Security defenses,Detection and guardrails,Signals and monitoring,Shi2026SAIGuardCSN,no,Q2,arXiv
 Security defenses,Detection and guardrails,Signals and monitoring,Gosmar2025SentinelAFAJ,no,Q2,arXiv
@@ -62,8 +62,8 @@ Security defenses,Detection and guardrails,Signals and monitoring,Xu2026WhenAGQ,
 Security defenses,Detection and guardrails,Signals and monitoring,Xie2025WhosTMAI,no,Q2,arXiv
 Security defenses,Detection and guardrails,Collaborative defenses,Hossain2025AMLV,no,Q1,IEEE Xplore
 Security defenses,Detection and guardrails,Collaborative defenses,Miao2025BlindGuardSLAV,yes,Q2,arXiv
-Security defenses,Detection and guardrails,Collaborative defenses,Luo2026DefendingLMV,no,Q2,arXiv
-Security defenses,Detection and guardrails,Collaborative defenses,Wang2025GSafeguardATAW,yes,Q2,arXiv
+Security defenses,Detection and guardrails,Collaborative defenses,Luo2026DefendingLMV,yes,Q2,arXiv
+Security defenses,Detection and guardrails,Collaborative defenses,Wang2025GSafeguardATAW,no,Q2,arXiv
 Security defenses,Detection and guardrails,Collaborative defenses,Kachuee2026MASGuardUGW,no,Q2,arXiv
 Security defenses,Detection and guardrails,Collaborative defenses,Wang2025MASShieldADAF,no,Q2,arXiv
 Security defenses,Detection and guardrails,Collaborative defenses,Zhang2026OpenEvoShieldDNZ,no,Q2,arXiv
@@ -71,29 +71,29 @@ Security defenses,Detection and guardrails,Collaborative defenses,Gosmar2025Prom
 Security defenses,Detection and guardrails,Collaborative defenses,Yan2026PropGuardSLAE,no,Q2,arXiv
 Security defenses,Detection and guardrails,Prompt and model defenses,Shaheer2025BeyondTBAW,no,Q1,arXiv
 Security defenses,Detection and guardrails,Prompt and model defenses,Chen2024DefenseAPBG,no,Q1,arXiv
-Security defenses,Detection and guardrails,Prompt and model defenses,Li2024InjecGuardBABC,no,Q1,arXiv
-Security defenses,Detection and guardrails,Prompt and model defenses,Piet2023JatmoPIAS,no,Q1,arXiv
-Security defenses,Detection and guardrails,Prompt and model defenses,li2025piguard,yes,Q1,Semantic Scholar
+Security defenses,Detection and guardrails,Prompt and model defenses,Li2024InjecGuardBABC,yes,Q1,arXiv
+Security defenses,Detection and guardrails,Prompt and model defenses,Piet2023JatmoPIAS,yes,Q1,arXiv
+Security defenses,Detection and guardrails,Prompt and model defenses,li2025piguard,no,Q1,Semantic Scholar
 Security defenses,Detection and guardrails,Prompt and model defenses,Gosmar2026PromptIMAA,no,Q2,arXiv
 Security defenses,Detection and guardrails,Prompt and model defenses,Ramakrishnan2025SecuringAAAA,no,Q1,arXiv
-Security defenses,Detection and guardrails,Prompt and model defenses,chen2025struq,yes,Q1,arXiv
+Security defenses,Detection and guardrails,Prompt and model defenses,chen2025struq,no,Q1,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,An2026ACIArenaTUH,yes,Q2,arXiv
-Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Ogunjinmi2026AgenticARN,no,Q1,IEEE Xplore
+Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Ogunjinmi2026AgenticARN,yes,Q1,IEEE Xplore
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Carolina2025EvaluatingMDAX,no,Q1,IEEE Xplore
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,MateoTorrejon2026GAMMAFACAG,no,Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Liu2026MADBenchBTU,no,Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Hagag2026ORBITAFAD,no,Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Zhang2024PsySafeACAN,no,Q2,arXiv
-Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,kavathekar2025tamas,yes,Q2,arXiv
+Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,kavathekar2025tamas,no,Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Sharma2025TowardsUQBD,no,Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Multi-agent evaluation,Wang2026TrinityGuardAUF,no,Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,zhang2025asb,yes,Q1+Q2,arXiv
-Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,Dziemian2026HowVAAN,no,Q1,arXiv
-Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,zhan2024injecagent,yes,Q1,arXiv
+Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,Dziemian2026HowVAAN,yes,Q1,arXiv
+Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,zhan2024injecagent,no,Q1,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Agent tasks and competitions,Zou2025SecurityCIAD,no,Q1,arXiv
-Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Yi2023BenchmarkingADAR,no,Q1,ACM DL
-Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Wan2024CYBERSECEVAL3ABJ,no,Q1,arXiv
-Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,liu2024formalizing,yes,Q1+Q2,arXiv
+Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Yi2023BenchmarkingADAR,yes,Q1,ACM DL
+Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Wan2024CYBERSECEVAL3ABJ,yes,Q1,arXiv
+Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,liu2024formalizing,no,Q1+Q2,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Li2024GenTelSafeAUAU,no,Q1,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,Liu2026LongPIBenchALAV,no,Q1,arXiv
 Evaluation and foundations,Benchmarks and evaluation,Prompt and model evaluation,aal2025PromptIABT,no,Q1,Semantic Scholar
@@ -115,14 +115,14 @@ Evaluation and foundations,Surveys and taxonomies,Agent architectures and securi
 Evaluation and foundations,Surveys and taxonomies,Agent architectures and security,RahulDevT2026TowardSAG,no,Q2,arXiv
 Evaluation and foundations,Surveys and taxonomies,Agent architectures and security,Ling2026TowardSLG,no,Q1+Q2,arXiv
 Evaluation and foundations,Surveys and taxonomies,Agent architectures and security,Li2026TowardsSABM,no,Q2,arXiv
-Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Cao2026ASSM,no,Q1,IEEE Xplore
+Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Cao2026ASSM,yes,Q1,IEEE Xplore
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Yadav2025AdversialPIBA,no,Q1,IEEE Xplore
-Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Song2025BeyondTPAE,no,Q1,IEEE Xplore
+Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Song2025BeyondTPAE,yes,Q1,IEEE Xplore
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Mao2025FromLTAY,no,Q2,ACM DL
-Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Ferrag2025FromPIB,yes,Q1+Q2,arXiv
+Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Ferrag2025FromPIB,no,Q1+Q2,arXiv
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,McHugh2025PromptI2F,no,Q1,arXiv
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Prabhakarn2026PromptIAAZ,no,Q1,publisher DOI
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Geng2025PromptIABB,no,Q1,publisher DOI
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Mourad2026SecuringTPAQ,no,Q1,publisher DOI
 Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Rababah2024SoKPHBH,no,Q1,IEEE Xplore
-Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Wang2026TheLOT,yes,Q1,arXiv
+Evaluation and foundations,Surveys and taxonomies,Injection and protocol taxonomies,Wang2026TheLOT,no,Q1,arXiv

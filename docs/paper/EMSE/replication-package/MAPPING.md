@@ -35,8 +35,9 @@ Contents
 | Hash-chained log, replay audit, P1 to P6 (Sec. 5.4) | M6 `inert.audit` | [log.py](../../../../src/inert/audit/log.py), [replay.py](../../../../src/inert/audit/replay.py) |
 | Obligations O(P), Algorithm 3, payloads, A1 to A6 (Sec. 5.5) | M5 `inert.attacks` | [coverage.py](../../../../src/inert/attacks/coverage.py), [payloads.py](../../../../src/inert/attacks/payloads.py), [adversary.py](../../../../src/inert/attacks/adversary.py), [adaptive.py](../../../../src/inert/attacks/adaptive.py), [spec.py](../../../../src/inert/attacks/spec.py) |
 | Topology zoo, harness, manifests, CLI (Sec. 6) | M7 `inert.eval` | [zoo.py](../../../../src/inert/eval/zoo.py), [harness.py](../../../../src/inert/eval/harness.py), [cli.py](../../../../src/inert/eval/cli.py) |
-| Baselines B0 to B4 (Table 5) | `baselines` | [native.py](../../../../baselines/native.py), [planquarantine.py](../../../../baselines/planquarantine.py), [docs/baselines.md](../../../baselines.md) |
+| Baselines B0 to B4 (Table 6) | `baselines` | [native.py](../../../../baselines/native.py), [planquarantine.py](../../../../baselines/planquarantine.py), [docs/baselines.md](../../../baselines.md) |
 | TAMAS study | `adapters.tamas` | [adapter.py](../../../../adapters/tamas/adapter.py), [upstream/](../../../../adapters/tamas/upstream) |
+| Audited trace of the running example (Sec. 5.4, Table 5) | `analysis` | [example_trace.py](../../../../analysis/example_trace.py) |
 | Tables, figures, statistics (Sec. 7) | `analysis` | [make_assets.py](../../../../analysis/make_assets.py), [make_figures.py](../../../../analysis/make_figures.py), [residual.py](../../../../analysis/residual.py), [paper_text.py](../../../../analysis/paper_text.py), [fill_paper.py](../../../../analysis/fill_paper.py) |
 | Taxonomy (Sec. 3) | `analysis` + audit trail | [TAXONOMY_PIPELINE.md](TAXONOMY_PIPELINE.md) |
 
@@ -190,10 +191,11 @@ Exec(q) ⟺ ∀ a, ρ(a) ∈ ℋ: ℓ_src(a) ⊑ μ(ρ(a)) ∧ H(meta_Env(t)) = 
 | 1 | K ← Key(); Log(Π, H(K)) | `run_secret` in `__init__`; `self.log.append("run_start", plan_hash=..., secret_commitment=...)` |
 | 2 | while Elig() ≠ ∅ ∧ steps < B | `for steps in range(1, budget.max_steps + 1)`, `elig = k.eligible()`, break if empty |
 | 3 | s ← First(Elig()); q ← Dispatch(s); Log(q, s, κ_q, o_q) | `for jid in elig: q = k.dispatch(jid)`; `log.append("dispatch", ..., key=_key(q.observation), contract=..., observation=...)` |
-| 4-5 | agent slot: v ← prop_own(s)(C_q); Accept(...) | `_agent_step` [controller.py:472](../../../../src/inert/runtime/controller.py#L472): `make_request` (MP1), proposer, `submit` (MP2) |
+| 4-5 | agent slot: (v, τ) ← prop_own(s)(C_q, c_q); Accept(...) | `_agent_step` [controller.py:472](../../../../src/inert/runtime/controller.py#L472): `make_request` (MP1), proposer, `submit` (MP2) |
 | 6-7 | tool slot: Exec(q) ? Commit : Fail | `_run_tool` (MP3) |
-| 8 | input or declassified value | `_resolve_tcb(..., "input")`, `_run_declass`, and `_guard_false` → skip value |
-| 11 | if Pub() then Release(v_Rel) (P6) | `released = k.publishable() and joint_constraints(...) and all release outputs usable`; `log.append("release", ...)` |
+| 8-9 | declassify slot: Commit at ℓ_D on success, at the source label on failure | `_run_declass` [controller.py:397](../../../../src/inert/runtime/controller.py#L397) |
+| 10 | input value | `_resolve_tcb(..., "input")`; a guarded slot whose guard is false commits a skip marker (`_guard_false`) |
+| 13 | if Pub() then Release(v_Rel) (P6) | `released = k.publishable() and joint_constraints(...) and all release outputs usable`; `log.append("release", ...)` |
 
 ### 4.6 Algorithm 2
 
@@ -254,7 +256,7 @@ property violation (P1 to P6, attributable or not) or any replay mismatch.
 Tests: [tests/test_audit.py](../../../../tests/test_audit.py) (`test_tamper_detected`,
 `test_ablation_tokens_off_shows_P2_violation`). The harness audits every INERT run
 (`_run_inert` [harness.py:93](../../../../src/inert/eval/harness.py#L93)); every record stores
-`replay_ok`, `chain_ok` and the violated properties. The running-example claim "changing one byte
+`replay_ok`, `chain_ok` and the violated properties. Table 5 of the manuscript shows these verdicts for the running example; it is produced by [example_trace.py](../../../../analysis/example_trace.py), which runs `run_case` for I1 and I2 with the mock LLM and prints, per slot, the context selected, the reads withheld, the committed label and the audit's verdict. The running-example claim "changing one byte
 of the 26 logged events breaks the chain at that event" is checked by `scripts/check_claims.py`.
 
 ## 6. Attack generation (Section 5.5, Algorithm 3)
@@ -352,7 +354,7 @@ built is in [TAXONOMY_PIPELINE.md](TAXONOMY_PIPELINE.md).
 | C3 tool response | next step | fixed compiled plan: the kernel, not the agent, decides what is eligible (`eligible`, `dispatch`) | EDGE | zoo |
 | C4 peer message | content of its output | `sign` / Cap (tokens bind sender, request, key and value), envelopes propagate labels | EDGE, SEL, SLOT | zoo, TAMAS impersonation, colluding |
 | C5 coordination signal | transition, release | Fresh (`_key`, `_current`), publication barrier (`publishable`, `joint_constraints`) | RECONF (replay), SLOT, COLL | zoo |
-| C6 shared state | new decision context | labels within a run only; cross-session memory not modelled (gap G5) | — | out of scope |
+| C6 shared state | new decision context | not mediated: cross-session memory is outside the workflow model (gap G5) | — | out of scope |
 | C7 discovery metadata | provider and tool binding | tool hash pinned in the contract (`ir.py`), `registry_hash` check in `_run_tool`, `reconfigure` | RECONF | zoo |
 
 ### 9.2 Channel tree: the 14 attack forms (Figure 4)
@@ -368,11 +370,11 @@ built is in [TAXONOMY_PIPELINE.md](TAXONOMY_PIPELINE.md).
 | Message rewritten in transit | C4 | structural | MAC over request, key and value → `sign`, `submit` | P2 | EDGE | `TOKEN_INVALID` |
 | Replay of a stale approval or result | C5 | structural | exact key match → `_key`, `_current`; single-use tokens | P3 | RECONF | `KEY_STALE`, `TOKEN_REUSED` |
 | Release of an inconsistent snapshot | C5 | structural | publication barrier → `publishable`, `joint_constraints` | P6 | SLOT, COLL | release withheld |
-| Colluding agents agree on a protected decision | C5 | residual | owned validators → `run_validator` | — | COLL | `VALIDATOR_REJECT` or residual success |
-| Poisoned record read in a later session | C6 | semantic | within-run labels; cross-session open (G5) | P5 | — | not tested |
+| Colluding agents agree on a protected decision | C5 | residual | owned validators → `run_validator` | P4 | COLL | `VALIDATOR_REJECT` or residual success |
+| Poisoned record read in a later session | C6 | semantic | not mediated (gap G5) | — | — | not tested |
 | Poisoned tool description | C7 | structural | pinned tool hash → `ir.py` `tool_metadata`, `_run_tool` | P4 | RECONF | `TOOL_METADATA_MISMATCH` |
 | Rogue agent or provider registration | C7 | structural | ownership bound to the plan → `reconfigure` (no slot, no token) | P2, P4 | RECONF | `TOKEN_INVALID` |
-| Compromised owner misuses its own authority | any | residual | owned validators, task scope → `run_validator`, I2S | — | SLOT, COLL | residual risk (Sec. 7, `analysis/residual.py`) |
+| Compromised owner misuses its own authority | any | residual | owned validators → `run_validator`; task scope (I2S, post hoc) | P4 | SLOT, COLL | residual risk (Sec. 8, `residual_by_config` in `paper/numbers.json`) |
 
 The RQ2 ablation (Figure 8 of the manuscript) is the empirical check of this table: turning off one
 switch of `Mechanisms` reopens exactly the forms mapped to it. The last column is the check the
@@ -392,10 +394,10 @@ caught by the key before the single-use token.
 | R2 request-bound authorship | P2 | `request_secret`, `sign`, Cap in `submit` | audit P2; `test_token_*`, `test_unauthorized_agent`, `test_transport_tamper_rejected` |
 | R3 freshness | P3 | `_key`, `_current`, kernel `_reconcile` | audit P3; `test_key_stale`, Hypothesis interleavings |
 | R4 configuration integrity | P4 | contract and tool hashes (`ir.py`), `_run_tool` metadata check | audit P4; `test_tool_metadata_mismatch`, compiler hash tests |
-| R5 provenance-bounded flow | P5 | `select` (MP1), Flow in `check_value` (MP2), `_run_tool` (MP3), declassifiers | audit P5; `test_taint_violation_when_selection_off`; RQ2 I2-tsel/I2-tacc |
+| R5 provenance-bounded flow (C1 to C4) | P5 | `select` (MP1), Flow in `check_value` (MP2), `_run_tool` (MP3), declassifiers | audit P5; `test_taint_violation_when_selection_off`; RQ2 I2-tsel/I2-tacc |
 | R6 consistent release | P6 | `publishable`, `joint_constraints`, release check in `run` | audit P6 |
 | R7 verifiable evidence | P1-P6 | `EventLog`, `verify_chain`, `audit` (no LLM) | `test_tamper_detected`; `replay_ok` in every INERT record |
-| R8 channel coverage | — | `obligations`, `generate`, `goal_met` effect oracle | `test_full_feasible_coverage`, `test_tests_execute_on_inert_and_b0`; RQ3 |
+| R8 channel coverage (C1 to C5, C7) | — | `obligations`, `generate`, `goal_met` effect oracle | `test_full_feasible_coverage`, `test_tests_execute_on_inert_and_b0`; RQ3 |
 
 ### 9.4 Gaps G1 to G5
 
@@ -451,13 +453,18 @@ may otherwise trip over them.
    rejects a proposal whose envelope label differs from the recomputed ℓ_q (`TAINT_VIOLATION:
    envelope label mismatch`); the controller builds the envelope itself, so this never fires on
    honest runs and guards against a modified selection.
-4. **Tool-hash check under the `key_match` switch.** The paper attributes the run-time metadata
-   check to MP3 (P4). In code it is guarded by `mech.key_match`, because the pinned tool hash is
-   part of the contract and therefore of the key. The I2-key ablation thus disables both Fresh and
-   the metadata check; the RQ2 results for I2-key should be read with that in mind.
-5. **Rot(i, σ).** The mutator rotation applies a mutator to about half of the tests, chosen by the
+4. **Tool-hash check under the `key_match` switch.** The run-time metadata check of MP3 (P4) is
+   guarded by `mech.key_match`, because the pinned tool hash is part of the contract and therefore
+   of the key. The I2-key ablation thus disables both Fresh and the metadata check. The manuscript
+   states this in Section 5.3 and splits the 73.4% A5 success under I2-key into replays (70.5%)
+   and tool-metadata tests (68 of 68) in Section 7.2 (`rq2_a5` in `paper/numbers.json`).
+5. **First rejection in Figure 8b.** `first_reject` is the first rejection of a run. In A2 and A4
+   tests the adversary first tries to answer other slots' requests (`TOKEN_INVALID`); rejections
+   of the compromised owner's own proposals (`VALIDATOR_REJECT`) come later and are counted in
+   `rq2_i2_reasons`, not in the figure.
+6. **Rot(i, σ).** The mutator rotation applies a mutator to about half of the tests, chosen by the
    seeded generator (`rng.random() < 0.5`); the rest are unmutated. Generation is deterministic
    per seed.
-6. **Payload classes.** The paper lists five classes. Four are text classes rotated over EDGE,
+7. **Payload classes.** The paper lists five classes. Four are text classes rotated over EDGE,
    SEL, TAINT, COLL and SLOT obligations; `tool_poison` is used for RECONF tool-metadata
    obligations only.

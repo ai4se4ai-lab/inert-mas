@@ -131,6 +131,27 @@ def i1a2_clause(n: dict[str, Any]) -> str:
             "agent's request are all rejected")
 
 
+def code_sentence(n: dict[str, Any]) -> str:
+    lf = n.get("util_by_llm_family") or {}
+    if not lf:
+        return ""
+    code = {m_: v["I2"]["code"] for m_, v in lf.items()}
+    other = max(abs(v["I1"][fa] - v["I2"][fa]) for v in lf.values() for fa in ("email", "reply", "web"))
+    zero = sorted(m_ for m_, x in code.items() if x == 0)
+    full = sorted(m_ for m_, x in code.items() if x == 1)
+    mid = sorted((m_, x) for m_, x in code.items() if 0 < x < 1)
+    parts = []
+    if zero:
+        parts.append(" and ".join(f"\\texttt{{{m_}}}" for m_ in zero) + " complete no code task")
+    if mid:
+        parts.append(", ".join(f"\\texttt{{{m_}}} {p(x)}" for m_, x in mid))
+    if full:
+        parts.append(" and ".join(f"\\texttt{{{m_}}}" for m_ in full) + " complete all of them")
+    return ("The difference lies in the code family, where the coder sees only the declassified function name "
+            "instead of the issue: under I2, " + "; ".join(parts) + ". On email, web and reply, I1 and I2 differ by "
+            f"at most {100 * other:.1f} points for any model.")
+
+
 def dpi_whole_cmp(tam: dict[str, Any]) -> str:
     others = [v.get("DPI-whole") for k, v in tam.items() if k not in ("I2", "I2S") and v.get("DPI-whole") is not None]
     if not others or "I2" not in tam:
@@ -361,6 +382,28 @@ def render(n: dict[str, Any]) -> dict[str, str]:
         "INERT's false-rejection rate is the lowest of all defenses. H4 predicted a loss relative to B0 comparable "
         "to B3's, so the outcome is more favourable than hypothesized, and its second part (false rejections below "
         "B1's flag rate) holds.")
+    # ---------------------------------------------------------------- per model and task family
+    pl = n.get("per_llm", {})
+    if pl:
+        def rng(d: str, k: str) -> tuple[tuple[str, float], tuple[str, float]]:
+            xs = sorted(((m_, v[d][k]) for m_, v in pl.items() if d in v), key=lambda kv: kv[1])
+            return xs[0], xs[-1]
+        (lo_u, hi_u), (lo_b, hi_b) = rng("I2", "util"), rng("B0", "asr")
+        gap = sorted(((m_, v["I1"]["util"] - v["I2"]["util"]) for m_, v in pl.items()), key=lambda kv: kv[1])
+        i2max = max(v["I2"]["asr"] for v in pl.values())
+        b3u = rng("B3", "util")
+        out["llm_text"] = (
+            "Table~\\ref{tab:llm} breaks the main conditions down by model and Table~\\ref{tab:family} benign utility "
+            f"by task family. I2's attack success rate is {p(i2max)} for every model, while B0's ranges from "
+            f"{p(lo_b[1])} (\\texttt{{{lo_b[0]}}}) to {p(hi_b[1])} (\\texttt{{{hi_b[0]}}}), so the guarantee does not "
+            "depend on how susceptible a model is. Utility does depend on the model: I2 completes between "
+            f"{p(lo_u[1])} (\\texttt{{{lo_u[0]}}}) and {p(hi_u[1])} (\\texttt{{{hi_u[0]}}}) of benign tasks. The cost "
+            f"of the taint policy (I1 minus I2) is largest for \\texttt{{{gap[-1][0]}}} ({100 * gap[-1][1]:.1f} points) "
+            f"and smallest for \\texttt{{{gap[0][0]}}} ({m(100 * gap[0][1], 1)} points). " + code_sentence(n) + " The 70B-class models ran the reduced grid with two benign tasks "
+            "per workflow, so their utility rests on fewer runs. B3 stays between "
+            f"{p(b3u[0][1])} and {p(b3u[1][1])} for every model, because its losses are structural: it completes no "
+            "reply or code task. By task family, every condition does best on email and web, and the code family, "
+            "whose executor needs the content of an untrusted issue, separates the conditions most.")
     # ---------------------------------------------------------------- RQ5
     if rq5:
         out["rq5_text"] = (

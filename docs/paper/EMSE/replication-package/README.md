@@ -30,7 +30,7 @@ connection or an API key, and none modifies the repository.
 | Check | Script | What it shows | Time |
 | --- | --- | --- | --- |
 | A. tests | `pytest` | 133 unit, property-based (Hypothesis) and integration tests of the linter, compiler, controller, audit and attack generator, with the deterministic mock LLM | ~1 min |
-| B. claims | [scripts/check_claims.py](scripts/check_claims.py) | provenance of every record; an **independent** recount, with the Python standard library only, of the run counts, Table 6, RQ3, RQ5 and TAMAS headline numbers; the running example of Sections 2.7 and 5 | ~5 s |
+| B. claims | [scripts/check_claims.py](scripts/check_claims.py) | provenance of every record; an **independent** recount, with the Python standard library only, of the run counts, Table 8, RQ3, RQ5 and TAMAS headline numbers; the running example of Sections 2.7 and 5 | ~5 s |
 | C. results | [scripts/verify_results.sh](scripts/verify_results.sh) | regenerates all tables, `numbers.json`, residual-risk files and the six statistical figures from the 182 archived shards and compares them with the committed assets and the manuscript | ~2 min |
 | D. taxonomy | [scripts/verify_taxonomy.sh](scripts/verify_taxonomy.sh) | replays the taxonomy pipeline from the cached OpenAlex and Scopus responses and compares every audit file, corpus file and manuscript block | ~10 s |
 
@@ -75,7 +75,7 @@ Everything else the package refers to lives in the repository:
 | Artifact | Location | Role |
 | --- | --- | --- |
 | INERT toolchain (trusted computing base, agents, attacks, harness) | [src/inert/](../../../../src/inert) | Sections 4 and 5 |
-| baselines B0 to B4 | [baselines/](../../../../baselines), [docs/baselines.md](../../../baselines.md) | Table 5 |
+| baselines B0 to B4 | [baselines/](../../../../baselines), [docs/baselines.md](../../../baselines.md) | Table 6 |
 | TAMAS adapter and pinned upstream data | [adapters/tamas/](../../../../adapters/tamas), [docs/benchmarks.md](../../../benchmarks.md) | Section 7.6 |
 | 51 zoo models and the running example | [models/zoo/](../../../../models/zoo), [models/examples/](../../../../models/examples) | Sections 2.7, 6.2 |
 | experiment manifests (case grids) | [hpc/manifests/final_*.yaml](../../../../hpc/manifests) | Section 6.3 |
@@ -85,8 +85,8 @@ Everything else the package refers to lives in the repository:
 | manuscript source and PDF | [Springer-Nature-LaTeX-template/](../Springer-Nature-LaTeX-template) | |
 | taxonomy corpus, audit trail, API cache | [relevant-work/](../relevant-work) | Section 3 |
 | design decisions, deviations, incidents | [docs/open-questions.md](../../../open-questions.md) | Section 9 |
-| result records | `results/final/<site>/<tag>/<model>/shard_*.jsonl` | **git-ignored**: shipped in the archive (Section 4) |
-| code snapshots that produced the records | `hpc/fetched/code/code-<hash>.tar.gz` | **git-ignored**: shipped in the archive |
+| result records | [results/final/](../../../../results/final) (`<site>/<tag>/<model>/shard_*.jsonl`), described in [results/README.md](../../../../results/README.md) | tracked in git |
+| code snapshots that produced the records | `hpc/fetched/code/code-<hash>.tar.gz` | git-ignored: shipped in the deposit archive (Section 4) |
 
 ## 3. Levels of replication
 
@@ -101,15 +101,16 @@ Everything else the package refers to lives in the repository:
 
 ## 4. The deposit archive
 
-The result records (~280 MB uncompressed) and the code snapshots are git-ignored in the repository
-by design (`results/` is append-only and archived read-only). The archive for deposit is built with
+The result records (~280 MB uncompressed) are tracked in the repository; the code snapshots that
+produced them are not, because `hpc/fetched/` also holds logs with cluster account names. The
+self-contained archive for deposit (for example on Zenodo) is built with
 
 ```bash
 bash docs/paper/EMSE/replication-package/scripts/build_archive.sh
 # -> docs/paper/EMSE/replication-package/dist/inert-mas-replication-<commit>.tar.xz  (+ .sha256)
 ```
 
-It contains the committed repository at HEAD (`git archive`), `results/final/` and
+It contains the committed repository at HEAD (`git archive`, which includes `results/final/`) and
 `hpc/fetched/code/`, and refuses to run on a dirty working tree or if any checksum fails. It leaves
 out `hpc/fetched/jobs.jsonl` and other fetched logs, which carry cluster account names. After
 unpacking, all commands of this README work unchanged.
@@ -144,20 +145,16 @@ changes, failed jobs, the TAMAS DPI-split fix and re-run) are recorded in
 These are the only differences the checks report on the published commit. None changes a number
 printed in the manuscript.
 
-1. **One data-driven sentence of RQ2 is missing from the committed manuscript.** `make_assets.py`
-   now writes a `first_reject_I2` entry that the committed `paper/numbers.json` predates. Filling
-   the manuscript from regenerated assets adds to Section 7.2 the sentence "The first rejecting
-   check (Figure 8b) confirms the mapping. Under I2, 89% of the A1 tests cause no rejection at
-   all: …". The figure it refers to (Figure 8b) already shows these data and is pixel-identical.
-   `verify_results.sh` prints this as a note.
-2. **Mixed-model coefficients vary in the 7th-8th significant digit.** The variational Bayes fit of
+1. **Mixed-model coefficients vary in the 7th-8th significant digit.** The variational Bayes fit of
    `statsmodels` is iterative and not bit-reproducible across runs; the standard deviations differ
    by about 1e-8. The manuscript prints two decimals, which are stable.
-3. **Figure PDFs differ in bytes, not in content.** Matplotlib embeds a creation date. The script
+2. **Figure PDFs differ in bytes, not in content.** Matplotlib embeds a creation date. The script
    therefore compares rendered pixels (`pdftoppm -r 60`), which are identical for all six figures.
-4. **The residual-risk coding sheet has empty rater columns.** `paper/residual_coding.csv` is a
-   sampling frame for a two-rater coding; the manuscript reports the automatic categories of
-   `residual.json` only and does not report inter-rater agreement.
+3. **The residual-risk coding sheet has empty rater columns.** `paper/residual_coding.csv` is a
+   sampling frame for a two-rater coding and `paper/residual.json` pools both TAMAS DPI labelings
+   (390 successes). The manuscript reports the categories per TAMAS configuration instead
+   (`residual_by_config` in `paper/numbers.json`: 369 with the whole query trusted, 257 with the
+   suffix labelled untrusted) and reports no inter-rater agreement.
 
 ## 7. Approach and taxonomy at a glance
 

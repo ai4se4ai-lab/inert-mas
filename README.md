@@ -395,7 +395,7 @@ Every submission is logged in `hpc/fetched/jobs.jsonl`.
 
 ### 9.1 From the archived records (no GPU needed)
 
-The final result records are archived read-only in `results/final/<site>/<tag>/<model>/shard_*.jsonl`. One command regenerates every table, figure and number from them and rebuilds the LaTeX manuscript:
+The final result records are tracked in git and archived read-only in `results/final/<site>/<tag>/<model>/shard_*.jsonl` (see [results/README.md](results/README.md)). A reviewer can check every reported number without changing anything with `bash docs/paper/EMSE/replication-package/scripts/verify_all.sh` (see the [replication package](docs/paper/EMSE/replication-package/README.md)). One command regenerates every table, figure and number from them and rebuilds the LaTeX manuscript:
 
 ```bash
 bash analysis/run_all.sh results/final
@@ -479,7 +479,7 @@ adapters/*           notes on re-implemented attack styles (MAS hijacking, Promp
 models/              example model, 51 zoo models (YAML), LLM registry
 hpc/                 SSH session script, fleet controller, SLURM template, manifests, Apptainer def
 analysis/            statistics, tables, figures, residual analysis, taxonomy pipeline, one-command pipeline
-results/             result records (git-ignored; final records archived read-only)
+results/             result records of the study (results/final, tracked, read-only); new runs stay local
 docs/                plain-language summary, open questions, baselines, benchmarks, vendored code
 docs/paper/EMSE/     manuscript (Springer Nature LaTeX), review notes, taxonomy corpus, audit trail and API cache
 tests/               unit, property-based (Hypothesis) and integration tests

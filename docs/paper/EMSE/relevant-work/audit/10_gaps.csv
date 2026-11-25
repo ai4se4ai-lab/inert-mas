@@ -2,5 +2,5 @@ gap,families,requirements,observation,inert_response
 G1,"Detection and guardrails; Prompt-level and training; MAS monitors, data management",R5,learned judgments that an adaptive attacker can probe,checks contain no learned component
 G2,Single-agent flow control,R2;R3;R5,flow control for one agent's plan only,labels carried across agents inside dependency keys
 G3,all families,R1-R6,no family combines structural mediation with flow control or uses the designed workflow,all checks derived from one designer-authored model
-G4,Injection benchmarks; Structural workflow testing,R7;R8,"fixed injection points, functional coverage, LLM judges","channel-derived obligations, effect oracles, replay audit"
-G5,all families,R5 (C6),cross-session shared state not mediated in a workflow policy,limitation: INERT does not model long-lived memory
+G4,Injection benchmarks; Structural workflow testing,R7;R8,"fixed injection points, structural coverage not derived from injection channels, LLM judges","channel-derived obligations, effect oracles, replay audit"
+G5,all families,C6,"cross-session shared state not mediated in a workflow policy (AgentSafe partitions memory by security level, outside a workflow model)",limitation: INERT does not model long-lived memory

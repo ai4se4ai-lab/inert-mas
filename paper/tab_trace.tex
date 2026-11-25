@@ -1,0 +1,17 @@
+\begin{tabular}{@{}lL{3.9cm}cL{3.9cm}c@{}}
+\toprule
+& \multicolumn{2}{c}{I1 (no taint)} & \multicolumn{2}{c}{I2 (all mechanisms)} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+Slot & Context shown; withheld & Label & Context shown; withheld & Label \\
+\midrule
+\texttt{task} & -- & U & -- & U \\
+\texttt{intent} & \texttt{task}:U & A & \texttt{task}:U & A \\
+\texttt{fetch} & -- & X & -- & X \\
+\texttt{a1} & \texttt{task}:U, \texttt{fetch.result}:X & X & \texttt{task}:U, \texttt{fetch.result}:X & X \\
+\texttt{act} & \texttt{task}:U, \texttt{a1.analysis}:X & X & \texttt{task}:U; \emph{withheld} \texttt{a1.analysis} & A \\
+\texttt{do} & -- & X & -- & A \\
+\texttt{report} & \texttt{task}:U, \texttt{do.result}:X, \texttt{a1.analysis}:X & X & \texttt{task}:U, \texttt{do.result}:A, \texttt{a1.analysis}:X & X \\
+\midrule
+\multicolumn{5}{@{}L{11.6cm}@{}}{Audit (I1): act.to (executor) accepted at external\_untrusted; do executor argument labelled external\_untrusted. Audit (I2): none. Logs: 26 and 26 events, 4 and 4 decisions replayed, hash chains intact.} \\
+\botrule
+\end{tabular}
