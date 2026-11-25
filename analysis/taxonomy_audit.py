@@ -105,9 +105,9 @@ CHANNEL_TREE = [
     ("Collaboration", "C5 Coordination signal", "Release of an inconsistent snapshot", "structural",
      "publication barrier", "P6", "SLOT;COLL", "", "derived from the kernel's publication model"),
     ("Collaboration", "C5 Coordination signal", "Colluding agents agree on a protected decision", "residual",
-     "owned validators narrow the choice", "-", "COLL", "kavathekar2025tamas;Xie2025WhosTMAI", ""),
+     "owned validators narrow the choice", "P4", "COLL", "kavathekar2025tamas;Xie2025WhosTMAI", ""),
     ("Persistence and configuration", "C6 Shared state", "Poisoned record read in a later task or session",
-     "semantic", "labels within a run; cross-session memory open (G5)", "P5", "-",
+     "semantic", "not mediated; cross-session memory is gap G5", "-", "-",
      "Chen2024AgentPoisonRLBS;Patlan2025CrossUserPUAK;Sunil2026MemoryPABF", ""),
     ("Persistence and configuration", "C7 Discovery metadata", "Poisoned tool description", "structural",
      "tool hash pinned in the contract", "P4", "RECONF", "invariant2025toolpoisoning;Song2025BeyondTPAE;"
@@ -116,7 +116,7 @@ CHANNEL_TREE = [
      "structural", "ownership bound to the plan", "P2;P4", "RECONF", "Yu2026MisleadingTPO;Narajala2025SecuringGMAU",
      ""),
     ("Cross-cutting", "Any channel", "Compromised owner misuses its own authority", "residual",
-     "owned validators, task scope", "-", "SLOT;COLL", "kavathekar2025tamas;Wang2025ShadowsITAL", ""),
+     "owned validators; task scope (I2S, post hoc)", "P4", "SLOT;COLL", "kavathekar2025tamas;Wang2025ShadowsITAL", ""),
 ]
 
 EVIDENCE_NOT_IN_TABLE = {"arif2026conjunctive", "Yu2026MisleadingTPO", "naik2026omnileak", "An2026ACIArenaTUH"}
@@ -159,13 +159,13 @@ REQUIREMENTS = [  # (id, name, statement, channels, property, mechanism)
     ("R4", "Configuration integrity", "The metadata in force is the approved one", "C7", "P4",
      "contract and tool hashes (Contract, Exec)"),
     ("R5", "Provenance-bounded flow", "Untrusted-derived content reaches instruction, control and executor sinks "
-     "only through declared declassifiers", "C1;C2;C3;C4;C6", "P5", "labels in keys, selection C_q, Flow, Exec"),
+     "only through declared declassifiers", "C1;C2;C3;C4", "P5", "labels in keys, selection C_q, Flow, Exec"),
     ("R6", "Consistent release", "Only complete, consistent results leave the system", "C5", "P6",
      "publication barrier (Pub)"),
     ("R7", "Verifiable evidence", "Every decision can be checked without trusting an LLM", "all", "P1-P6",
      "hash-chained log, LLM-free replay audit"),
-    ("R8", "Channel coverage", "Every channel instance of the workflow becomes a test obligation with an effect "
-     "oracle", "all", "-", "obligation set O(P), six criteria"),
+    ("R8", "Channel coverage", "Every channel instance of the workflow model becomes a test obligation with an "
+     "effect oracle", "C1;C2;C3;C4;C5;C7", "-", "obligation set O(P), six criteria"),
 ]
 
 GAP_MATRIX = [  # (family, keys, ratings R1..R8 with F/H/N, rationale)
@@ -184,7 +184,8 @@ GAP_MATRIX = [  # (family, keys, ratings R1..R8 with F/H/N, rationale)
     ("MAS control flow", "jha2025controlvalve", "HNNNHNNN",
      "LLM-generated control-flow graph enforced (R1 partial) with per-edge context rules (R5 partial)"),
     ("MAS monitors, data management", "Wang2025GSafeguardATAW;Miao2025BlindGuardSLAV;Mao2025AgentSafeSLY",
-     "NNNNHNNN", "graph or anomaly models detect and prune propagation; information access by hierarchy (R5 partial)"),
+     "NHNNHNNN", "graph or anomaly models detect and prune propagation; information access by hierarchy (R5 partial); "
+     "AgentSafe's ThreatSieve verifies the authority of information to prevent impersonation (R2 partial)"),
     ("Identity, registries, access control", "Zou2025BlockA2ATSAC;Narajala2025SecuringGMAU;Ji2026TamingVPAP",
      "NFNHNNHN", "verifiable identities and access control (R2); registry-based tool identity (R4 partial); "
      "ledger or logs (R7 partial)"),
@@ -194,8 +195,9 @@ GAP_MATRIX = [  # (family, keys, ratings R1..R8 with F/H/N, rationale)
      "An2026ACIArenaTUH",
      "NNNNNNHH", "fixed injection points (R8 partial); deterministic checks in some (R7 partial)"),
     ("Structural workflow testing", "kahani2026structural", "NNNNNNNH",
-     "structural coverage of agentic workflows without an adversarial interpretation (R8 partial)"),
-    ("INERT", "this paper", "FFFFFFFF", "all requirements by design; C6 across sessions is limitation G5"),
+     "coverage criteria over the structure of agentic workflows, not derived from injection channels (R8 partial)"),
+    ("INERT", "this paper", "FFFFFFFF", "all requirements by design for channels C1 to C5 and C7 within a run "
+     "(C1 when the request's provenance is segmented); C6 across sessions is limitation G5"),
 ]
 
 GAPS = [
@@ -205,9 +207,10 @@ GAPS = [
      "labels carried across agents inside dependency keys"),
     ("G3", "all families", "R1-R6", "no family combines structural mediation with flow control or uses the designed "
      "workflow", "all checks derived from one designer-authored model"),
-    ("G4", "Injection benchmarks; Structural workflow testing", "R7;R8", "fixed injection points, functional coverage, "
-     "LLM judges", "channel-derived obligations, effect oracles, replay audit"),
-    ("G5", "all families", "R5 (C6)", "cross-session shared state not mediated in a workflow policy",
+    ("G4", "Injection benchmarks; Structural workflow testing", "R7;R8", "fixed injection points, structural coverage "
+     "not derived from injection channels, LLM judges", "channel-derived obligations, effect oracles, replay audit"),
+    ("G5", "all families", "C6", "cross-session shared state not mediated in a workflow policy (AgentSafe partitions "
+     "memory by security level, outside a workflow model)",
      "limitation: INERT does not model long-lived memory"),
 ]
 

@@ -14,11 +14,11 @@ rows = [
  (1,"C4","Message rewritten in transit","agent-in-the-middle","T","MAC over request,","key and value","P2","EDGE"),
  (1,"C5","Replay of a stale approval or result","","T","exact dependency-","key match","P3","RECONF"),
  (1,"C5","Release of an inconsistent snapshot","","T","publication barrier","","P6","SLOT\\\\COLL"),
- (1,"C5","Colluding agents agree on a decision","","R","owned validators","narrow the choice","--","COLL"),
- (2,"C6","Poisoned record read in a later task","","S","labels within a run;","cross-session: gap G5","P5","--"),
+ (1,"C5","Colluding agents agree on a decision","","R","owned validators","narrow the choice","P4","COLL"),
+ (2,"C6","Poisoned record read in a later task","","S","not mediated:","gap G5","--","--"),
  (2,"C7","Poisoned tool description","tool poisoning","T","tool hash pinned","in the contract","P4","RECONF"),
  (2,"C7","Rogue agent or provider registration","","T","ownership bound","to the plan","P2,P4","RECONF"),
- (3,"*","Compromised owner misuses","its own authority (cross-cutting)","R","owned validators,","task scope","--","SLOT\\\\COLL"),
+ (3,"*","Compromised owner misuses","its own authority (cross-cutting)","R","owned validators;","task scope (I2S)","P4","SLOT\\\\COLL"),
 ]
 chan = {"C1":"C1 User request","C2":"C2 External\\\\content","C3":"C3 Tool response","C4":"C4 Peer\\\\message",
         "C5":"C5 Coordination\\\\signal","C6":"C6 Shared state","C7":"C7 Discovery\\\\metadata","*":"Any channel"}

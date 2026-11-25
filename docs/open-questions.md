@@ -59,3 +59,9 @@ Each entry: the question, the choice taken (most conservative), and where it mat
     to narval. Partial results were copied in and finished cases and shards are skipped. Narval runs the
     7B model on one A100 and the 70B-class models on two A100 (40 GB each) with 128 GB host memory.
     The residency guard still refuses any CPU fallback. Each record stores the host and GPU of its job.
+16. **Location of the replication package (2026-11-24).** The request named `paper/EMSE`, which does
+    not exist; `paper/` holds generated analysis assets and the manuscript lives in `docs/paper/EMSE/`.
+    The package was placed in `docs/paper/EMSE/replication-package/`, next to the manuscript and the
+    taxonomy audit trail it documents, and adds no data to git: result shards and code snapshots stay
+    git-ignored and go into the deposit archive built by `scripts/build_archive.sh`. Moving the folder
+    only requires adjusting the `../../../../` prefixes in its links and the `ROOT=` line of its scripts.

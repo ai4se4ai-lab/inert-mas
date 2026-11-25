@@ -19,7 +19,7 @@ import argparse
 import json
 import math
 import random
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -115,6 +115,132 @@ def pfmt(p: float) -> str:
 
 def pct(x: float) -> str:
     return "--" if x != x else f"{100 * x:.1f}"
+
+
+SUBSTUDIES = [  # (suite, label in the run-accounting table)
+    ("zoo-benign", "Topology zoo, benign tasks"), ("zoo-attack", "Topology zoo, attacked (Table 6)"),
+    ("zoo-ablation", "Ablation suite (RQ2)"), ("seeds", "Seed sub-study (temperature 0.7)"),
+    ("adaptive", "Adaptive attacker (RQ5)"), ("tamas", "TAMAS"), ("tamas-split2", "TAMAS DPI-split re-run"),
+    ("tamas-scope", "TAMAS task scope (I2S)")]
+
+
+def review_numbers(rows: list[dict[str, Any]], zoo: list[dict[str, Any]], ablation: list[dict[str, Any]],
+                   tam: list[dict[str, Any]], numbers: dict[str, Any], out: Path) -> None:
+    """Counts that make the accounting and the metric definitions of the paper checkable."""
+    # ---- run accounting per sub-study (Section 6.3)
+    acc: dict[str, dict[str, Any]] = {}
+    for suite, _ in SUBSTUDIES:
+        xs = [r for r in rows if r.get("suite") == suite]
+        acc[suite] = {"runs": len(xs), "llms": len({r.get("llm") for r in xs}),
+                      "defenses": len({r["defense"] for r in xs}),
+                      "workflows": len({r["model_name"] if r.get("family") != "tamas" else (r.get("domain"), r.get("index"))
+                                        for r in xs})}
+    fixed = set(numbers.get("tamas_split_fixed_llms", []))
+    acc["tamas"]["superseded"] = sum(1 for r in rows if r.get("suite") == "tamas" and r.get("variant") == "split"
+                                     and r.get("llm") in fixed)
+    numbers["accounting"] = acc
+    def thousands(x: int) -> str:
+        return f"{x:,}".replace(",", "{,}")
+    lines = [r"\begin{tabular}{@{}lrrrr@{}}", r"\toprule",
+             r"Sub-study & LLMs & Conditions & Workflows or instances & Runs \\", r"\midrule"]
+    for suite, label in SUBSTUDIES:
+        a = acc[suite]
+        lines.append(f"{label} & {a['llms']} & {a['defenses']} & {a['workflows']} & {thousands(a['runs'])} \\\\")
+    lines += [r"\midrule", f"Total & & & & {thousands(sum(a['runs'] for a in acc.values()))} \\\\",
+              r"\botrule", r"\end{tabular}"]
+    (out / "tab_runs.tex").write_text("\n".join(lines) + "\n")
+    att = [r for r in zoo if r.get("criterion") not in ("BENIGN", "ADAPTIVE")]
+    numbers["zoo_composition"] = {
+        "bench": sum(1 for r in att if r["defense"] == "B0" and r.get("criterion") == "BENCH"),
+        "generated": sum(1 for r in att if r["defense"] == "B0" and r.get("criterion") != "BENCH"),
+        "workflows": len({r["model_name"] for r in zoo}),
+        "declassifier_workflows": len({r["model_name"] for r in zoo if r.get("family") in ("reply", "code")})}
+    # ---- baselines: P1 counts an off-model handoff that reaches the owner of the attacker's target tool.
+    # The same handoff happens without any attack; its benign rate is the base rate of that clause.
+    from inert.attacks.payloads import GOALS
+    from inert.compiler.export import agent_graph
+    from inert.eval.cli import zoo_ir
+    owners: dict[str, set[str]] = {}
+    for r in zoo:
+        if r["model_name"] not in owners:
+            t, rest = r["model_name"].split("_")[0], r["family"]
+            topo = "".join(ch for ch in t if not ch.isdigit())
+            g = agent_graph(zoo_ir(topo, int("".join(ch for ch in t if ch.isdigit())), rest))
+            owners[r["model_name"]] = {a for a, ts in g["tools"].items() if GOALS[rest].tool in ts}
+    base = {}
+    for d in ("B0", "B1", "B2", "B4"):
+        ben = [r for r in zoo if r["defense"] == d and r.get("criterion") == "BENIGN"]
+        ax = [r for r in att if r["defense"] == d]
+        base[d] = {"benign_offmodel": mean([bool(owners[r["model_name"]] & set(r.get("off_model_targets") or []))
+                                            for r in ben]),
+                   "attack_p1_only": mean([bool(r.get("violations")) and not r.get("goal_met") for r in ax])}
+    numbers["p1_base_rate"] = base
+    # ---- benign utility by task family (RQ4)
+    fam: dict[str, dict[str, float]] = defaultdict(dict)
+    for d in ORDER:
+        for fa in ("email", "reply", "web", "code"):
+            xs = [r["utility"] for r in zoo if r["defense"] == d and r["family"] == fa and r.get("criterion") == "BENIGN"]
+            if xs:
+                fam[d][fa] = mean(xs)
+    numbers["util_by_family"] = dict(fam)
+    dec = [ok for r in zoo if r["defense"] == "I2" and r.get("criterion") == "BENIGN" and r["family"] == "reply"
+           for _, ok in r.get("declassified", [])]
+    numbers["reply_declass_ok"] = mean(dec) if dec else float("nan")
+    # ---- RQ2: what a success is (goal met vs audited violation only) and A5 by reconfiguration type
+    kind: dict[str, dict[str, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"goal": 0, "audit": 0, "n": 0}))
+    a5: dict[str, dict[str, list[bool]]] = defaultdict(lambda: defaultdict(list))
+    for r in ablation:
+        if r.get("criterion") in ("BENIGN", "ADAPTIVE"):
+            continue
+        k = kind[r["defense"]][r.get("attacker")]
+        k["n"] += 1
+        if r["asr"]:
+            k["goal" if r.get("goal_met") else "audit"] += 1
+        if r.get("attacker") == "A5":
+            a5[r["defense"]][str(r.get("obligation", "")).split(":")[1]].append(r["asr"])
+    numbers["rq2_success_kind"] = {d: dict(v) for d, v in kind.items()}
+    numbers["rq2_a5"] = {d: {k: {"asr": mean(v), "n": len(v)} for k, v in x.items()} for d, x in a5.items()}
+    reasons: dict[str, Counter[str]] = defaultdict(Counter)
+    for r in ablation:
+        if r["defense"] == "I2" and r.get("attacker") in ("A2", "A4"):
+            reasons[r["attacker"]].update(r.get("reasons") or {})
+    numbers["rq2_i2_reasons"] = {k: dict(v) for k, v in reasons.items()}
+    # ---- TAMAS: successes whose target tool is also called on the benign run of the same instance
+    ben = {(r["defense"], r["domain"], r["index"], r["llm"]): {c["tool"] for c in r["tool_calls"]}
+           for r in tam if r.get("tamas_attack") == "Benign"}
+    orc: dict[str, dict[str, dict[str, int]]] = defaultdict(dict)
+    for d in sorted({r["defense"] for r in tam}):
+        for col, att_, var in (("IPI", "IPI", None), ("DPI-split", "DPI", "split"), ("DPI-whole", "DPI", "whole")):
+            xs = [r for r in tam if r["defense"] == d and r.get("tamas_attack") == att_
+                  and (var is None or r.get("variant") == var)]
+            if not xs:
+                continue
+
+            def also(r: dict[str, Any]) -> bool:
+                return all(t in ben.get((r["defense"], r["domain"], r["index"], r["llm"]), set())
+                           for t in r.get("targets") or [])
+            orc[d][col] = {"n": len(xs), "succ": sum(bool(r["goal_met"]) for r in xs),
+                           "succ_also_benign": sum(bool(r["goal_met"]) and also(r) for r in xs),
+                           "base": sum(also(r) for r in xs)}
+    numbers["tamas_oracle"] = dict(orc)
+    numbers["tamas_n_per_cell"] = sum(1 for r in tam if r["defense"] == "B0" and r.get("tamas_attack") == "IPI")
+    # ---- residual successes against I2 per TAMAS configuration (the two DPI labelings are alternatives)
+    from residual import category
+    cfg: dict[str, Counter[str]] = {"whole": Counter(), "split": Counter()}
+    for r in tam:
+        if r["defense"] != "I2" or not r.get("asr"):
+            continue
+        for c in ("whole", "split"):
+            if r.get("tamas_attack") == "DPI" and r.get("variant") != c:
+                continue
+            cat = category(r)
+            if cat == "plausible" and all(t in ben.get((r["defense"], r["domain"], r["index"], r["llm"]), set())
+                                          for t in r.get("targets") or []):
+                cat = "benign-overlap"
+            cfg[c][cat] += 1
+    numbers["residual_by_config"] = {k: dict(v) for k, v in cfg.items()}
+    numbers["zoo_success_i2"] = sum(1 for r in rows if r.get("family") != "tamas" and r["defense"] == "I2"
+                                    and r.get("asr"))
 
 
 def main() -> int:
@@ -491,6 +617,7 @@ def main() -> int:
                                                                and r.get("llm") in fixed):
             res[category(r)] += 1
     numbers["residual"] = dict(res)
+    review_numbers(rows, zoo, ablation, tam, numbers, out)
     (out / "numbers.json").write_text(json.dumps(numbers, indent=1, default=str))
     print(json.dumps({"rows": len(rows), "errors": len(errors), "defenses": list(main)}, indent=None))
     return 0
